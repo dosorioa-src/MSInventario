@@ -12,6 +12,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap" rel="stylesheet">
@@ -19,6 +21,7 @@
     @yield('style')
   </head>
   <body @if(Route::current()->getName() == 'index') onload="startTime()" @endif>
+  <div id="app">
     @if(Route::current()->getName() == 'index') 
       <div class="loader-wrapper">
         <div class="loader-index"><span></span></div>
@@ -72,7 +75,7 @@
     <!-- latest jquery-->
     @include('layouts.simple.script')  
     <!-- Plugin used-->
-
+    </div>
     <script type="text/javascript">
       if ($(".page-wrapper").hasClass("horizontal-wrapper")) {
             $(".according-menu.other" ).css( "display", "none" );
