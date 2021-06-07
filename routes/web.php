@@ -20,3 +20,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/api/role/load', 'RoleController@load')->middleware('auth');
+Route::get('/api/permission/load', 'PermissionController@load')->middleware('auth');
