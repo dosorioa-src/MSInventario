@@ -21,6 +21,10 @@ Route::get('/user', function () {
     return view('/users/user');
 });
 
+Route::get('/products', function () {
+    return view('products.index');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
