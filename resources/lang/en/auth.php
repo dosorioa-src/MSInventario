@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Contraseña incorrecta. Vuelve a intentarlo o comunicate con el administrador del sistema',
+    'failed' => 'Contraseña incorrecta o cuenta inactivo. Vuelve a intentarlo o comunicate con el administrador del sistema',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];

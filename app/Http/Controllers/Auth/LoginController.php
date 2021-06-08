@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -36,5 +38,30 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        
+
+    }
+
+    public function login(Request $request)
+
+    {   
+
+        $admin = [
+            'email'=>$request->email,
+            'password'=>$request->password,
+            'is_active' => 1,
+            'is_deleted' => 0
+        ];
+
+        if(Auth::attempt($admin))
+        {
+            return redirect('/');
+
+        }else{
+                return $this->sendFailedLoginResponse($request);
+        }
+
+          
+
     }
 }
