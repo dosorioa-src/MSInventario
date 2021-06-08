@@ -35,7 +35,7 @@
 						</a>
 					</li>
 					<li class="sidebar-list">
-						<a class="sidebar-link sidebar-title link-nav" href="">
+						<a class="sidebar-link sidebar-title link-nav" href="/user">
 							<i data-feather="users"> </i><span>Usuarios</span>
 						</a>
 					</li>
