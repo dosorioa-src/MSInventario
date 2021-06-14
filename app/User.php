@@ -41,11 +41,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function roles(){
+    public function Role(){
         return $this->belongsTo(Role::class);
     }
 
-    public function type_indetifications(){
+    public function Type_indetification(){
         return $this->belongsTo(Type_indetification::class);
     }
 }

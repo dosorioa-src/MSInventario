@@ -13,7 +13,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Registrar Usuario</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Nuevo Usuario</h5>
                                 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
                             </div>
                             <div class="modal-body">
