@@ -13,6 +13,7 @@ class CategorieController extends Controller
         $data = Categorie::with('Product')->get();
         $json_data = [];
         foreach ($data as $item) {
+<<<<<<< HEAD
             array_push($json_data, [
                 "parent" => ($item->parent_id) ? Categorie::find($item->parent_id)->name : "N/A",
                 "total_products" => count($item->product),
@@ -21,6 +22,17 @@ class CategorieController extends Controller
                 "is_active" => $item->is_active,
                 "sum_price" => $item->product->sum('price'),
                 "sum_cost" => $item->product->sum('cost'),
+=======
+            array_push($json_data,[
+                "id"=>$item->id,
+                "parent" => ($item->parent_id) ? Categorie::find($item->parent_id)->name: "N/A" ,
+                "total_products"=>count($item->product),
+                "stock"=>$item->product->sum('qty'),
+                "categorie_name"=>$item->name,
+                "is_active"=>$item->is_active,
+                "sum_price"=> $item->product->sum('price'),
+                "sum_cost"=> $item->product->sum('cost'),
+>>>>>>> c9e0cbc595aa0d451033419c04882eb0defa6cc9
             ]);
 
         }
