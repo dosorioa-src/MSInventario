@@ -14,6 +14,7 @@ class CategorieController extends Controller
         $json_data = [];
         foreach ($data as $item) {
             array_push($json_data,[
+                "id"=>$item->id,
                 "parent" => ($item->parent_id) ? Categorie::find($item->parent_id)->name: "N/A" ,
                 "total_products"=>count($item->product),
                 "stock"=>$item->product->sum('qty'),

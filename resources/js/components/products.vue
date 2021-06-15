@@ -453,6 +453,7 @@
                 <div class="modal-footer">
                   <button
                     v-if="btn_update_active == 0"
+                    @click="createProduct()"
                     class="btn btn-primary"
                     type="submit"
                     data-bs-original-title=""
@@ -610,9 +611,10 @@ export default {
 
     //Métodos de mantenimiento
     createProduct:function(){
-        axios.post('/api/product/add',this.product).then(res=>{
+      console.log(this.product)
+        /* axios.post('/api/product/add',this.product).then(res=>{
             this.loadProducts()
-        })
+        }) */
     },
     deleteProduct:function(item) {
         this.product = item

@@ -2987,6 +2987,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3077,18 +3078,17 @@ __webpack_require__.r(__webpack_exports__);
     },
     //Métodos de mantenimiento
     createProduct: function createProduct() {
-      var _this6 = this;
-
-      axios.post('/api/product/add', this.product).then(function (res) {
-        _this6.loadProducts();
-      });
+      console.log(this.product);
+      /* axios.post('/api/product/add',this.product).then(res=>{
+          this.loadProducts()
+      }) */
     },
     deleteProduct: function deleteProduct(item) {
-      var _this7 = this;
+      var _this6 = this;
 
       this.product = item;
       axios.post('/api/product/delete', this.product).then(function (res) {
-        _this7.loadProducts();
+        _this6.loadProducts();
       });
     },
     editProductData: function editProductData(item) {
@@ -3096,13 +3096,13 @@ __webpack_require__.r(__webpack_exports__);
       this.btn_update_active = 1;
     },
     editProduct: function editProduct() {
-      var _this8 = this;
+      var _this7 = this;
 
       axios.put('/api/product/edit', this.product).then(function (res) {
-        _this8.loadProducts();
+        _this7.loadProducts();
 
-        _this8.btn_update_active = 0;
-        _this8.product = [];
+        _this7.btn_update_active = 0;
+        _this7.product = [];
       });
     },
     //Métodos de agregar y quitar variantes
@@ -41902,6 +41902,11 @@ var render = function() {
                                   type: "submit",
                                   "data-bs-original-title": "",
                                   title: ""
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.createProduct()
+                                  }
                                 }
                               },
                               [
