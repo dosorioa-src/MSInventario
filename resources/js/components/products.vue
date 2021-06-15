@@ -259,7 +259,10 @@
                           <label class="form-label" for="validationDefault03"
                             >Imagen</label
                           >
-                          <input class="form-control" type="file" title=""> 
+                          <!-- <input class="form-control" type="file" title="">  -->
+                          <div class="file-upload-wrapper">
+  <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" />
+</div>
                         </div>                    
                       </div>
                     </div>
@@ -268,7 +271,7 @@
                       <div class="col-md-12">
                         <div class="mb-3">
                           <label for="exampleFormControlTextarea4">Descripción</label>
-                          <textarea class="form-control" id="exampleFormControlTextarea4" v-model="product.description" rows="3"></textarea>
+                          <textarea class="form-control" id="exampleFormControlTextarea4" v-model="product.product_details" rows="3"></textarea>
                         </div>
                       </div>
                     </div>
@@ -279,8 +282,8 @@
                           <!-- <label class="form-label" for="validationDefault03">¿Establecer como producto destacado?</label> -->
 
                           <div class="form-check checkbox checkbox-primary mb-0">
-                            <input class="form-check-input" id="feature" type="checkbox" v-model="product.feature" value="1">
-                            <label class="form-check-label" for="feature"> Establecer como producto destacado </label>
+                            <input class="form-check-input" id="featured" type="checkbox" v-model="product.featured" value="1">
+                            <label class="form-check-label" for="featured"> Establecer como producto destacado </label>
                           </div>         
 
                           <!-- <div class="m-checkbox-inline custom-radio-ml">
@@ -339,24 +342,11 @@
 
                         <div class="col-md-3">
                           <div class="mb-3">
-                            <label class="form-label" for="validationDefault01">Precio</label>
+                            <label class="form-label" for="validationDefault01">Precio adicional</label>
                             <div class="input-group">
                               <span class="input-group-text">$</span>
                               <input class="form-control" type="number" v-model="variant.additional_price" placeholder="00.00">
                             </div>
-                          </div>
-                        </div>
-
-                        <div class="col-md-3">
-                          <div class="mb-3">
-                            <label class="form-label" for="validationDefault01">Cantidad</label>
-                            <input
-                              class="form-control"
-                              id="validationDefault01"
-                              v-model="variant.qty"
-                              type="number"
-                              placeholder=""
-                            />
                           </div>
                         </div>
                         <div class="col-md-3">
@@ -429,19 +419,6 @@
                               <span class="input-group-text">$</span>
                               <input class="form-control" type="number" v-model="product.warehouse.price" placeholder="00.00">
                             </div>
-                          </div>
-                        </div>
-
-                        <div class="col-md-3">
-                          <div class="mb-3">
-                            <label class="form-label" for="validationDefault01">Cantidad</label>
-                            <input
-                              class="form-control"
-                              id="validationDefault01"
-                              v-model="product.warehouse.qty"
-                              type="number"
-                              placeholder=""
-                            />
                           </div>
                         </div>
                       </div>
@@ -547,19 +524,17 @@ export default {
         alert_quantity: "",
         tax_method: "",
         tax_id: "",
-        description: "",
-        feature: [],
-        is_variant: [],
+        product_details: "",
+        featured: "",
+        is_variant: "",
         variant: [{
           name: '',
           additional_price: '',
-          qty: ''
         }],
-        is_warehouse: [],
-        warehouse: [{
+        is_warehouse: "",
+        warehouse: {
           price: '',
-          qty: '',
-        }]
+        }
       },
       categories: [],
       brands: [],
@@ -603,7 +578,7 @@ export default {
       })      
     },
     loadTaxes:function() {
-      axios.get('/api/tax/load').then(res=>{
+      axios.get('/api/taxe/load').then(res=>{
       this.taxes = res.data;
       console.log(this.taxes)
       })      
@@ -612,9 +587,9 @@ export default {
     //Métodos de mantenimiento
     createProduct:function(){
       console.log(this.product)
-        /* axios.post('/api/product/add',this.product).then(res=>{
+        axios.post('/api/product/add',this.product).then(res=>{
             this.loadProducts()
-        }) */
+        })
     },
     deleteProduct:function(item) {
         this.product = item
@@ -636,7 +611,7 @@ export default {
 
     //Métodos de agregar y quitar variantes
     add(index) {
-        this.product.variant.push({ addicional_price: '', qty: '' });
+        this.product.variant.push({ additional_price: '' });
     },
     remove(index) {
         this.product.variant.splice(index, 1);

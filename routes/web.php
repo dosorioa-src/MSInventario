@@ -47,3 +47,9 @@ Route::get('/api/categorie/load', 'CategorieController@load')->middleware('auth'
 Route::post('/api/categorie/add', 'CategorieController@add')->middleware('auth');
 Route::post('/api/categorie/edit', 'CategorieController@edit')->middleware('auth');
 Route::post('/api/categorie/delete', 'CategorieController@delete')->middleware('auth');
+
+Route::get('/api/brand/load','BrandController@load')->middleware('auth');
+Route::get('/api/unit/load', 'UnitController@load')->middleware('auth');
+Route::get('/api/taxe/load', 'TaxeController@load')->middleware('auth');
+
+Route::post('/api/product/add', 'ProductController@add')->middleware('auth');

@@ -18,7 +18,7 @@ class CategorieController extends Controller
                 "parent" => ($item->parent_id) ? Categorie::find($item->parent_id)->name: "N/A" ,
                 "total_products"=>count($item->product),
                 "stock"=>$item->product->sum('qty'),
-                "categorie_name"=>$item->name,
+                "name"=>$item->name,
                 "is_active"=>$item->is_active,
                 "sum_price"=> $item->product->sum('price'),
                 "sum_cost"=> $item->product->sum('cost'),
