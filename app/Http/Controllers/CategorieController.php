@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
 use App\Categorie;
+use App\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class CategorieController extends Controller
 {
-    public function load(){
+    public function load()
+    {
         $data = Categorie::with('Product')->get();
         $json_data = [];
         foreach ($data as $item) {
@@ -23,23 +23,26 @@ class CategorieController extends Controller
                 "sum_price"=> $item->product->sum('price'),
                 "sum_cost"=> $item->product->sum('cost'),
             ]);
-            
+
         }
 
         return $json_data;
     }
 
-    public function add(request $request){
+    public function add(request $request)
+    {
         Categorie::create($request->All());
     }
 
-    public function edit(request $request){
+    public function edit(request $request)
+    {
         Categorie::where('id', $request->id)
-        ->update($request->All());
+            ->update($request->All());
     }
-    
-    public function delete(request $request){
+
+    public function delete(request $request)
+    {
         Categorie::where('id', $request->id)
-        ->update(['is_deleted' => true]);
+            ->update(['is_deleted' => true]);
     }
 }

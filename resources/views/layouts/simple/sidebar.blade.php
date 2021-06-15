@@ -44,7 +44,7 @@
                         </ul>
                     </li>
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="">
+                        <a class="sidebar-link sidebar-title link-nav" href="/providers">
                             <i data-feather="list"> </i><span>Proveedores</span>
                         </a>
                     </li>

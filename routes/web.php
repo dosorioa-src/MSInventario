@@ -23,10 +23,14 @@ Route::get('/user', function () {
 
 Route::get('/products', function () {
     return view('products.index');
-});
+})->middleware('auth');
 
 Route::get('/categorie', function () {
     return view('/categories/categorie');
+})->middleware('auth');
+
+Route::get('/providers', function () {
+    return view('/providers/provider');
 })->middleware('auth');
 
 Auth::routes();
