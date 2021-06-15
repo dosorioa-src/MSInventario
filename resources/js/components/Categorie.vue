@@ -5,6 +5,7 @@
          <div class="card">
           <div class="card-header d-flex flex-row-reverse">
             <button
+              @click="btn_update_active=0, modal_title='Nueva Categoría'"
               class="btn btn-primary"
               type="button"
               data-bs-toggle="modal"
@@ -29,7 +30,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">
-                    Nueva Categoría
+                    {{modal_title}}
                   </h5>
                   <button
                     class="btn-close"
@@ -96,6 +97,7 @@
 
                 <div class="modal-footer">
                   <button
+                    
                     v-if="btn_update_active == 0"
                     class="btn btn-primary"
                     type="submit"
@@ -105,6 +107,7 @@
                     Guardar
                   </button>
                   <button
+                   
                     v-if="btn_update_active == 1"
                     class="btn btn-primary"
                     type="submit"
@@ -145,16 +148,16 @@
                   <tbody>
                      <tr v-for="item in categories" :key="item.id">
                         <th>{{item.id}}</th>
-                        <td>{{item.categorie_name}}</td>
+                        <td>{{item.name}}</td>
                         <td>{{item.parent}}</td>
                         <td>{{item.total_products}}</td>
                         <td>{{item.stock}}</td>
                         <td>{{item.sum_price}}</td>
                         <td>{{item.sum_cost}}</td>
-                        <td v-if="item.is_active == 1"><span class="badge badge-success">Activo</span></td>
+                        <td v-if="item.is_active == 1"><span class="badge badge-primary">Activo</span></td>
                         <td v-if="item.is_active == 0"><span class="badge badge-secondary">Inactivo</span></td>
                         <td>
-                           <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button"  class="btn btn-success btn-xs">
+                           <button data-bs-toggle="modal" data-bs-target="#exampleModal" type="button" @click="editCategorieData(item), btn_update_active=1, modal_title='Editar Categoría'" class="btn btn-primary btn-xs">
                               <svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                  <g clip-path="url(#clip0)">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M16.0721 0.175179C15.9549 0.0580096 15.796 -0.0078125 15.6302 -0.0078125C15.4645 -0.0078125 15.3056 0.0580096 15.1884 0.175179L13.1296 2.23393L17.7634 6.86768L19.8221 4.81018C19.8803 4.75212 19.9265 4.68315 19.958 4.60722C19.9895 4.53129 20.0057 4.44989 20.0057 4.36768C20.0057 4.28547 19.9895 4.20407 19.958 4.12814C19.9265 4.05221 19.8803 3.98324 19.8221 3.92518L16.0721 0.175179ZM16.8796 7.75143L12.2459 3.11768L4.12086 11.2427H4.37961C4.54537 11.2427 4.70435 11.3085 4.82156 11.4257C4.93877 11.5429 5.00461 11.7019 5.00461 11.8677V12.4927H5.62961C5.79537 12.4927 5.95435 12.5585 6.07156 12.6757C6.18877 12.7929 6.25461 12.9519 6.25461 13.1177V13.7427H6.87962C7.04538 13.7427 7.20435 13.8085 7.32156 13.9257C7.43877 14.0429 7.50462 14.2019 7.50462 14.3677V14.9927H8.12962C8.29538 14.9927 8.45435 15.0585 8.57156 15.1757C8.68877 15.2929 8.75462 15.4519 8.75462 15.6177V15.8764L16.8796 7.75143ZM7.54462 17.0864C7.51831 17.0165 7.50477 16.9424 7.50462 16.8677V16.2427H6.87962C6.71386 16.2427 6.55488 16.1768 6.43767 16.0596C6.32046 15.9424 6.25461 15.7834 6.25461 15.6177V14.9927H5.62961C5.46385 14.9927 5.30488 14.9268 5.18767 14.8096C5.07046 14.6924 5.00461 14.5334 5.00461 14.3677V13.7427H4.37961C4.21385 13.7427 4.05488 13.6768 3.93767 13.5596C3.82046 13.4424 3.75461 13.2834 3.75461 13.1177V12.4927H3.12961C3.05489 12.4926 2.98079 12.479 2.91086 12.4527L2.68711 12.6752C2.62755 12.7352 2.58077 12.8066 2.54961 12.8852L0.0496099 19.1352C0.00414655 19.2488 -0.00698284 19.3732 0.0176015 19.493C0.0421858 19.6129 0.101403 19.7229 0.187911 19.8094C0.274419 19.8959 0.384414 19.9551 0.50426 19.9797C0.624105 20.0043 0.748531 19.9931 0.862111 19.9477L7.11212 17.4477C7.19069 17.4165 7.26213 17.3697 7.32212 17.3102L7.54462 17.0877V17.0864Z" fill="white"></path>
@@ -193,6 +196,7 @@
     export default {
     data() {
         return {
+            modal_title:'',
             btn_update_active:0,
             categories: [],
             categorie:{
@@ -222,12 +226,10 @@
         
         editCategorieData:function(item) {
             this.categorie = item
-            this.btn_update_active=1
         },
         editCategorie:function() {
             axios.put('/api/categorie/edit',this.categorie).then(res=>{
                 this.loadcategorie()
-                this.btn_update_active=0
                 this.categorie=[]
             })
         },

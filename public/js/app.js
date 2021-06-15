@@ -2099,9 +2099,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      modal_title: '',
       btn_update_active: 0,
       categories: [],
       categorie: {
@@ -2133,7 +2137,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     editCategorieData: function editCategorieData(item) {
       this.categorie = item;
-      this.btn_update_active = 1;
     },
     editCategorie: function editCategorie() {
       var _this3 = this;
@@ -2141,7 +2144,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.put('/api/categorie/edit', this.categorie).then(function (res) {
         _this3.loadcategorie();
 
-        _this3.btn_update_active = 0;
         _this3.categorie = [];
       });
     },
@@ -39113,6 +39115,12 @@ var render = function() {
                   "data-bs-target": "#exampleModal",
                   "data-bs-original-title": "",
                   title: ""
+                },
+                on: {
+                  click: function($event) {
+                    ;(_vm.btn_update_active = 0),
+                      (_vm.modal_title = "Nueva Categoría")
+                  }
                 }
               },
               [_vm._v("\n              Nueva Categoria\n            ")]
@@ -39136,7 +39144,33 @@ var render = function() {
                   { staticClass: "modal-dialog", attrs: { role: "document" } },
                   [
                     _c("div", { staticClass: "modal-content" }, [
-                      _vm._m(0),
+                      _c("div", { staticClass: "modal-header" }, [
+                        _c(
+                          "h5",
+                          {
+                            staticClass: "modal-title",
+                            attrs: { id: "exampleModalLabel" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                    " +
+                                _vm._s(_vm.modal_title) +
+                                "\n                  "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("button", {
+                          staticClass: "btn-close",
+                          attrs: {
+                            type: "button",
+                            "data-bs-dismiss": "modal",
+                            "aria-label": "Close",
+                            "data-bs-original-title": "",
+                            title: ""
+                          }
+                        })
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "modal-body" }, [
                         _c(
@@ -39422,7 +39456,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "table-responsive" }, [
             _c("table", { staticClass: "table table-sm" }, [
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -39430,7 +39464,7 @@ var render = function() {
                   return _c("tr", { key: item.id }, [
                     _c("th", [_vm._v(_vm._s(item.id))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(item.categorie_name))]),
+                    _c("td", [_vm._v(_vm._s(item.name))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(item.parent))]),
                     _vm._v(" "),
@@ -39444,7 +39478,7 @@ var render = function() {
                     _vm._v(" "),
                     item.is_active == 1
                       ? _c("td", [
-                          _c("span", { staticClass: "badge badge-success" }, [
+                          _c("span", { staticClass: "badge badge-primary" }, [
                             _vm._v("Activo")
                           ])
                         ])
@@ -39462,11 +39496,18 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-success btn-xs",
+                          staticClass: "btn btn-primary btn-xs",
                           attrs: {
                             "data-bs-toggle": "modal",
                             "data-bs-target": "#exampleModal",
                             type: "button"
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.editCategorieData(item),
+                                (_vm.btn_update_active = 1),
+                                (_vm.modal_title = "Editar Categoría")
+                            }
                           }
                         },
                         [
@@ -39577,29 +39618,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("\n                    Nueva Categoría\n                  ")]
-      ),
-      _vm._v(" "),
-      _c("button", {
-        staticClass: "btn-close",
-        attrs: {
-          type: "button",
-          "data-bs-dismiss": "modal",
-          "aria-label": "Close",
-          "data-bs-original-title": "",
-          title: ""
-        }
-      })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
