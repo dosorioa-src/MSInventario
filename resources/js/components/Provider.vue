@@ -29,7 +29,7 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 v-if="btn_update_active == 0" class="modal-title" id="exampleModalLabel">
+                  <h5 class="modal-title" id="exampleModalLabel">
                     {{ modal_title }}
                   </h5>
                   <button
@@ -208,7 +208,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="item in companies" :key="item.id" >
+                <tr v-for="item in providers" :key="item.id" >
                   <th>{{ item.id }}</th>
                   <td>{{ item.name }}</td>
                   <td>{{ item.company_name }}</td>
@@ -289,6 +289,7 @@ export default {
     //Métodos de mantenimiento
     createProvider:function(){
         axios.post('/api/provider/add',this.provider).then(res=>{
+            $('#exampleModal').modal('hide')
             this.loadProviders()
         })
     },
