@@ -16,12 +16,24 @@ class ProductController extends Controller
     }
 
     public function add(request $request){
-        $addProduct=Product::create([
+        /* foreach($request->files as $file)
+        {
+            foreach ($file as $key => $img ) {
+                $name = time().'-'.$img->getClientOriginalName();
+                $img->move(public_path().'/images/product', $name);
+                $names[] = $name; 
+            }
+        }  */
+        return $request;
+            /* $json_data=$request->document;
+            return $json_data; */
+        /* $addProduct=Product::create([
             "name"=>$request->name,
             "brand_id"=> $request->brand_id,
             "categorie_id"=> $request->categorie_id,
             "code"=> $request->code,
             "cost"=> $request->cost,
+            "image"=>implode(",", $names),
             "product_details"=> $request->product_details,
             "featured"=> $request->featured,
             "is_variant"=> $request->is_variant,
@@ -35,6 +47,8 @@ class ProductController extends Controller
             "unit_id"=> $request->unit_id,
             "alert_quantity"=> $request->alert_quantity,
         ]);
+        
+
         if ($request->is_variant==true) {
             foreach ($request->variant as $item) {
                 $addProduct->product_variant()->create($item);
@@ -46,7 +60,7 @@ class ProductController extends Controller
                 "price"=>$request->warehouse["price"],
                 "warehouse_id"=> $warehouse->id,//7 es el id del almacen virtual
             ]);
-        }
+        } */
         
     }
 

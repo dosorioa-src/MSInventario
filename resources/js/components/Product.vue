@@ -260,9 +260,7 @@
                             >Imagen</label
                           >
                           <!-- <input class="form-control" type="file" title="">  -->
-                          <div class="file-upload-wrapper">
-  <input type="file" id="input-file-max-fs" class="file-upload" data-max-file-size="2M" />
-</div>
+                          <UploadImages @change="handleImages" clearAll="Limpiar todo" uploadMsg="Haga clic para subir o soltar sus imágenes aquí"/>
                         </div>                    
                       </div>
                     </div>
@@ -505,7 +503,12 @@
 </template>
 
 <script>
+import UploadImages from "vue-upload-drop-images"
 export default {
+  components: {
+      UploadImages,
+  },
+                 
   data() {
     return {
       btn_update_active: 0,
@@ -541,6 +544,7 @@ export default {
       units: [],
       taxes: []
     }
+    
   },
 
   created(){
@@ -586,10 +590,33 @@ export default {
 
     //Métodos de mantenimiento
     createProduct:function(){
-      console.log(this.product)
-        axios.post('/api/product/add',this.product).then(res=>{
+      /* const json = JSON.stringify(this.product); */
+      const blob = JSON.stringify(this.product);
+
+      let formData = new FormData();
+      this.file.forEach(function (img, i) {
+        formData.append('file['+i+']', img);
+      });
+      formData.append("document", blob);
+        /* formData.append("name",this.product.name); */
+            axios.post( '/api/product/add',formData,
+            ).then(res=>{
+                if (res.data) {
+                    
+                }else{
+                    this.mostrar(this.page);
+                    alert("Importado con exito")
+                }
+                   
+            })
+            .catch((error) => {
+                    alert(error)
+            });
+
+
+        /* axios.post('/api/product/add',this.product).then(res=>{
             this.loadProducts()
-        })
+        }) */
     },
     deleteProduct:function(item) {
         this.product = item
@@ -607,8 +634,7 @@ export default {
             this.btn_update_active=0
             this.product=[]
         })
-    },    
-
+    },
     //Métodos de agregar y quitar variantes
     add(index) {
         this.product.variant.push({ additional_price: '' });
@@ -616,12 +642,38 @@ export default {
     remove(index) {
         this.product.variant.splice(index, 1);
     },
-    // add2(index) {
-    //     this.product.warehouse.push({ price: '', qty: '' });
-    // },
-    // remove2(index) {
-    //     this.product.warehouse.splice(index, 1);
-    // }
+
+    //metodos para subir imagenes
+    handleImages(files){
+        /* console.log(files) */
+        this.file = files;
+    },
+    /* uploadImages() {
+      
+      let formData = new FormData();
+      this.file.forEach(function (img, i) {
+        formData.append('file['+i+']', img);
+      });
+            axios.post( '/api/product/add',
+            formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+            ).then(res=>{
+                if (res.data) {
+                    
+                }else{
+                    this.mostrar(this.page);
+                    alert("Importado con exito")
+                }
+                   
+            })
+            .catch((error) => {
+                    alert(error)
+            });
+    } */
   }
 };
 </script>
