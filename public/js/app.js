@@ -2723,6 +2723,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2733,35 +2786,36 @@ __webpack_require__.r(__webpack_exports__);
       btn_update_active: 0,
       products: [],
       product: {
-        name: "",
-        code: "",
-        type: "",
-        categorie_id: "",
-        brand_id: "",
-        unit_id: "",
-        purchase_unit_id: "",
-        sale_unit_id: "",
-        cost: "",
-        price: "",
-        alert_quantity: "",
-        tax_method: "",
-        tax_id: "",
-        product_details: "",
-        featured: "",
-        is_variant: "",
-        variant: [{
-          name: '',
-          additional_price: ''
+        name: null,
+        code: null,
+        type: null,
+        categorie_id: null,
+        brand_id: null,
+        unit_id: null,
+        purchase_unit_id: null,
+        sale_unit_id: null,
+        cost: null,
+        price: null,
+        alert_quantity: null,
+        tax_method: null,
+        tax_id: null,
+        product_details: null,
+        featured: false,
+        is_variant: false,
+        product_variant: [{
+          name: null,
+          additional_price: 0
         }],
-        is_warehouse: "",
-        warehouse: {
-          price: ''
-        }
+        is_warehouse: false,
+        product_warehouse: [{
+          price: 0
+        }]
       },
       categories: [],
       brands: [],
       units: [],
-      taxes: []
+      taxes: [],
+      imagesUrl: []
     };
   },
   created: function created() {
@@ -2778,7 +2832,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/product/load').then(function (res) {
         _this.products = res.data;
-        console.log(_this.products);
       });
     },
     loadCategories: function loadCategories() {
@@ -2786,7 +2839,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/categorie/load').then(function (res) {
         _this2.categories = res.data;
-        console.log(_this2.categories);
       });
     },
     loadBrands: function loadBrands() {
@@ -2794,7 +2846,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/brand/load').then(function (res) {
         _this3.brands = res.data;
-        console.log(_this3.brands);
       });
     },
     loadUnits: function loadUnits() {
@@ -2802,7 +2853,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/unit/load').then(function (res) {
         _this4.units = res.data;
-        console.log(_this4.units);
       });
     },
     loadTaxes: function loadTaxes() {
@@ -2810,98 +2860,89 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/taxe/load').then(function (res) {
         _this5.taxes = res.data;
-        console.log(_this5.taxes);
       });
     },
     //Métodos de mantenimiento
     createProduct: function createProduct() {
       var _this6 = this;
 
-      /* const json = JSON.stringify(this.product); */
       var blob = JSON.stringify(this.product);
       var formData = new FormData();
-      this.file.forEach(function (img, i) {
-        formData.append('file[' + i + ']', img);
-      });
+
+      if (this.file) {
+        this.file.forEach(function (img, i) {
+          formData.append('file[' + i + ']', img);
+        });
+      }
+
       formData.append("document", blob);
-      /* formData.append("name",this.product.name); */
-
       axios.post('/api/product/add', formData).then(function (res) {
-        if (res.data) {} else {
-          _this6.mostrar(_this6.page);
-
-          alert("Importado con exito");
-        }
+        _this6.loadProducts();
       })["catch"](function (error) {
         alert(error);
       });
-      /* axios.post('/api/product/add',this.product).then(res=>{
-          this.loadProducts()
-      }) */
     },
     deleteProduct: function deleteProduct(item) {
-      var _this7 = this;
-
       this.product = item;
-      axios.post('/api/product/delete', this.product).then(function (res) {
-        _this7.loadProducts();
-      });
+      axios.post('/api/product/delete', this.product);
+      this.loadProducts();
     },
     editProductData: function editProductData(item) {
       this.product = item;
+      this.imagesUrl = item.image.split(',');
       this.btn_update_active = 1;
+
+      if (this.product.is_variant == false) {
+        this.product.product_variant = [{
+          name: null,
+          additional_price: 0
+        }];
+      }
+
+      if (this.product.is_warehouse == false) {
+        this.product.product_warehouse = [{
+          price: 0
+        }];
+      }
     },
     editProduct: function editProduct() {
-      var _this8 = this;
+      var _this7 = this;
 
-      axios.put('/api/product/edit', this.product).then(function (res) {
-        _this8.loadProducts();
+      var blob = JSON.stringify(this.product);
+      var formData = new FormData();
 
-        _this8.btn_update_active = 0;
-        _this8.product = [];
-      });
+      if (this.file) {
+        this.file.forEach(function (img, i) {
+          formData.append('file[' + i + ']', img);
+        });
+      }
+
+      formData.append("document", blob);
+      axios.post('/api/product/edit', formData).then(function (res) {
+        _this7.product = [];
+
+        _this7.loadProducts();
+      })["catch"](function (error) {});
     },
     //Métodos de agregar y quitar variantes
     add: function add(index) {
-      this.product.variant.push({
+      this.product.product_variant.push({
         additional_price: ''
       });
     },
     remove: function remove(index) {
-      this.product.variant.splice(index, 1);
+      this.product.product_variant.splice(index, 1);
     },
     //metodos para subir imagenes
     handleImages: function handleImages(files) {
       /* console.log(files) */
       this.file = files;
+    },
+    //metodos para editar imagenes
+    removeImage: function removeImage(index) {
+      this.imagesUrl.splice(index, 1);
+      this.product.image = this.imagesUrl.join();
     }
-    /* uploadImages() {
-      
-      let formData = new FormData();
-      this.file.forEach(function (img, i) {
-        formData.append('file['+i+']', img);
-      });
-            axios.post( '/api/product/add',
-            formData,
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            }
-            ).then(res=>{
-                if (res.data) {
-                    
-                }else{
-                    this.mostrar(this.page);
-                    alert("Importado con exito")
-                }
-                   
-            })
-            .catch((error) => {
-                    alert(error)
-            });
-    } */
-
   }
 });
 
@@ -41122,6 +41163,11 @@ var render = function() {
                   "data-bs-target": "#exampleModal",
                   "data-bs-original-title": "",
                   title: ""
+                },
+                on: {
+                  click: function($event) {
+                    ;(_vm.btn_update_active = 0), (_vm.product = [])
+                  }
                 }
               },
               [_vm._v("\n            Nuevo Producto\n          ")]
@@ -41195,7 +41241,6 @@ var render = function() {
                         _c(
                           "form",
                           {
-                            attrs: { novalidate: "" },
                             on: {
                               submit: function($event) {
                                 $event.preventDefault()
@@ -41228,6 +41273,7 @@ var render = function() {
                                     attrs: {
                                       id: "validationDefault01",
                                       type: "text",
+                                      required: "",
                                       placeholder: "Nombre de Producto"
                                     },
                                     domProps: { value: _vm.product.name },
@@ -41999,10 +42045,14 @@ var render = function() {
                                       ),
                                       _vm._v(" "),
                                       _c("option", { attrs: { value: "1" } }, [
-                                        _vm._v("Incluye")
+                                        _vm._v("No aplica")
                                       ]),
                                       _vm._v(" "),
                                       _c("option", { attrs: { value: "2" } }, [
+                                        _vm._v("Incluye")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "3" } }, [
                                         _vm._v("No incluye")
                                       ])
                                     ]
@@ -42116,7 +42166,155 @@ var render = function() {
                                           "Haga clic para subir o soltar sus imágenes aquí"
                                       },
                                       on: { change: _vm.handleImages }
-                                    })
+                                    }),
+                                    _vm._v(" "),
+                                    _vm.product.image
+                                      ? _c(
+                                          "div",
+                                          { staticClass: "table-responsive" },
+                                          [
+                                            _c(
+                                              "table",
+                                              { staticClass: "table" },
+                                              [
+                                                _vm._m(0),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "tbody",
+                                                  _vm._l(
+                                                    _vm.imagesUrl,
+                                                    function(item, index) {
+                                                      return _c(
+                                                        "tr",
+                                                        { key: item.id },
+                                                        [
+                                                          _c("td", [
+                                                            _c("img", {
+                                                              attrs: {
+                                                                src:
+                                                                  "images/product/" +
+                                                                  item,
+                                                                height: "60",
+                                                                width: "60"
+                                                              }
+                                                            })
+                                                          ]),
+                                                          _vm._v(" "),
+                                                          _c("td", [
+                                                            _c("a", [
+                                                              _c(
+                                                                "button",
+                                                                {
+                                                                  staticClass:
+                                                                    "btn btn-secondary btn-xs",
+                                                                  attrs: {
+                                                                    type:
+                                                                      "button",
+                                                                    title: ""
+                                                                  },
+                                                                  on: {
+                                                                    click: function(
+                                                                      $event
+                                                                    ) {
+                                                                      return _vm.removeImage(
+                                                                        index
+                                                                      )
+                                                                    }
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _c(
+                                                                    "svg",
+                                                                    {
+                                                                      staticClass:
+                                                                        "feather feather-trash-2",
+                                                                      attrs: {
+                                                                        xmlns:
+                                                                          "http://www.w3.org/2000/svg",
+                                                                        width:
+                                                                          "15",
+                                                                        height:
+                                                                          "15",
+                                                                        viewBox:
+                                                                          "0 0 24 24",
+                                                                        fill:
+                                                                          "none",
+                                                                        stroke:
+                                                                          "currentColor",
+                                                                        "stroke-width":
+                                                                          "2",
+                                                                        "stroke-linecap":
+                                                                          "round",
+                                                                        "stroke-linejoin":
+                                                                          "round"
+                                                                      }
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "polyline",
+                                                                        {
+                                                                          attrs: {
+                                                                            points:
+                                                                              "3 6 5 6 21 6"
+                                                                          }
+                                                                        }
+                                                                      ),
+                                                                      _c(
+                                                                        "path",
+                                                                        {
+                                                                          attrs: {
+                                                                            d:
+                                                                              "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+                                                                          }
+                                                                        }
+                                                                      ),
+                                                                      _c(
+                                                                        "line",
+                                                                        {
+                                                                          attrs: {
+                                                                            x1:
+                                                                              "10",
+                                                                            y1:
+                                                                              "11",
+                                                                            x2:
+                                                                              "10",
+                                                                            y2:
+                                                                              "17"
+                                                                          }
+                                                                        }
+                                                                      ),
+                                                                      _c(
+                                                                        "line",
+                                                                        {
+                                                                          attrs: {
+                                                                            x1:
+                                                                              "14",
+                                                                            y1:
+                                                                              "11",
+                                                                            x2:
+                                                                              "14",
+                                                                            y2:
+                                                                              "17"
+                                                                          }
+                                                                        }
+                                                                      )
+                                                                    ]
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ])
+                                                          ])
+                                                        ]
+                                                      )
+                                                    }
+                                                  ),
+                                                  0
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
                                   ],
                                   1
                                 )
@@ -42355,8 +42553,8 @@ var render = function() {
                             _vm.product.is_variant == 1
                               ? _c(
                                   "div",
-                                  _vm._l(_vm.product.variant, function(
-                                    variant,
+                                  _vm._l(_vm.product.product_variant, function(
+                                    product_variant,
                                     k
                                   ) {
                                     return _c(
@@ -42384,8 +42582,9 @@ var render = function() {
                                                 {
                                                   name: "model",
                                                   rawName: "v-model",
-                                                  value: variant.name,
-                                                  expression: "variant.name"
+                                                  value: product_variant.name,
+                                                  expression:
+                                                    "product_variant.name"
                                                 }
                                               ],
                                               staticClass: "form-control",
@@ -42394,14 +42593,16 @@ var render = function() {
                                                 type: "text",
                                                 placeholder: ""
                                               },
-                                              domProps: { value: variant.name },
+                                              domProps: {
+                                                value: product_variant.name
+                                              },
                                               on: {
                                                 input: function($event) {
                                                   if ($event.target.composing) {
                                                     return
                                                   }
                                                   _vm.$set(
-                                                    variant,
+                                                    product_variant,
                                                     "name",
                                                     $event.target.value
                                                   )
@@ -42443,9 +42644,9 @@ var render = function() {
                                                       name: "model",
                                                       rawName: "v-model",
                                                       value:
-                                                        variant.additional_price,
+                                                        product_variant.additional_price,
                                                       expression:
-                                                        "variant.additional_price"
+                                                        "product_variant.additional_price"
                                                     }
                                                   ],
                                                   staticClass: "form-control",
@@ -42455,7 +42656,7 @@ var render = function() {
                                                   },
                                                   domProps: {
                                                     value:
-                                                      variant.additional_price
+                                                      product_variant.additional_price
                                                   },
                                                   on: {
                                                     input: function($event) {
@@ -42465,7 +42666,7 @@ var render = function() {
                                                         return
                                                       }
                                                       _vm.$set(
-                                                        variant,
+                                                        product_variant,
                                                         "additional_price",
                                                         $event.target.value
                                                       )
@@ -42490,10 +42691,11 @@ var render = function() {
                                                       value:
                                                         k ||
                                                         (!k &&
-                                                          _vm.product.variant
+                                                          _vm.product
+                                                            .product_variant
                                                             .length > 1),
                                                       expression:
-                                                        "k || ( !k && product.variant.length > 1)"
+                                                        "k || ( !k && product.product_variant.length > 1)"
                                                     }
                                                   ],
                                                   staticClass:
@@ -42516,11 +42718,12 @@ var render = function() {
                                                       rawName: "v-show",
                                                       value:
                                                         k ==
-                                                        _vm.product.variant
+                                                        _vm.product
+                                                          .product_variant
                                                           .length -
                                                           1,
                                                       expression:
-                                                        "k == product.variant.length-1"
+                                                        "k == product.product_variant.length-1"
                                                     }
                                                   ],
                                                   staticClass:
@@ -42668,9 +42871,11 @@ var render = function() {
                                                   name: "model",
                                                   rawName: "v-model",
                                                   value:
-                                                    _vm.product.warehouse.price,
+                                                    _vm.product
+                                                      .product_warehouse[0]
+                                                      .price,
                                                   expression:
-                                                    "product.warehouse.price"
+                                                    "product.product_warehouse[0].price"
                                                 }
                                               ],
                                               staticClass: "form-control",
@@ -42680,7 +42885,8 @@ var render = function() {
                                               },
                                               domProps: {
                                                 value:
-                                                  _vm.product.warehouse.price
+                                                  _vm.product
+                                                    .product_warehouse[0].price
                                               },
                                               on: {
                                                 input: function($event) {
@@ -42688,7 +42894,8 @@ var render = function() {
                                                     return
                                                   }
                                                   _vm.$set(
-                                                    _vm.product.warehouse,
+                                                    _vm.product
+                                                      .product_warehouse[0],
                                                     "price",
                                                     $event.target.value
                                                   )
@@ -42740,6 +42947,11 @@ var render = function() {
                                   type: "submit",
                                   "data-bs-original-title": "",
                                   title: ""
+                                },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.editProduct()
+                                  }
                                 }
                               },
                               [
@@ -42773,7 +42985,168 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(0)
+          _c("div", { staticClass: "table-responsive" }, [
+            _c(
+              "table",
+              { staticClass: "table style-1 table-hover non-hover" },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.products.data, function(item) {
+                    return _c("tr", { key: item.id }, [
+                      _c("th", { attrs: { scope: "row" } }, [
+                        _c("img", {
+                          attrs: {
+                            src: "images/product/" + item.image.split(",")[0],
+                            width: "50"
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(item.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(item.code))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(item.categorie.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(item.brand.title))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(item.qty))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(item.unit.unit_name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(item.cost))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(item.price))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary btn-xs",
+                            attrs: {
+                              "data-bs-toggle": "modal",
+                              "data-bs-target": "#exampleModal",
+                              "data-bs-original-title": "",
+                              type: "button",
+                              title: ""
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.editProductData(item)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                attrs: {
+                                  width: "15",
+                                  height: "15",
+                                  viewBox: "0 0 20 20",
+                                  fill: "none",
+                                  xmlns: "http://www.w3.org/2000/svg"
+                                }
+                              },
+                              [
+                                _c(
+                                  "g",
+                                  { attrs: { "clip-path": "url(#clip0)" } },
+                                  [
+                                    _c("path", {
+                                      attrs: {
+                                        "fill-rule": "evenodd",
+                                        "clip-rule": "evenodd",
+                                        d:
+                                          "M16.0721 0.175179C15.9549 0.0580096 15.796 -0.0078125 15.6302 -0.0078125C15.4645 -0.0078125 15.3056 0.0580096 15.1884 0.175179L13.1296 2.23393L17.7634 6.86768L19.8221 4.81018C19.8803 4.75212 19.9265 4.68315 19.958 4.60722C19.9895 4.53129 20.0057 4.44989 20.0057 4.36768C20.0057 4.28547 19.9895 4.20407 19.958 4.12814C19.9265 4.05221 19.8803 3.98324 19.8221 3.92518L16.0721 0.175179ZM16.8796 7.75143L12.2459 3.11768L4.12086 11.2427H4.37961C4.54537 11.2427 4.70435 11.3085 4.82156 11.4257C4.93877 11.5429 5.00461 11.7019 5.00461 11.8677V12.4927H5.62961C5.79537 12.4927 5.95435 12.5585 6.07156 12.6757C6.18877 12.7929 6.25461 12.9519 6.25461 13.1177V13.7427H6.87962C7.04538 13.7427 7.20435 13.8085 7.32156 13.9257C7.43877 14.0429 7.50462 14.2019 7.50462 14.3677V14.9927H8.12962C8.29538 14.9927 8.45435 15.0585 8.57156 15.1757C8.68877 15.2929 8.75462 15.4519 8.75462 15.6177V15.8764L16.8796 7.75143ZM7.54462 17.0864C7.51831 17.0165 7.50477 16.9424 7.50462 16.8677V16.2427H6.87962C6.71386 16.2427 6.55488 16.1768 6.43767 16.0596C6.32046 15.9424 6.25461 15.7834 6.25461 15.6177V14.9927H5.62961C5.46385 14.9927 5.30488 14.9268 5.18767 14.8096C5.07046 14.6924 5.00461 14.5334 5.00461 14.3677V13.7427H4.37961C4.21385 13.7427 4.05488 13.6768 3.93767 13.5596C3.82046 13.4424 3.75461 13.2834 3.75461 13.1177V12.4927H3.12961C3.05489 12.4926 2.98079 12.479 2.91086 12.4527L2.68711 12.6752C2.62755 12.7352 2.58077 12.8066 2.54961 12.8852L0.0496099 19.1352C0.00414655 19.2488 -0.00698284 19.3732 0.0176015 19.493C0.0421858 19.6129 0.101403 19.7229 0.187911 19.8094C0.274419 19.8959 0.384414 19.9551 0.50426 19.9797C0.624105 20.0043 0.748531 19.9931 0.862111 19.9477L7.11212 17.4477C7.19069 17.4165 7.26213 17.3697 7.32212 17.3102L7.54462 17.0877V17.0864Z",
+                                        fill: "white"
+                                      }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("defs", [
+                                  _c("clipPath", { attrs: { id: "clip0" } }, [
+                                    _c("rect", {
+                                      attrs: {
+                                        width: "20",
+                                        height: "20",
+                                        fill: "white"
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-secondary btn-xs",
+                            attrs: { type: "button", title: "" },
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteProduct(item)
+                              }
+                            }
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                attrs: {
+                                  width: "15",
+                                  height: "15",
+                                  viewBox: "0 0 20 20",
+                                  fill: "none",
+                                  xmlns: "http://www.w3.org/2000/svg"
+                                }
+                              },
+                              [
+                                _c(
+                                  "g",
+                                  { attrs: { "clip-path": "url(#clip0)" } },
+                                  [
+                                    _c("path", {
+                                      attrs: {
+                                        "fill-rule": "evenodd",
+                                        "clip-rule": "evenodd",
+                                        d:
+                                          "M1.25 17.5C1.25 17.5 0 17.5 0 16.25C0 15 1.25 11.25 7.5 11.25C13.75 11.25 15 15 15 16.25C15 17.5 13.75 17.5 13.75 17.5H1.25ZM7.5 10C8.49456 10 9.44839 9.60491 10.1517 8.90165C10.8549 8.19839 11.25 7.24456 11.25 6.25C11.25 5.25544 10.8549 4.30161 10.1517 3.59835C9.44839 2.89509 8.49456 2.5 7.5 2.5C6.50544 2.5 5.55161 2.89509 4.84835 3.59835C4.14509 4.30161 3.75 5.25544 3.75 6.25C3.75 7.24456 4.14509 8.19839 4.84835 8.90165C5.55161 9.60491 6.50544 10 7.5 10ZM15.1825 6.4325C15.2406 6.3743 15.3095 6.32812 15.3855 6.29661C15.4614 6.2651 15.5428 6.24888 15.625 6.24888C15.7072 6.24888 15.7886 6.2651 15.8645 6.29661C15.9405 6.32812 16.0094 6.3743 16.0675 6.4325L17.5 7.86625L18.9325 6.4325C19.0499 6.31514 19.209 6.24921 19.375 6.24921C19.541 6.24921 19.7001 6.31514 19.8175 6.4325C19.9349 6.54986 20.0008 6.70903 20.0008 6.875C20.0008 7.04097 19.9349 7.20014 19.8175 7.3175L18.3837 8.75L19.8175 10.1825C19.9349 10.2999 20.0008 10.459 20.0008 10.625C20.0008 10.791 19.9349 10.9501 19.8175 11.0675C19.7001 11.1849 19.541 11.2508 19.375 11.2508C19.209 11.2508 19.0499 11.1849 18.9325 11.0675L17.5 9.63375L16.0675 11.0675C15.9501 11.1849 15.791 11.2508 15.625 11.2508C15.459 11.2508 15.2999 11.1849 15.1825 11.0675C15.0651 10.9501 14.9992 10.791 14.9992 10.625C14.9992 10.459 15.0651 10.2999 15.1825 10.1825L16.6163 8.75L15.1825 7.3175C15.1243 7.25944 15.0781 7.19047 15.0466 7.11454C15.0151 7.03861 14.9989 6.95721 14.9989 6.875C14.9989 6.79279 15.0151 6.71139 15.0466 6.63546C15.0781 6.55953 15.1243 6.49056 15.1825 6.4325Z",
+                                        fill: "white"
+                                      }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("defs", [
+                                  _c("clipPath", { attrs: { id: "clip0" } }, [
+                                    _c("rect", {
+                                      attrs: {
+                                        width: "20",
+                                        height: "20",
+                                        fill: "white"
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              ]
+            )
+          ])
         ])
       ])
     ])
@@ -42784,78 +43157,39 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "table-responsive" }, [
-      _c("table", { staticClass: "table table-sm" }, [
-        _c("thead", [
-          _c("tr", [
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Nombre")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Código")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Tipo")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Categoria")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Estado")]),
-            _vm._v(" "),
-            _c("th", { attrs: { scope: "col" } }, [_vm._v("Acciones")])
-          ])
-        ]),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Imagen")]),
         _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Nombre")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Código")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Tipo")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Categoria")]),
-            _vm._v(" "),
-            _c("td", [
-              _c("div", { staticClass: "form-check form-switch" }, [
-                _c("input", {
-                  staticClass: "form-check-input",
-                  attrs: {
-                    id: "flexSwitchCheckChecked",
-                    type: "checkbox",
-                    "data-onstyle": "secondary",
-                    checked: "",
-                    "data-bs-original-title": "",
-                    title: ""
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-danger btn-xs",
-                  attrs: { type: "button" }
-                },
-                [
-                  _c("i", { attrs: { "data-feather": "eye" } }),
-                  _vm._v("P\n                  ")
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-success btn-xs",
-                  attrs: { type: "button" }
-                },
-                [_vm._v("\n                    Edit\n                  ")]
-              )
-            ])
-          ])
-        ])
+        _c("th", [_vm._v("Eliminar")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Código")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Categoria")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Marca")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Cantidad")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Unidad")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Costo")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Precio")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Acciones")])
       ])
     ])
   }

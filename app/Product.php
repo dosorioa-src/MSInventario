@@ -13,5 +13,18 @@ class Product extends Model
         return $this->hasMany(Product_warehouse::class);
     }
 
+    public function categorie(){
+        return $this->belongsTo(Categorie::class);
+    }
+
+    public function brand(){
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function unit(){
+        return $this->belongsTo(Unit::class);
+    }
+    
+
     protected $guarded = [];
 }

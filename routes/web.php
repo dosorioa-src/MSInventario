@@ -56,7 +56,10 @@ Route::get('/api/brand/load', 'BrandController@load')->middleware('auth');
 Route::get('/api/unit/load', 'UnitController@load')->middleware('auth');
 Route::get('/api/taxe/load', 'TaxeController@load')->middleware('auth');
 
+Route::get('/api/product/load', 'ProductController@load')->middleware('auth');
 Route::post('/api/product/add', 'ProductController@add')->middleware('auth');
+Route::post('/api/product/edit', 'ProductController@edit')->middleware('auth');
+Route::post('/api/product/delete', 'ProductController@delete')->middleware('auth');
 
 Route::get('/api/provider/load', 'SupplierController@load')->middleware('auth');
 Route::post('/api/provider/add', 'SupplierController@add')->middleware('auth');
