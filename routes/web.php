@@ -22,7 +22,7 @@ Route::get('/user', function () {
 })->middleware('auth');
 
 Route::get('/products', function () {
-    return view('products.index');
+    return view('/products/index');
 })->middleware('auth');
 
 Route::get('/categorie', function () {
@@ -31,6 +31,10 @@ Route::get('/categorie', function () {
 
 Route::get('/providers', function () {
     return view('/providers/provider');
+})->middleware('auth');
+
+Route::get('/adjustment', function () {
+    return view('/adjustment/adjustment');
 })->middleware('auth');
 
 Auth::routes();
@@ -49,7 +53,7 @@ Route::get('/api/typeid/load', 'TypeIndetificationController@load')->middleware(
 
 Route::get('/api/categorie/load', 'CategorieController@load')->middleware('auth');
 Route::post('/api/categorie/add', 'CategorieController@add')->middleware('auth');
-Route::post('/api/categorie/edit', 'CategorieController@edit')->middleware('auth');
+Route::put('/api/categorie/edit', 'CategorieController@edit')->middleware('auth');
 Route::post('/api/categorie/delete', 'CategorieController@delete')->middleware('auth');
 
 Route::get('/api/brand/load', 'BrandController@load')->middleware('auth');
@@ -63,5 +67,7 @@ Route::post('/api/product/delete', 'ProductController@delete')->middleware('auth
 
 Route::get('/api/provider/load', 'SupplierController@load')->middleware('auth');
 Route::post('/api/provider/add', 'SupplierController@add')->middleware('auth');
-Route::post('/api/provider/edit', 'SupplierController@edit')->middleware('auth');
+Route::put('/api/provider/edit', 'SupplierController@edit')->middleware('auth');
 Route::post('/api/provider/delete', 'SupplierController@delete')->middleware('auth');
+
+Route::get('/api/warehouse/load', 'WarehouseController@load')->middleware('auth');

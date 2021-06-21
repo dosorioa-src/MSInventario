@@ -26,6 +26,7 @@ Vue.component('user-component', require('./components/User.vue').default);
 Vue.component('product-component', require('./components/Product.vue').default);
 Vue.component('categorie-component', require('./components/Categorie.vue').default);
 Vue.component('provider-component', require('./components/Provider.vue').default);
+Vue.component('adjustment-component', require('./components/Adjustment.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -9,7 +9,7 @@ class SupplierController extends Controller
 {
     public function load()
     {
-        return Supplier::all();
+        return Supplier::select('id', 'name', 'company_name', 'rut_number', 'email', 'phone_number', 'address', 'is_active')->where('is_deleted', false)->get();
     }
 
     public function add(request $request)
