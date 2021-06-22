@@ -25,6 +25,10 @@ Route::get('/products', function () {
     return view('/products/index');
 })->middleware('auth');
 
+Route::get('/stock', function () {
+    return view('/products/stock');
+})->middleware('auth');
+
 Route::get('/categorie', function () {
     return view('/categories/categorie');
 })->middleware('auth');

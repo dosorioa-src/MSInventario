@@ -41,6 +41,7 @@
                         <ul class="sidebar-submenu" style="display: none;">
                             <li><a href="/products">Lista de Productos</a></li>
                             <li><a href="/categorie">Categorias</a></li>
+                            <li><a href="/stock">Alerta de Stock</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-list">
