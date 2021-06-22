@@ -45,14 +45,13 @@
 
                 <div class="modal-body">
                   <form v-on:submit.prevent novalidate>
-
                     <div class="row">
                       <div class="col-md-6">
                         <div class="mb-3">
                           <label class="form-label" for="">Almacen</label>
                           <select
                             class="form-select"
-                            v-model="tweak.warehouse_id"             
+                            v-model="adjustments.warehouse_id"             
                             required = ""
                           >
                             <option selected="" disabled="" value="">Seleccione almacén</option>
@@ -64,37 +63,51 @@
                       <div class="col-md-6">
                         <div class="mb-3">
                           <label class="form-label" for="validationDefault03"
-                            >Archivo</label
+                            >Documento Adjunto</label
                           >
-                          <input class="form-control" type="file" title="">
+                          <input class="form-control" @change="handleFile" ref="file" type="file" title="">
                         </div>                    
                       </div>                  
                     </div>
                     
-                    <div class="row align-items-end">
-                      <div class="col-md-6">
-                        <div class="mb-3">
+
+                      <div class="col-md-12">
+                        <div class="mb-12">
                           <label class="form-label" for="validationDefault01"
                           >Producto</label
                           >
-                          <Dropdown
+                          <div class="dropdown">
+                            <input class="form-control" type="text" id="dropdownMenuButton" v-model="searchValue" @keyup="searchProduct(searchValue)" placeholder="Escriba el titulo o codigo del producto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="form-control dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item"  href="#" v-for="item in searchResult" :key="item.id"  data-bs-original-title="" title="" @click="addNewRow(item), searchValue='', searchResult=[]">{{item.code}} | {{item.name}}</a>
+                            </div>
+                          </div>
+                          <!-- <div class="">
+                            <div class="dropdown">
+                              <input id="validationDefault01" type="text"  required="required" data-bs-original-title="" title="" class=" form-control"  autocomplete="off">
+                              <div class="">
+                                <a class=""  ></a>
+                              </div>
+                            </div>
+                          </div> -->
+                          <!-- <Dropdown
                             :options="options"
                             v-on:selected="validateSelection"
                             v-on:filter="getDropdownValues"
                             :disabled="false"
                             placeholder="Please select an animal">
-                          </Dropdown>
+                          </Dropdown> -->
                         </div>
                       </div>
 
-                      <div class="col-md-3">
+                      <!-- <div class="col-md-3">
                         <div class="mb-3">
                           <button  type='button' class="btn btn-light" @click="addNewRow">
                               Agregar
                           </button>
                         </div>
-                      </div>
-                    </div>
+                      </div> -->
+                    
 
                     <div class="row">
                       <div class="col-md-12">
@@ -104,37 +117,41 @@
                               <table class="table table-bordered">
                                 <thead>
                                   <tr>
-                                      <th scope="col">#</th>
                                       <th scope="col">Producto</th>
                                       <th scope="col">Código</th>
+                                      <th scope="col">Variante</th>
                                       <th scope="col">Cantidad</th>
                                       <th scope="col">Ajuste</th>
                                       <th scope="col">Acción</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr v-for="(item, index) in tweak.list">
-                                      <td style="vertical-align: middle;" >1</td>
+                                  <tr v-for="(item, index) in adjustments.product_adjustments" :key="item.id">
                                       <td style="vertical-align: middle;">
-                                        {{item.product_id}}
+                                        {{item.name}}
                                       </td>
                                       <td style="vertical-align: middle;">
-                                        {{item.product_id}}
+                                        {{item.code}}
                                       </td>
-                                      <td>
-                                        <vue-number-input v-model="item.qty" :min="1" inline center controls></vue-number-input>                                                                      
+                                      <td style="vertical-align: middle;">
+                                        <select class="form-select" v-model="item.product_variant_selected" name="" id="">
+                                          <option v-for="item in item.product_variant" :key="item.id" :value="item">{{item.name}}</option>
+                                        </select>
+                                      </td>
+                                      <td style="vertical-align: middle;">
+                                            <input @change="totalQty(item.qty)"  v-model="item.qty" :min="1" class="touchspin form-control" type="number" style="display: block;" data-bs-original-title="" title="">                                          
                                       </td>                                        
-                                      <td>
+                                      <td style="vertical-align: middle;">
                                         <select
                                           class="form-select"
                                           v-model="item.action"                    
                                           required = ""
                                         >
-                                          <option value="1">Adición</option>
-                                          <option value="2">Sustracción</option>
+                                          <option value="+">+</option>
+                                          <option value="-">-</option>
                                         </select>                                          
                                       </td>
-                                      <td>
+                                      <td style="vertical-align: middle;">
                                         <div class="btn-group">
                                           <button @click="deleteRow(index)" class="btn btn-secondary" style = "background-color: #898989; display: inline-block;" type="button">
                                             <!-- <svg class="align-middle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -152,6 +169,14 @@
                                       </td>
                                   </tr>
                                 </tbody>
+                                <tfoot class="tfoot active">
+                                    <tr>
+                                      <th colspan="2">Total</th>
+                                      <th></th>
+                                      <th id="total-qty" colspan="2">{{adjustments.total_qty}}</th>
+                                      
+                                  </tr>
+                                </tfoot>
                             </table>
                           </div>                          
 
@@ -163,7 +188,7 @@
                       <div class="col-md-12">
                         <div class="mb-3">
                           <label for="exampleFormControlTextarea4">Nota</label>
-                          <textarea class="form-control" id="exampleFormControlTextarea4" v-model="tweak.note" rows="3"></textarea>
+                          <textarea class="form-control" id="exampleFormControlTextarea4" v-model="adjustments.note" rows="3"></textarea>
                         </div>
                       </div>
                     </div>                                         
@@ -173,7 +198,7 @@
 
                 <div class="modal-footer">
                   <button
-          
+                    @click="createAdjustment()"
                     v-if="btn_update_active == 0"
                     class="btn btn-primary"
                     type="submit"
@@ -245,104 +270,84 @@
    </div>
 </div>
 </template>
+<style >
 
+</style>
 <script>
-    import VueNumberInput from '@chenfengyuan/vue-number-input';
-    import Dropdown from 'vue-simple-search-dropdown';
     export default {
-      components: {
-        VueNumberInput,
-        Dropdown
-      },      
     data() {
         return {
-            options: [
-                { name: "Cat", id: "cat" },
-                { name: "Dog", id: "dog" },
-                { name: "Elephant", id: "elephant" },
-                { name: "Girafe", id: "girafe" },
-                { name: "Snake", id: "snake" },
-                { name: "Spider", id: "spider" },
-                { name: "Unicorn", id: "unicorn" }
-            ],
-            selected: { name: null, id: null },
-
+            searchValue:'',
+            optionSelected:'',
+            searchResult:[],
             modal_title:'',
             btn_update_active:0,
-            tweaks: [],
-            tweak:{
-                warehouse_id: '',
-                document: '',
+            attached: [],
+            adjustments:{
+                warehouse_id: 0,
                 note: '',
-                list: [{
-                  product_id: '',
-                  qty: 1,
-                  action: 1,
-                }],
+                total_qty: 0,
+                item:0,
+                product_variant_selected:{},
+                product_adjustments: [],
             },
-            product: '',
             warehouses: [],
         }
     },
 
     created(){
         this.loadWarehouse()
-        this.tweak.list = []
     },
     methods:{
 
         loadWarehouse:function() {
             axios.get('/api/warehouse/load').then(res=>{
             this.warehouses = res.data;
-            console.log(this.warehouses)
             })
         },
-
-        // Métodos de mantenimiento
-        createcategorie:function(){
-            axios.post('/api/categorie/add',this.categorie).then(res=>{
-              $('#exampleModal').modal('hide')
-              this.loadcategorie()
-            })
+        handleFile(){
+          this.attached=this.$refs.file.files[0]
         },
-        
-        editCategorieData:function(item) {
-            this.categorie = item
+        createAdjustment:function(){
+          const blob = JSON.stringify(this.adjustments);
+          let formData = new FormData();
+          formData.append('file', this.attached);
+          formData.append("document", blob);
+          axios.post( '/api/adjustment/add',formData).then(res=>{
+            this.loadProducts()                   
+          })
+          .catch((error) => {
+                  alert(error)
+          });
         },
-        editCategorie:function() {
-            axios.put('/api/categorie/edit',this.categorie).then(res=>{
-                $('#exampleModal').modal('hide')
-                this.loadcategorie()
-                this.categorie=[]
-            })
-        },
-        deleteCategorie:function(item) {
-            this.categorie = item
-            axios.post('/api/categorie/delete',this.categorie).then(res=>{
-                this.loadcategorie()
-            })
-        },
-        clearFields() {
-          this.tweak.warehouse = "",
-          this.tweak.file = "",
-          this.tweak.note = "",
-          this.tweak.list=[]
-        },
-
         // Métodos de tabla
         deleteRow(index) {
-            this.tweak.list.splice(index, 1);
-            //this.calculateTotal();
+            this.adjustments.product_adjustments.splice(index, 1);
+            this.adjustments.item=this.adjustments.product_adjustments.length
+            
         },
-        addNewRow() {
-            this.tweak.list.push({ 
-              product_id: this.product,
-              qty: '',
-              action: '' 
+        addNewRow(item) {
+            this.adjustments.product_adjustments.push(item);
+            this.adjustments.item=this.adjustments.product_adjustments.length
+            
+        },
+        totalQty:function(qty){
+          this.adjustments.total_qty=0
+          this.adjustments.product_adjustments.forEach(value => {
+              if (value.qty) {
+                this.adjustments.total_qty=parseInt(this.adjustments.total_qty)+parseInt(value.qty)
+              }
             });
-            this.product = ""
-        }                      
+        },
+       //metodos para dropdown
+        searchProduct:function(value){
+          axios.get('/api/product/search',{params: { 
+            value:value,
+          }}).then(res=>{
+            this.searchResult= res.data;
+          })
+        },
+
     }
     }
 </script>
-s

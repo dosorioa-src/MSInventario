@@ -8,6 +8,6 @@ class WarehouseController extends Controller
 {
     public function load()
     {
-        return Warehouse::All();
+        return Warehouse::get();
     }
 }

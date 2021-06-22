@@ -64,6 +64,7 @@ Route::get('/api/product/load', 'ProductController@load')->middleware('auth');
 Route::post('/api/product/add', 'ProductController@add')->middleware('auth');
 Route::post('/api/product/edit', 'ProductController@edit')->middleware('auth');
 Route::post('/api/product/delete', 'ProductController@delete')->middleware('auth');
+Route::get('/api/product/search', 'ProductController@search')->middleware('auth');
 
 Route::get('/api/provider/load', 'SupplierController@load')->middleware('auth');
 Route::post('/api/provider/add', 'SupplierController@add')->middleware('auth');
@@ -71,3 +72,6 @@ Route::put('/api/provider/edit', 'SupplierController@edit')->middleware('auth');
 Route::post('/api/provider/delete', 'SupplierController@delete')->middleware('auth');
 
 Route::get('/api/warehouse/load', 'WarehouseController@load')->middleware('auth');
+
+Route::get('/api/adjustment/load', 'AdjustmentController@load')->middleware('auth');
+Route::post('/api/adjustment/add', 'AdjustmentController@add')->middleware('auth');

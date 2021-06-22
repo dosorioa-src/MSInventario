@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-header d-flex flex-row-reverse">
             <button
-              @click="btn_update_active=0, product=[]"
+              @click="btn_update_active=0, loadWarehouse()"
               class="btn btn-primary"
               type="button"
               data-bs-toggle="modal"
@@ -387,14 +387,14 @@
                       <div class="col-md-12">
                         <div class="mb-3">
                           <div class="form-check checkbox checkbox-primary mb-0">
-                            <input class="form-check-input" id="warehouse" type="checkbox" v-model="product.is_warehouse" value="1">
-                            <label class="form-check-label" for="warehouse"> Agregar producto al almacen virtual </label>
+                            <input class="form-check-input" id="warehouse" type="checkbox" v-model="product.is_diffPrice" value="1">
+                            <label class="form-check-label" for="warehouse"> Este producto tiene un precio diferente para diferentes almacenes. </label>
                           </div>                                                           
                         </div>                    
                       </div>
                     </div>
 
-                    <!-- <div v-if="product.is_warehouse == 1">
+                    <!-- <div v-if="product.is_diffPrice == 1">
                       <div class="row align-items-end" v-for="(warehouse,k) in product.warehouse" :key="k"> 
 
                         <div class="col-md-3">
@@ -430,23 +430,45 @@
 
                       </div>
                     </div> -->
-                    
-                    <div v-if="product.is_warehouse == 1">
+                    <div v-if="btn_update_active == 0 && product.is_diffPrice==1">
                       <div class="row"> 
-
-                        <div class="col-md-3">
-                          <div class="mb-3">
-                            <label class="form-label" for="validationDefault01">Precio</label>
+                        
+                        <div class="col-md-6">
+                          <div class="mb-6" v-for="item in product.warehouse" :key="item.id">
                             <div class="input-group">
-                              <span class="input-group-text">$</span>
-                              
-                              <!-- si is_warehouse es true entonces se activa este campo -->
-                              <input class="form-control" type="number" v-model="product.product_warehouse[0].price" placeholder="00.00">
+                              <span class="input-group-text">{{item.name}}</span>
+                              <input class="form-control" v-model="item.product_warehouse_price" type="number"  placeholder="00.00">
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <div v-if="btn_update_active == 1 && product.is_diffPrice==1">
+                      <div class="row"> 
+                        
+                        <div class="col-md-6">
+                          <div class="mb-6" v-for="item in product.warehouse" :key="item.id">
+                            <div class="input-group">
+                              <span class="input-group-text">{{item.name}}</span>
+                              <input class="form-control" v-model="item.pivot.price" type="number"  placeholder="00.00">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div v-if="btn_update_active == 1">
+                      <div class="row"> 
+                        
+                        <div class="col-md-6">
+                          <div class="mb-6" v-for="item in product.product_warehouse" :key="item.id">
+                            <div class="input-group">
+                              <span class="input-group-text">{{item.name}}</span>
+                              <input class="form-control" v-model="item.pivot" type="number"  placeholder="00.00">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> -->
 
                   </form>
                 </div>
@@ -587,10 +609,8 @@ export default {
           name: null,
           additional_price: 0,
         }],
-        is_warehouse: false,
-        product_warehouse: [{
-          price: 0,
-        }]
+        is_diffPrice: false,
+        warehouse: []
       },
       categories: [],
       brands: [],
@@ -636,6 +656,13 @@ export default {
       this.taxes = res.data;
       })      
     },
+    loadWarehouse:function() {
+      axios.get('/api/warehouse/load').then(res=>{
+        this.product.warehouse = res.data;
+        this.product.warehouse.pivot=10
+        console.log(this.product.warehouse)
+      })
+    },
 
     //Métodos de mantenimiento
     createProduct:function(){
@@ -651,9 +678,6 @@ export default {
       axios.post( '/api/product/add',formData).then(res=>{
         this.loadProducts()                   
       })
-      .catch((error) => {
-              alert(error)
-      });
     },
     deleteProduct:function(item) {
         this.product = item
@@ -670,7 +694,7 @@ export default {
           additional_price: 0,
           }];
         }
-        if (this.product.is_warehouse==false) {
+        if (this.product.is_diffPrice==false) {
           this.product.product_warehouse= [{
           price: 0,
           }]
@@ -688,10 +712,10 @@ export default {
       formData.append("document", blob);
       axios.post( '/api/product/edit',formData).then(res=>{
         this.product=[]
+        this.file=[]
         this.loadProducts()                
       })
-      .catch((error) => {
-      });
+      
     },
     //Métodos de agregar y quitar variantes
     add(index) {

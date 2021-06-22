@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-use App\Warehouses;
+use App\Warehouse;
 use App\Product_variant;
 use App\Product_warehouse;
 use Illuminate\Http\Request;
@@ -13,11 +13,12 @@ use Illuminate\Support\Facades\Http;
 
 class ProductController extends Controller
 {
-    public function load(){
-        /* return Product::with('product_warehouse')->get(); */
-        return Product::with('categorie')->with('brand')->with('unit')->with('product_variant')->with('product_warehouse')->where('is_deleted','=',false)->orderBy('id', 'desc')->paginate(5);
+    public function search(request $request){
+        return Product::search($request->value)->where('is_deleted','=',false)->with('product_variant')->get(['id','name','code','is_warehouse']);
     }
-
+    public function load(){
+        return Product::with('categorie')->with('brand')->with('unit')->with('product_variant')->with('warehouse')->where('is_deleted','=',false)->orderBy('id', 'desc')->paginate(5);
+    }
     public function add(request $request){
         $product=$request->document;
         $product=json_decode($product, true);
@@ -30,7 +31,8 @@ class ProductController extends Controller
             "product_details"=> $product["product_details"],
             "featured"=> $product["featured"],
             "is_variant"=> $product["is_variant"],
-            "is_warehouse"=> $product["is_warehouse"],
+            "is_warehouse"=> 1,
+            "is_diffPrice"=> $product["is_diffPrice"],
             "price"=> $product["price"],
             "purchase_unit_id"=> $product["purchase_unit_id"],
             "sale_unit_id"=> $product["sale_unit_id"],
@@ -56,20 +58,21 @@ class ProductController extends Controller
                 $addProduct->product_variant()->create($item);
             }
         }
-        if ($product["is_warehouse"]==true) {
-            $warehouse=Warehouses::first();
-            $addProduct->product_warehouse()->create([
-                "price"=>$product["product_warehouse"][0]["price"],
-                "warehouse_id"=> $warehouse->id,
-            ]);
+        if ($product["is_diffPrice"]==true) {
+            foreach ($product["warehouse"] as $item ) {
+                $addProduct->product_warehouse()->create([
+                    "price"=>$item["product_warehouse_price"],
+                    "warehouse_id"=> $item["id"],
+                ]);
+            }
         }
         
     }
 
     public function edit(request $request){
         
-        try {
-            DB::beginTransaction();
+        /* try {
+            DB::beginTransaction(); */
             $names=[];
             $lastImages=[];
             $newImages='';
@@ -136,16 +139,18 @@ class ProductController extends Controller
 
             }
             if ($product["is_warehouse"]==true) {
-                $warehouse=Warehouses::first();
-                Product_warehouse::where('id', $product["product_warehouse"][0]["id"])->update([
-                    "price"=>$product["product_warehouse"][0]["price"],
-                    "warehouse_id"=> $warehouse->id,
-                ]);
+                foreach ($product["warehouse"] as $item) {
+                    Product_warehouse::where('id', $item["pivot"]["id"])->update([
+                        "price"=>$item["pivot"]["price"],
+                        "warehouse_id"=> $item["id"],
+                    ]);
+                }
+                
             }
-            DB::commit();
+           /*  DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-        }
+        } */
     }
     
     public function delete(request $request){
