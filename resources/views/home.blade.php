@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/animate.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/chartist.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/date-picker.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/prism.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/whether-icon.css') }}">
 @endsection
 
 @section('style')
@@ -21,11 +23,11 @@
 @endsection --}}
 
 @section('content')
+    <dashboard-component></dashboard-component>
 @endsection
 
 <script type="text/javascript">
     var session_layout = '{{ session()->get('layout') }}';
-
 </script>
 
 @section('script')
