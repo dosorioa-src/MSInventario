@@ -29,7 +29,6 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
                                     <th scope="col">Imagen</th>
                                     <th scope="col">Producto</th>
                                     <th scope="col">Código</th>
@@ -38,14 +37,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- <tr v-for="item in products" :key="item.id"> -->
-                                <tr>
-                                    <td>1</td>
-                                    <td>img</td>
-                                    <td>Prueba</td>
-                                    <td>P00010</td>
-                                    <td>20</td>
-                                    <td>10</td>
+                                <tr v-for="item in products.data" :key="item.id">
+                                    <td><img width="50" :src="'images/product/'+item.image.split(',')[0]" alt=""></td>
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.code}}</td>
+                                    <td>{{item.qty}}</td>
+                                    <td>{{item.alert_quantity}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -75,14 +72,14 @@ export default {
     },
 
     created() {
-        // this.loadProduct()
+        this.loadProduct()
     },
 
     methods: {
         loadProduct: function() {
-            // axios.get('/api/product/load').then(res=>{
-            // 	this.product = res.data;
-            // })
+             axios.get('/api/alertstock/load').then(res=>{
+             	this.products = res.data;
+             })
         }
     }
 };

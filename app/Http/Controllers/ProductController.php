@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Http;
 class ProductController extends Controller
 {
     public function search(request $request){
-        return Product::search($request->value)->where('is_deleted','=',false)->with('product_variant')->get(['id','name','code','is_warehouse']);
+        return Product::search($request->value)->where('is_deleted','=',false)->with('product_variant')->get(['products.id','products.name','code','products.is_warehouse']);
     }
     public function load(){
         return Product::with('categorie')->with('brand')->with('unit')->with('product_variant')->with('warehouse')->where('is_deleted','=',false)->orderBy('id', 'desc')->paginate(5);
@@ -58,13 +58,12 @@ class ProductController extends Controller
                 $addProduct->product_variant()->create($item);
             }
         }
-        if ($product["is_diffPrice"]==true) {
-            foreach ($product["warehouse"] as $item ) {
-                $addProduct->product_warehouse()->create([
-                    "price"=>$item["product_warehouse_price"],
-                    "warehouse_id"=> $item["id"],
-                ]);
-            }
+
+        foreach ($product["warehouse"] as $item ) {
+            $addProduct->product_warehouse()->create([
+                "price"=>$item["product_warehouse_price"]??null,
+                "warehouse_id"=> $item["id"],
+            ]);
         }
         
     }
@@ -115,6 +114,7 @@ class ProductController extends Controller
             ->update(["image"=>$newImages.$product["image"]]);
             
             if ($product["is_variant"]==true) {
+
                 $product_variants_exist = Product_variant::where('product_id', $product["id"])->get()->pluck('id')->toArray();
                 $product_variants = $product["product_variant"] ?? [];
                 $product_variants_update = [];

@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-header d-flex flex-row-reverse">
             <button
-              @click="btn_update_active=0, modal_title='Nuevo Producto'"
+              @click="btn_update_active=0, modal_title='Nuevo Producto', provider={}"
               class="btn btn-primary"
               type="button"
               data-bs-toggle="modal"

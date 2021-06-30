@@ -5,7 +5,7 @@
          <div class="card">
           <div class="card-header d-flex flex-row-reverse">
             <button
-              @click="btn_update_active=0, modal_title='Nuevo Ajuste'"
+              @click="btn_update_active=0, modal_title='Nuevo Ajuste', clearFields()"
               class="btn btn-primary"
               type="button"
               data-bs-toggle="modal"
@@ -51,7 +51,7 @@
                           <label class="form-label" for="">Almacen</label>
                           <select
                             class="form-select"
-                            v-model="adjustments.warehouse_id"             
+                            v-model="adjustment.warehouse_id"             
                             required = ""
                           >
                             <option selected="" disabled="" value="">Seleccione almacén</option>
@@ -66,6 +66,33 @@
                             >Documento Adjunto</label
                           >
                           <input class="form-control" @change="handleFile" ref="file" type="file" title="">
+                          <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                      <th>Archivo</th>
+                                      <th>Eliminar</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr v-if="adjustment.document">
+                                      <td><a :href="'files/adjustment/'+adjustment.document" height="60" width="60">{{adjustment.document}}</a></td>
+                                      <td>
+                                        <a>
+                                            <button @click="adjustment.document=null" type="button" title="" class="btn btn-secondary btn-xs">
+                                              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2">
+                                                  <polyline points="3 6 5 6 21 6"></polyline>
+                                                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                  <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                  <line x1="14" y1="11" x2="14" y2="17"></line>
+                                              </svg>
+                                            </button>
+                                        </a>
+                                      </td>
+                                  </tr>
+                                </tbody>
+                            </table>
+                          </div>
                         </div>                    
                       </div>                  
                     </div>
@@ -125,8 +152,8 @@
                                       <th scope="col">Acción</th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                  <tr v-for="(item, index) in adjustments.product_adjustments" :key="item.id">
+                                <tbody v-if="btn_update_active == 0">
+                                  <tr v-for="(item, index) in adjustment.product_adjustment" :key="item.id">
                                       <td style="vertical-align: middle;">
                                         {{item.name}}
                                       </td>
@@ -134,12 +161,17 @@
                                         {{item.code}}
                                       </td>
                                       <td style="vertical-align: middle;">
+                                        <!-- <select v-if="btn_update_active==1">
+                                          <option selected disabled>{{item.product_variant.name}}</option>
+                                        </select> -->
+                                          
+
                                         <select class="form-select" v-model="item.product_variant_selected" name="" id="">
-                                          <option v-for="item in item.product_variant" :key="item.id" :value="item">{{item.name}}</option>
+                                          <option  v-for="item in item.product_variant" :key="item.id" :value="item">{{item.name}}</option>
                                         </select>
                                       </td>
                                       <td style="vertical-align: middle;">
-                                            <input @change="totalQty(item.qty)"  v-model="item.qty" :min="1" class="touchspin form-control" type="number" style="display: block;" data-bs-original-title="" title="">                                          
+                                            <input @change="totalQty()"  v-model="item.qty" :min="1" class="touchspin form-control" type="number" style="display: block;" data-bs-original-title="" title="">                                          
                                       </td>                                        
                                       <td style="vertical-align: middle;">
                                         <select
@@ -153,16 +185,64 @@
                                       </td>
                                       <td style="vertical-align: middle;">
                                         <div class="btn-group">
-                                          <button @click="deleteRow(index)" class="btn btn-secondary" style = "background-color: #898989; display: inline-block;" type="button">
-                                            <!-- <svg class="align-middle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                            <rect width="19.1667" height="20" fill="url(#pattern0)"/>
-                                            <defs>
-                                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                            <use xlink:href="#image0" transform="translate(-0.0217391) scale(0.0163043 0.015625)"/>
-                                            </pattern>
-                                            <image id="image0" width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAQAAABQ8GUWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQflBhMGEigOfYnbAAAEjklEQVR42u1bMWsUQRT+3kaTaBKNokYtxKTR1hAtFM0fsBBEwX8gGJBgZyWCaCEIVmktRFBBGwtBBE2hlaWEEJEIKuRiYuId8UxuPos1ubu9ncvuzM7sqfm6zb2dee+b9968eTsBHILs7CRv3aL68IGpUCqR4+NUJ0+61M85yCdP0hkexcoKeeJE3naYGa+OHbMzfhUvX7rUc5O7oY8cqWdkdhZYXEz0qhw4AGz6o9vgoEsCnIEcHa1bSDUykvzd6enqi79+udTToQdMToKPHq09ytRU8nefPQN37Qrfq1RcErCBDfznkCRCVENDkFOngM2b81Y4GQoF8OFDCYpF66HICxdIpbLZ033i/Xty61ZL40XSl7GthIsX17MxaM7A0BBkYCBj//SI8+ftCMC5c3mbYIfhYXLfPgsCzp7N2wQ7BAFw5owRAVR79vzd7r+Ko0eNCIAUCsDTp3mrb4diEXzwoJnEunUAVV8fpKsrb1OMwM+fJSiX81ZjAxv4l0Beu0aWy3nXeA1QU1PkoUNujVft7WGjskWhbt9Oa1OQSrrVuzMG+qUiQKRSAefn87ZTC87OOiUgZKFQ0P94/z4wMgK8erW+shMTwOgoeOcOsLzcXHhpCbx5E7hyBZie1uuWnoDUIF+/jg/AatVI1dFBfvyoD9blZXL//uqY1683D+7Ll6uyhw/rc8Dp02ntSe8B1HnAu3drCxGUy8Dbt/oxPn0S+fKl+oc3b5pPOj6+NrZMTIClUqyYgQcYhIBukmi53CRXiFL1hESeG1AdiwwCyJYt8XIzM+4JgM4Denvrjfr+Pf3YOiwsVMft6QmPuTFgs/zkmwCpUdoKJFj7SW379ni5clmCHz88EKALgQgByIqAUkmClZX1CUi/+mYE6NyMUcWyCoEokRoCDGoAMwJ0dYBEPcARAZK7ByQNAc8eIL4IkIRJ0BkB0XlW4SkERH7+BOI+OXV0kJ2desWzIkCXA3x5AIBkW6HvEPCVBAEk2QpFlpaADBqSTEiAtyTYdDIHtYD8TSHgohZI6gHedgFAz7aTWqDVCiFAn3DogIBEIaAUZG7OHwFoMQ/g3JwY9iuz3QWiOYAZJMGGY3UMAYbxb0GARw+oCQEyCIDu7kYh815gtkkwujqZ9AQSNEMMt0BzAsTXgYgEa5sc2W6B5gRgYQGIu8ObNQFumyHGBIiQwLdv7glwexI0JiBEHOvRxqhtDnB7DrAjIC7xZF4KJ+wGGVaBdgTEJULp6qJqb3dGQOskQUDvdrVKeiLA+zYIIFFPICgWgdos7ogAi4+ijj0gzogUSHQULhbDNp1vAujhE1mik6C5+9sRkLQaFJs8EP0vs23bGmXs7gQ48ICDB9dEKALs3Nkos3s32dZWJWnv3vixduyof+7vb5Sx8wBz+1VfX/wtha9fyePHqXp6whtlOty9S/b2koOD4Q2vOMzMkMPDVN3d5NWr8TL37uVDANvayMXFbK95meDGDRs7jEMg7MC8eJEL+3Ur8fx5fnNzYICcn89v9cfG8uYfZH8/+fixv3CoVMjJSfLSpbBDZIffopjI4lWS+PYAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjEtMDYtMTlUMDY6MTg6NDArMDA6MDAqQ4KvAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIxLTA2LTE5VDA2OjE4OjQwKzAwOjAwWx46EwAAAABJRU5ErkJggg=="/>
-                                            </defs>
-                                            </svg>                                       -->
+                                          <button @click="deleteRow(index),totalQty()" class="btn btn-secondary" style = "background-color: #898989; display: inline-block;" type="button">
+                                            Borrar
+                                          </button>
+                                        </div>
+                                      </td>
+                                  </tr>
+                                </tbody>
+                                <tbody v-if="btn_update_active == 1">
+                                  <tr v-for="(item, index) in adjustment.product_adjustment" :key="item.id">
+
+                                     <td v-if="!Array.isArray(item.product_variant)">
+                                       {{item.product.name}}
+                                      </td>
+                                      <td v-if="!Array.isArray(item.product_variant)">
+                                        {{item.product.code}}
+                                      </td>
+
+
+                                      <td v-if="Array.isArray(item.product_variant)">
+                                       {{item.name}}
+                                      </td>
+                                      <td v-if="Array.isArray(item.product_variant)">
+                                        {{item.code}}
+                                      </td>
+
+
+                                      <td >
+                                        <div v-if="!Array.isArray(item.product_variant) && item.product_variant!=null">
+                                          {{item.product_variant.name}}
+                                        </div>
+                                        <select v-if="Array.isArray(item.product_variant)" v-model="item.product_variant_selected" name="" class="form-select" id="">
+                                          <option v-for="item in item.product_variant" :key="item.id" :value="item.id">{{item.name}}</option>
+                                        </select>
+                                      </td>
+                     
+
+
+                                     
+      
+                                      
+                                    
+
+                                      <td style="vertical-align: middle;">
+                                            <input @change="totalQty()"  v-model="item.qty" :min="1" class="touchspin form-control" type="number" style="display: block;" data-bs-original-title="" title="">                                          
+                                      </td>                                        
+                                      <td style="vertical-align: middle;">
+                                        <select
+                                          class="form-select"
+                                          v-model="item.action"                    
+                                          required = ""
+                                        >
+                                          <option value="+">+</option>
+                                          <option value="-">-</option>
+                                        </select>                                          
+                                      </td>
+                                      <td style="vertical-align: middle;">
+                                        <div class="btn-group">
+                                          <button @click="deleteRow(index),totalQty()" class="btn btn-secondary" style = "background-color: #898989; display: inline-block;" type="button">
                                             Borrar
                                           </button>
                                         </div>
@@ -173,7 +253,7 @@
                                     <tr>
                                       <th colspan="2">Total</th>
                                       <th></th>
-                                      <th id="total-qty" colspan="2">{{adjustments.total_qty}}</th>
+                                      <th id="total-qty" colspan="2">{{adjustment.total_qty}}</th>
                                       
                                   </tr>
                                 </tfoot>
@@ -188,7 +268,7 @@
                       <div class="col-md-12">
                         <div class="mb-3">
                           <label for="exampleFormControlTextarea4">Nota</label>
-                          <textarea class="form-control" id="exampleFormControlTextarea4" v-model="adjustments.note" rows="3"></textarea>
+                          <textarea class="form-control" id="exampleFormControlTextarea4" v-model="adjustment.note" rows="3"></textarea>
                         </div>
                       </div>
                     </div>                                         
@@ -208,7 +288,7 @@
                     Guardar
                   </button>
                   <button
-                   
+                   @click="editAdjustment(),clearFields()"
                     v-if="btn_update_active == 1"
                     class="btn btn-primary"
                     type="submit"
@@ -236,21 +316,19 @@
                <table class="table table-bordered">
                   <thead>
                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Almacen</th>
-                        <th scope="col">T. Aumento</th>
-                        <th scope="col">T. Descuento</th>
                         <th scope="col">Fecha</th>
+                        <th scope="col">Almacen</th>
+                        <th scope="col">Nota</th>
+                        <th scope="col">Articulos | Stock</th>
                         <th scope="col">Acciones</th>
                      </tr>
                   </thead>
                   <tbody>
-                     <tr>
-                        <td>1</td>
-                        <td>Almacen</td>
-                        <td>10</td>
-                        <td>5</td>
-                        <td>15/06/2021</td>
+                     <tr v-for="item in adjustments.data" :key="item.id">
+                        <td>{{item.created_at}}</td>
+                        <td>{{item.warehouse.name}}</td>
+                        <td>{{item.note}}</td>
+                        <td>{{item.item}} | {{item.total_qty}}</td>
                         <td>
                           <div class="btn-group">
                             <button  class="btn btn-ligth btn-xs" style = "background-color: #898989;" type="button" title="" data-bs-original-title tittle>
@@ -260,6 +338,18 @@
                               </svg>
                             </button>
                           </div>
+                          <button @click="editAdjustmentData(item), btn_update_active=1" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-original-title="" type="button" title="" class="btn btn-primary btn-xs">
+                            <svg width="15" height="15" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0)">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M16.0721 0.175179C15.9549 0.0580096 15.796 -0.0078125 15.6302 -0.0078125C15.4645 -0.0078125 15.3056 0.0580096 15.1884 0.175179L13.1296 2.23393L17.7634 6.86768L19.8221 4.81018C19.8803 4.75212 19.9265 4.68315 19.958 4.60722C19.9895 4.53129 20.0057 4.44989 20.0057 4.36768C20.0057 4.28547 19.9895 4.20407 19.958 4.12814C19.9265 4.05221 19.8803 3.98324 19.8221 3.92518L16.0721 0.175179ZM16.8796 7.75143L12.2459 3.11768L4.12086 11.2427H4.37961C4.54537 11.2427 4.70435 11.3085 4.82156 11.4257C4.93877 11.5429 5.00461 11.7019 5.00461 11.8677V12.4927H5.62961C5.79537 12.4927 5.95435 12.5585 6.07156 12.6757C6.18877 12.7929 6.25461 12.9519 6.25461 13.1177V13.7427H6.87962C7.04538 13.7427 7.20435 13.8085 7.32156 13.9257C7.43877 14.0429 7.50462 14.2019 7.50462 14.3677V14.9927H8.12962C8.29538 14.9927 8.45435 15.0585 8.57156 15.1757C8.68877 15.2929 8.75462 15.4519 8.75462 15.6177V15.8764L16.8796 7.75143ZM7.54462 17.0864C7.51831 17.0165 7.50477 16.9424 7.50462 16.8677V16.2427H6.87962C6.71386 16.2427 6.55488 16.1768 6.43767 16.0596C6.32046 15.9424 6.25461 15.7834 6.25461 15.6177V14.9927H5.62961C5.46385 14.9927 5.30488 14.9268 5.18767 14.8096C5.07046 14.6924 5.00461 14.5334 5.00461 14.3677V13.7427H4.37961C4.21385 13.7427 4.05488 13.6768 3.93767 13.5596C3.82046 13.4424 3.75461 13.2834 3.75461 13.1177V12.4927H3.12961C3.05489 12.4926 2.98079 12.479 2.91086 12.4527L2.68711 12.6752C2.62755 12.7352 2.58077 12.8066 2.54961 12.8852L0.0496099 19.1352C0.00414655 19.2488 -0.00698284 19.3732 0.0176015 19.493C0.0421858 19.6129 0.101403 19.7229 0.187911 19.8094C0.274419 19.8959 0.384414 19.9551 0.50426 19.9797C0.624105 20.0043 0.748531 19.9931 0.862111 19.9477L7.11212 17.4477C7.19069 17.4165 7.26213 17.3697 7.32212 17.3102L7.54462 17.0877V17.0864Z" fill="white"></path>
+                                </g>
+                                <defs>
+                                  <clipPath id="clip0">
+                                      <rect width="20" height="20" fill="white"></rect>
+                                  </clipPath>
+                                </defs>
+                            </svg>
+                          </button>
                         </td>
                      </tr>
                   </tbody>
@@ -283,23 +373,35 @@
             modal_title:'',
             btn_update_active:0,
             attached: [],
-            adjustments:{
+            adjustments:[],
+            adjustment:{
                 warehouse_id: 0,
                 note: '',
                 total_qty: 0,
                 item:0,
                 product_variant_selected:{},
-                product_adjustments: [],
+                product_adjustment: [],
             },
             warehouses: [],
+            auxiliary: {
+              product:{
+                name: '',
+                code: '',
+              }
+            },
         }
     },
 
     created(){
         this.loadWarehouse()
+        this.loadAdjustment()
     },
     methods:{
-
+        loadAdjustment:function () {
+          axios.get('/api/adjustment/load').then(res=>{
+            this.adjustments = res.data;
+            })
+        },
         loadWarehouse:function() {
             axios.get('/api/warehouse/load').then(res=>{
             this.warehouses = res.data;
@@ -309,33 +411,46 @@
           this.attached=this.$refs.file.files[0]
         },
         createAdjustment:function(){
-          const blob = JSON.stringify(this.adjustments);
+          const blob = JSON.stringify(this.adjustment);
           let formData = new FormData();
           formData.append('file', this.attached);
           formData.append("document", blob);
-          axios.post( '/api/adjustment/add',formData).then(res=>{
-            this.loadProducts()                   
+          axios.post( '/api/adjustment/add',formData).then(res=>{  
+            this.loadAdjustment();                 
           })
-          .catch((error) => {
-                  alert(error)
-          });
+        },
+        editAdjustmentData: function(item){
+          this.adjustment= item
+        },
+        editAdjustment: function(){
+          const blob = JSON.stringify(this.adjustment);
+          let formData = new FormData();
+          formData.append('file', this.attached);
+          formData.append("document", blob);
+          axios.post( '/api/adjustment/edit',formData).then(res=>{
+            this.loadAdjustment();                  
+          })
         },
         // Métodos de tabla
         deleteRow(index) {
-            this.adjustments.product_adjustments.splice(index, 1);
-            this.adjustments.item=this.adjustments.product_adjustments.length
+            this.adjustment.product_adjustment.splice(index, 1);
+            this.adjustment.item=this.adjustment.product_adjustment.length
             
         },
         addNewRow(item) {
-            this.adjustments.product_adjustments.push(item);
-            this.adjustments.item=this.adjustments.product_adjustments.length
-            
+
+
+            this.adjustment.product_adjustment.push(item);
+            this.adjustment.item=this.adjustment.product_adjustment.length
+
+          
+          
         },
-        totalQty:function(qty){
-          this.adjustments.total_qty=0
-          this.adjustments.product_adjustments.forEach(value => {
+        totalQty:function(){
+          this.adjustment.total_qty=0
+          this.adjustment.product_adjustment.forEach(value => {
               if (value.qty) {
-                this.adjustments.total_qty=parseInt(this.adjustments.total_qty)+parseInt(value.qty)
+                this.adjustment.total_qty=parseInt(this.adjustment.total_qty)+parseInt(value.qty)
               }
             });
         },
@@ -347,6 +462,17 @@
             this.searchResult= res.data;
           })
         },
+
+        clearFields:function(){
+          this.adjustment={
+                warehouse_id: 0,
+                note: '',
+                total_qty: 0,
+                item:0,
+                product_variant_selected:{},
+                product_adjustment: [],
+            }
+        }
 
     }
     }

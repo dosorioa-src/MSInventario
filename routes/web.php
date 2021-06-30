@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -79,3 +80,7 @@ Route::get('/api/warehouse/load', 'WarehouseController@load')->middleware('auth'
 
 Route::get('/api/adjustment/load', 'AdjustmentController@load')->middleware('auth');
 Route::post('/api/adjustment/add', 'AdjustmentController@add')->middleware('auth');
+Route::post('/api/adjustment/edit', 'AdjustmentController@edit')->middleware('auth');
+Route::post('/api/adjustment/delete', 'AdjustmentController@delete')->middleware('auth');
+
+Route::get('/api/alertstock/load', 'AlertStockController@load')->middleware('auth');
