@@ -24,7 +24,7 @@
 					</li> --}}
 
                     <li class="sidebar-list">
-                        <a class="sidebar-link sidebar-title link-nav" href="">
+                        <a class="sidebar-link sidebar-title link-nav" href="/home">
                             <i data-feather="home"> </i><span>Dashboard</span>
                         </a>
                     </li>
@@ -46,12 +46,17 @@
                     </li>
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav" href="/providers">
-                            <i data-feather="list"> </i><span>Proveedores</span>
+                            <i data-feather="truck"></i><span>Proveedores</span>
                         </a>
                     </li>
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav" href="/adjustment">
                             <i data-feather="shuffle"></i><span>Ajustes</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="/sales">
+                            <i data-feather="shopping-cart"></i><span>Ventas</span>
                         </a>
                     </li>
                 </ul>
