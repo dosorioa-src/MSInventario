@@ -574,13 +574,13 @@
           <br>
           <nav aria-label="..." class="m-b-30">
             <ul class="pagination justify-content-center pagination-primary">
-                <li @click="loadProducts(products.last_page)" class="page-item disabled"><a href="#" tabindex="-1" data-bs-original-title="" title="" class="page-link">Anterior</a></li>
-                <li v-if="products.current_page>1" class="page-item"><a href="#" data-bs-original-title="" title="" class="page-link">{{products.last_page}}</a></li>
+                <li   :class="(products.current_page==1)?'page-item disabled':'page-item'" ><a @click.prevent="loadProducts(products.current_page-1)" href="#" tabindex="-1" data-bs-original-title="" title="" class="page-link">Anterior</a></li>
+                <li v-if="products.current_page>1" class="page-item"><a href="#" data-bs-original-title="" title="" class="page-link">{{products.current_page-1}}</a></li>
                 <li class="page-item active">
                     <a href="#" data-bs-original-title="" title="" class="page-link">{{products.current_page}}<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="page-item"><a href="#" data-bs-original-title="" title="" class="page-link">{{products.current_page+1}}</a></li>
-                <li @click="loadProducts(products.current_page+1)" class="page-item"><a href="#" data-bs-original-title="" title="" class="page-link">Siguiente</a></li>
+                <li v-if="products.current_page!=products.total" class="page-item"><a href="#" data-bs-original-title="" title="" class="page-link">{{products.current_page+1}}</a></li>
+                <li :class="(products.current_page==products.total)?'page-item disabled':'page-item'"><a @click.prevent="loadProducts(products.current_page+1)"  href="" data-bs-original-title="" title="" class="page-link">Siguiente</a></li>
             </ul>
           </nav>
         </div>
@@ -600,6 +600,7 @@ export default {
     return {
       btn_update_active: 0,
       products: [],
+      page:1,
       product: {
         name: null,
         code: null,
@@ -644,7 +645,8 @@ export default {
   methods: {
     //Métodos de carga de data
     loadProducts:function(page) {
-      axios.get('/api/product/load').then(res=>{
+      this.page = page
+      axios.get('/api/product/load?page='+this.page).then(res=>{
       this.products = res.data;
       })      
     },

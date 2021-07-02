@@ -3909,6 +3909,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       btn_update_active: 0,
       products: [],
+      page: 1,
       product: {
         name: null,
         code: null,
@@ -3952,7 +3953,8 @@ __webpack_require__.r(__webpack_exports__);
     loadProducts: function loadProducts(page) {
       var _this = this;
 
-      axios.get('/api/product/load').then(function (res) {
+      this.page = page;
+      axios.get('/api/product/load?page=' + this.page).then(function (res) {
         _this.products = res.data;
       });
     },
@@ -47045,12 +47047,10 @@ var render = function() {
                 _c(
                   "li",
                   {
-                    staticClass: "page-item disabled",
-                    on: {
-                      click: function($event) {
-                        return _vm.loadProducts(_vm.products.last_page)
-                      }
-                    }
+                    class:
+                      _vm.products.current_page == 1
+                        ? "page-item disabled"
+                        : "page-item"
                   },
                   [
                     _c(
@@ -47062,6 +47062,14 @@ var render = function() {
                           tabindex: "-1",
                           "data-bs-original-title": "",
                           title: ""
+                        },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.loadProducts(
+                              _vm.products.current_page - 1
+                            )
+                          }
                         }
                       },
                       [_vm._v("Anterior")]
@@ -47081,7 +47089,7 @@ var render = function() {
                             title: ""
                           }
                         },
-                        [_vm._v(_vm._s(_vm.products.last_page))]
+                        [_vm._v(_vm._s(_vm.products.current_page - 1))]
                       )
                     ])
                   : _vm._e(),
@@ -47106,30 +47114,30 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("li", { staticClass: "page-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "page-link",
-                      attrs: {
-                        href: "#",
-                        "data-bs-original-title": "",
-                        title: ""
-                      }
-                    },
-                    [_vm._v(_vm._s(_vm.products.current_page + 1))]
-                  )
-                ]),
+                _vm.products.current_page != _vm.products.total
+                  ? _c("li", { staticClass: "page-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "page-link",
+                          attrs: {
+                            href: "#",
+                            "data-bs-original-title": "",
+                            title: ""
+                          }
+                        },
+                        [_vm._v(_vm._s(_vm.products.current_page + 1))]
+                      )
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _c(
                   "li",
                   {
-                    staticClass: "page-item",
-                    on: {
-                      click: function($event) {
-                        return _vm.loadProducts(_vm.products.current_page + 1)
-                      }
-                    }
+                    class:
+                      _vm.products.current_page == _vm.products.total
+                        ? "page-item disabled"
+                        : "page-item"
                   },
                   [
                     _c(
@@ -47137,9 +47145,17 @@ var render = function() {
                       {
                         staticClass: "page-link",
                         attrs: {
-                          href: "#",
+                          href: "",
                           "data-bs-original-title": "",
                           title: ""
+                        },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.loadProducts(
+                              _vm.products.current_page + 1
+                            )
+                          }
                         }
                       },
                       [_vm._v("Siguiente")]
@@ -61644,14 +61660,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************!*\
   !*** ./resources/js/components/Product.vue ***!
   \*********************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Product_vue_vue_type_template_id_7e94e6d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Product.vue?vue&type=template&id=7e94e6d4& */ "./resources/js/components/Product.vue?vue&type=template&id=7e94e6d4&");
 /* harmony import */ var _Product_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Product.vue?vue&type=script&lang=js& */ "./resources/js/components/Product.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Product_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Product_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -61681,7 +61698,7 @@ component.options.__file = "resources/js/components/Product.vue"
 /*!**********************************************************************!*\
   !*** ./resources/js/components/Product.vue?vue&type=script&lang=js& ***!
   \**********************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
