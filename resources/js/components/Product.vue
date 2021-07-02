@@ -574,12 +574,12 @@
           <br>
           <nav aria-label="..." class="m-b-30">
             <ul class="pagination justify-content-center pagination-primary">
-                <li   :class="(products.current_page==1)?'page-item disabled':'page-item'" ><a @click.prevent="loadProducts(products.current_page-1)" href="#" tabindex="-1" data-bs-original-title="" title="" class="page-link">Anterior</a></li>
-                <li v-if="products.current_page>1" class="page-item"><a href="#" data-bs-original-title="" title="" class="page-link">{{products.current_page-1}}</a></li>
+                <li   :class="(products.current_page==1)?'page-item disabled':'page-item'" ><a @click.prevent="loadProducts(products.current_page-1)" href="" tabindex="-1" data-bs-original-title="" title="" class="page-link">Anterior</a></li>
+                <li v-if="products.current_page>1" class="page-item"><a @click.prevent="loadProducts(products.current_page-1)" href="" data-bs-original-title="" title="" class="page-link">{{products.current_page-1}}</a></li>
                 <li class="page-item active">
                     <a href="#" data-bs-original-title="" title="" class="page-link">{{products.current_page}}<span class="sr-only">(current)</span></a>
                 </li>
-                <li v-if="products.current_page!=products.total" class="page-item"><a href="#" data-bs-original-title="" title="" class="page-link">{{products.current_page+1}}</a></li>
+                <li v-if="products.current_page!=products.total" class="page-item"><a @click.prevent="loadProducts(products.current_page+1)" href="" data-bs-original-title="" title="" class="page-link">{{products.current_page+1}}</a></li>
                 <li :class="(products.current_page==products.total)?'page-item disabled':'page-item'"><a @click.prevent="loadProducts(products.current_page+1)"  href="" data-bs-original-title="" title="" class="page-link">Siguiente</a></li>
             </ul>
           </nav>

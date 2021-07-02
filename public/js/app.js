@@ -47058,7 +47058,7 @@ var render = function() {
                       {
                         staticClass: "page-link",
                         attrs: {
-                          href: "#",
+                          href: "",
                           tabindex: "-1",
                           "data-bs-original-title": "",
                           title: ""
@@ -47084,9 +47084,17 @@ var render = function() {
                         {
                           staticClass: "page-link",
                           attrs: {
-                            href: "#",
+                            href: "",
                             "data-bs-original-title": "",
                             title: ""
+                          },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.loadProducts(
+                                _vm.products.current_page - 1
+                              )
+                            }
                           }
                         },
                         [_vm._v(_vm._s(_vm.products.current_page - 1))]
@@ -47121,9 +47129,17 @@ var render = function() {
                         {
                           staticClass: "page-link",
                           attrs: {
-                            href: "#",
+                            href: "",
                             "data-bs-original-title": "",
                             title: ""
+                          },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.loadProducts(
+                                _vm.products.current_page + 1
+                              )
+                            }
                           }
                         },
                         [_vm._v(_vm._s(_vm.products.current_page + 1))]
