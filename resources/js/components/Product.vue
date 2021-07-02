@@ -5,7 +5,7 @@
         <div class="card">
           <div class="card-header d-flex flex-row-reverse">
             <button
-              @click="btn_update_active=0, loadWarehouse()"
+              @click="btn_update_active=0, loadWarehouse(), clearFields()"
               class="btn btn-primary"
               type="button"
               data-bs-toggle="modal"
@@ -29,7 +29,7 @@
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 @click="clearFields()" v-if="btn_update_active == 0" class="modal-title" id="exampleModalLabel">
+                  <h5 v-if="btn_update_active == 0" class="modal-title" id="exampleModalLabel">
                     Nuevo Producto
                   </h5>
                   <h5 v-if="btn_update_active == 1" class="modal-title" id="exampleModalLabel">
@@ -635,7 +635,7 @@ export default {
   },
 
   created(){
-    this.loadProducts()
+    this.loadProducts(this.page)
     this.loadCategories()
     this.loadBrands()
     this.loadUnits()
@@ -690,13 +690,13 @@ export default {
       
       formData.append("document", blob);
       axios.post( '/api/product/add',formData).then(res=>{
-        this.loadProducts()                   
+        this.loadProducts(this.page)                   
       })
     },
     deleteProduct:function(item) {
         this.product = item
         axios.post('/api/product/delete',this.product)
-        this.loadProducts()
+        this.loadProducts(this.page)
     },
     editProductData:function(item) {
         this.product = item
@@ -727,7 +727,7 @@ export default {
       axios.post( '/api/product/edit',formData).then(res=>{
         this.file=[]
         this.clearFields()
-        this.loadProducts()                
+        this.loadProducts(this.page)                
       })
       
     },

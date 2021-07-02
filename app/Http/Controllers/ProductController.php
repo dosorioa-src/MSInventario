@@ -22,7 +22,6 @@ class ProductController extends Controller
     public function add(request $request){
         try {
         DB::beginTransaction();
-
         $product=$request->document;
         $product=json_decode($product, true);
         $addProduct=Product::create([
@@ -57,8 +56,8 @@ class ProductController extends Controller
             Product::where('id', $addProduct->id)
             ->update(["image"=>implode(",", $names)]);
         }else{
-            Product::where('id', $product["id"])
-            ->update(["image"=>'no_image.png']);
+                Product::where('id', $addProduct->id)
+                ->update(["image"=>'no_image.png']);
         }
         
         
@@ -124,9 +123,13 @@ class ProductController extends Controller
                 ->update(["image"=>($product["image"]=='no_image.png') ? $newImages : $newImages.','.$product["image"]
             ]);
             }else{
-                if ($product["image"]!='no_image.png') {
+                if(!$product["image"]){
+                    echo "llegue";
                     Product::where('id', $product["id"])
                     ->update(["image"=>'no_image.png']);
+                }else{
+                    Product::where('id', $product["id"])
+                    ->update(["image"=>$product["image"]]);
                 }
                 
             }

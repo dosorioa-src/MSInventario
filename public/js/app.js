@@ -3942,7 +3942,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.loadProducts();
+    this.loadProducts(this.page);
     this.loadCategories();
     this.loadBrands();
     this.loadUnits();
@@ -4010,13 +4010,13 @@ __webpack_require__.r(__webpack_exports__);
 
       formData.append("document", blob);
       axios.post('/api/product/add', formData).then(function (res) {
-        _this7.loadProducts();
+        _this7.loadProducts(_this7.page);
       });
     },
     deleteProduct: function deleteProduct(item) {
       this.product = item;
       axios.post('/api/product/delete', this.product);
-      this.loadProducts();
+      this.loadProducts(this.page);
     },
     editProductData: function editProductData(item) {
       this.product = item;
@@ -4054,7 +4054,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this8.clearFields();
 
-        _this8.loadProducts();
+        _this8.loadProducts(_this8.page);
       });
     },
     //Métodos de agregar y quitar variantes
@@ -44976,7 +44976,9 @@ var render = function() {
                 },
                 on: {
                   click: function($event) {
-                    ;(_vm.btn_update_active = 0), _vm.loadWarehouse()
+                    ;(_vm.btn_update_active = 0),
+                      _vm.loadWarehouse(),
+                      _vm.clearFields()
                   }
                 }
               },
@@ -45010,12 +45012,7 @@ var render = function() {
                               "h5",
                               {
                                 staticClass: "modal-title",
-                                attrs: { id: "exampleModalLabel" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.clearFields()
-                                  }
-                                }
+                                attrs: { id: "exampleModalLabel" }
                               },
                               [
                                 _vm._v(
