@@ -6,8 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product_variant extends Model
 {
-    public function product(){
+    protected $guarded = [];
+
+    public function product()
+    {
         return $this->belongsToOne(Product::class);
     }
-    protected  $guarded=[];
+
+    public function product_sales()
+    {
+        return $this->hasOne(product_sales::class);
+    }
+
 }
