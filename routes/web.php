@@ -46,12 +46,15 @@ Route::get('/brand', function () {
     return view('/brand/brand');
 })->middleware('auth');
 
+Route::get('/sales', function () {
+    return view('/sales/index');
+})->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/api/dashboard/load', 'HomeController@dashboard')->middleware('auth');
-
 
 Route::get('/api/role/load', 'RoleController@load')->middleware('auth');
 Route::get('/api/permission/load', 'PermissionController@load')->middleware('auth');

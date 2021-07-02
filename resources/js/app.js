@@ -29,7 +29,7 @@ Vue.component('provider-component', require('./components/Provider.vue').default
 Vue.component('adjustment-component', require('./components/Adjustment.vue').default);
 Vue.component('alertstock-component', require('./components/AlertStock.vue').default);
 Vue.component('brand-component', require('./components/Brand.vue').default);
-// Vue.component('sale-component', require('./components/Sales.vue').default);
+Vue.component('sale-component', require('./components/Sales.vue').default);
 Vue.component('dashboard-component', require('./components/Dashboard.vue').default);
 Vue.component('bell-component', require('./components/BellComponent.vue').default);
 
