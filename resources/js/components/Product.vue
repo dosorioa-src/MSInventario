@@ -29,7 +29,7 @@
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 v-if="btn_update_active == 0" class="modal-title" id="exampleModalLabel">
+                  <h5 @click="clearFields()" v-if="btn_update_active == 0" class="modal-title" id="exampleModalLabel">
                     Nuevo Producto
                   </h5>
                   <h5 v-if="btn_update_active == 1" class="modal-title" id="exampleModalLabel">
@@ -571,6 +571,18 @@
               </tbody>
             </table>
           </div>
+          <br>
+          <nav aria-label="..." class="m-b-30">
+            <ul class="pagination justify-content-center pagination-primary">
+                <li @click="loadProducts(products.last_page)" class="page-item disabled"><a href="#" tabindex="-1" data-bs-original-title="" title="" class="page-link">Anterior</a></li>
+                <li v-if="products.current_page>1" class="page-item"><a href="#" data-bs-original-title="" title="" class="page-link">{{products.last_page}}</a></li>
+                <li class="page-item active">
+                    <a href="#" data-bs-original-title="" title="" class="page-link">{{products.current_page}}<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a href="#" data-bs-original-title="" title="" class="page-link">{{products.current_page+1}}</a></li>
+                <li @click="loadProducts(products.current_page+1)" class="page-item"><a href="#" data-bs-original-title="" title="" class="page-link">Siguiente</a></li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
@@ -631,7 +643,7 @@ export default {
 
   methods: {
     //Métodos de carga de data
-    loadProducts:function() {
+    loadProducts:function(page) {
       axios.get('/api/product/load').then(res=>{
       this.products = res.data;
       })      
@@ -711,8 +723,8 @@ export default {
       }
       formData.append("document", blob);
       axios.post( '/api/product/edit',formData).then(res=>{
-        this.product=[]
         this.file=[]
+        this.clearFields()
         this.loadProducts()                
       })
       
@@ -734,6 +746,33 @@ export default {
     removeImage:function(index){
       this.imagesUrl.splice(index,1);
       this.product.image = this.imagesUrl.join()
+    },
+
+    clearFields:function(){
+      this.product= {
+        name: null,
+        code: null,
+        type: null,
+        categorie_id: null,
+        brand_id: null,
+        unit_id: null,
+        purchase_unit_id: null,
+        sale_unit_id: null,
+        cost: null,
+        price: null,
+        alert_quantity: null,
+        tax_method: null,
+        tax_id: null,
+        product_details: null,
+        featured: false,
+        is_variant: false,
+        product_variant: [{
+          name: null,
+          additional_price: 0,
+        }],
+        is_diffPrice: false,
+        warehouse: []
+      }
     }
   }
 };

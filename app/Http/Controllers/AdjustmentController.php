@@ -16,8 +16,8 @@ class AdjustmentController extends Controller
         return Adjustment::with(['warehouse','product_adjustment.product_variant'])->with('product_adjustment.product')->orderBy('adjustments.id','desc')->paginate(10);
     }
     public function add(request $request){
-        /* try {
-            DB::beginTransaction(); */
+        try {
+            DB::beginTransaction();
             $adjustment=$request->document;
             $adjustment=json_decode($adjustment, true);
             $addAdjustment=Adjustment::create([
@@ -26,7 +26,7 @@ class AdjustmentController extends Controller
                 "total_qty"=> $adjustment["total_qty"],
                 "warehouse_id"=> $adjustment["warehouse_id"],
             ]);
-            if ($request->files) {
+            if ($request->hasFile('file')) {
                 foreach($request->files as $file)
                 {
                     $name = time().'-'.$file->getClientOriginalName();
@@ -57,7 +57,6 @@ class AdjustmentController extends Controller
 
                     $product_variant->update(["qty"=>$product_variant_qty_total]);
                 }
-                // aqui hay pequeña falla al parecer como no existe qty inicial da error.
                 $product_warehouse=Product_warehouse::where('product_id',$item["id"])->where('warehouse_id',$adjustment["warehouse_id"])->first();
                 echo $product_warehouse;
                 echo $product_warehouse->qty;
@@ -71,17 +70,17 @@ class AdjustmentController extends Controller
                 }
                 $product_warehouse->update(["qty"=>$product_warehouse_qty_total]);
             }
+
             
-            
-            /* DB::commit();
+            DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-        } */
+        }
     }
 
     public function edit(request $request){
-        /* try {
-            DB::beginTransaction(); */
+        try {
+            DB::beginTransaction();
             $adjustment=$request->document;
             $adjustment=json_decode($adjustment, true);
             
@@ -111,7 +110,6 @@ class AdjustmentController extends Controller
             $product_adjustment_updated=[];
             foreach ($adjustment["product_adjustment"] as $item) {
                 if (isset($item["adjustment_id"])) {
-                    
                     $product_adjustment_updated[] = $item["id"];
                     //deshaciendo los cambios realizados
                     $productAdjustment=Product_adjustment::find($item["id"]);
@@ -183,10 +181,10 @@ class AdjustmentController extends Controller
             foreach($productAdjustmentDelete as $productAdjustmentId){
                 Product_adjustment::where('id',$productAdjustmentId)->delete();
             }
-            /* DB::commit();
+            DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
             return $th;
-        } */
+        }
     }
 }

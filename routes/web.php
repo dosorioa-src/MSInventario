@@ -42,9 +42,16 @@ Route::get('/adjustment', function () {
     return view('/adjustment/adjustment');
 })->middleware('auth');
 
+Route::get('/brand', function () {
+    return view('/brand/brand');
+})->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/api/dashboard/load', 'HomeController@dashboard')->middleware('auth');
+
 
 Route::get('/api/role/load', 'RoleController@load')->middleware('auth');
 Route::get('/api/permission/load', 'PermissionController@load')->middleware('auth');
@@ -61,7 +68,6 @@ Route::post('/api/categorie/add', 'CategorieController@add')->middleware('auth')
 Route::put('/api/categorie/edit', 'CategorieController@edit')->middleware('auth');
 Route::post('/api/categorie/delete', 'CategorieController@delete')->middleware('auth');
 
-Route::get('/api/brand/load', 'BrandController@load')->middleware('auth');
 Route::get('/api/unit/load', 'UnitController@load')->middleware('auth');
 Route::get('/api/taxe/load', 'TaxeController@load')->middleware('auth');
 
@@ -84,3 +90,11 @@ Route::post('/api/adjustment/edit', 'AdjustmentController@edit')->middleware('au
 Route::post('/api/adjustment/delete', 'AdjustmentController@delete')->middleware('auth');
 
 Route::get('/api/alertstock/load', 'AlertStockController@load')->middleware('auth');
+
+Route::get('/api/brand/load', 'BrandController@load')->middleware('auth');
+Route::post('/api/brand/add', 'BrandController@add')->middleware('auth');
+Route::post('/api/brand/edit', 'BrandController@edit')->middleware('auth');
+Route::post('/api/brand/delete', 'BrandController@delete')->middleware('auth');
+
+//NOTIFICATIONS
+Route::get('/api/notification/bell', 'NotificationController@bell')->middleware('auth');

@@ -9,6 +9,6 @@ use Illuminate\Support\Facades\DB;
 class AlertStockController extends Controller
 {
     public function load(){
-        return Product::where('qty','<=','alert_quantity')->paginate(10);
+        return Product::where('is_active', true)->where('is_deleted', false)->whereColumn('alert_quantity', '>', 'qty')->paginate(10);
     }
 }

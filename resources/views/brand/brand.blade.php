@@ -1,9 +1,9 @@
 @extends('layouts.simple.master')
 
 @section('breadcrumb-title')
-    <h3>Alerta de Stock</h3>
+    <h3>Marcas</h3>
 @endsection
 
 @section('content')
-    <alertstock-component></alertstock-component>
+    <brand-component></brand-component>
 @endsection

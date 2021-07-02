@@ -27,13 +27,11 @@ Vue.component('product-component', require('./components/Product.vue').default);
 Vue.component('categorie-component', require('./components/Categorie.vue').default);
 Vue.component('provider-component', require('./components/Provider.vue').default);
 Vue.component('adjustment-component', require('./components/Adjustment.vue').default);
-<<<<<<< HEAD
-Vue.component('stock-component', require('./components/AlertStock.vue').default);
-=======
-Vue.component('stock-component', require('./components/Stock.vue').default);
+Vue.component('alertstock-component', require('./components/AlertStock.vue').default);
+Vue.component('brand-component', require('./components/Brand.vue').default);
 // Vue.component('sale-component', require('./components/Sales.vue').default);
 Vue.component('dashboard-component', require('./components/Dashboard.vue').default);
->>>>>>> c17d0504f0183b217f306fb1b8efce2442192eda
+Vue.component('bell-component', require('./components/BellComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

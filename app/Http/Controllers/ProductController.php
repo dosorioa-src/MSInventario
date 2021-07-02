@@ -20,6 +20,9 @@ class ProductController extends Controller
         return Product::with('categorie')->with('brand')->with('unit')->with('product_variant')->with('warehouse')->where('is_deleted','=',false)->orderBy('id', 'desc')->paginate(5);
     }
     public function add(request $request){
+        try {
+        DB::beginTransaction();
+
         $product=$request->document;
         $product=json_decode($product, true);
         $addProduct=Product::create([
@@ -42,16 +45,22 @@ class ProductController extends Controller
             "unit_id"=> $product["unit_id"],
             "alert_quantity"=> $product["alert_quantity"],
         ]);
-        foreach($request->files as $file)
-        {
-            foreach ($file as $key => $img ) {
-                $name = time().'-'.$img->getClientOriginalName();
-                $img->move(public_path().'/images/product', $name);
-                $names[] = $name; 
+        if ($request->hasFile('file')) {
+            foreach($request->files as $file)
+            {
+                foreach ($file as $key => $img ) {
+                    $name = time().'-'.$img->getClientOriginalName();
+                    $img->move(public_path().'/images/product', $name);
+                    $names[] = $name; 
+                }
             }
+            Product::where('id', $addProduct->id)
+            ->update(["image"=>implode(",", $names)]);
+        }else{
+            Product::where('id', $product["id"])
+            ->update(["image"=>'no_image.png']);
         }
-        Product::where('id', $addProduct->id)
-        ->update(["image"=>implode(",", $names)]);
+        
         
         if ($product["is_variant"]==true) {
             foreach ($product["product_variant"] as $item) {
@@ -65,13 +74,16 @@ class ProductController extends Controller
                 "warehouse_id"=> $item["id"],
             ]);
         }
-        
+        DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+        }
     }
 
     public function edit(request $request){
         
-        /* try {
-            DB::beginTransaction(); */
+        try {
+            DB::beginTransaction();
             $names=[];
             $lastImages=[];
             $newImages='';
@@ -98,20 +110,26 @@ class ProductController extends Controller
                 "alert_quantity"=> $product["alert_quantity"],
             ]); 
             
-            
-            foreach($request->files as $file)
-            {
-                foreach ($file as $key => $img ) {
-                    $name = time().'-'.$img->getClientOriginalName();
-                    $img->move(public_path().'/images/product', $name);
-                    $names[] = $name; 
+            if ($request->hasFile('file')) {
+                foreach($request->files as $file)
+                {
+                    foreach ($file as $key => $img ) {
+                        $name = time().'-'.$img->getClientOriginalName();
+                        $img->move(public_path().'/images/product', $name);
+                        $names[] = $name; 
+                    }
+                } 
+                $newImages=implode(",",$names);
+                Product::where('id', $product["id"])
+                ->update(["image"=>($product["image"]=='no_image.png') ? $newImages : $newImages.','.$product["image"]
+            ]);
+            }else{
+                if ($product["image"]!='no_image.png') {
+                    Product::where('id', $product["id"])
+                    ->update(["image"=>'no_image.png']);
                 }
-            } 
-            if ($names) {
-                $newImages=implode(",", $names).',';
+                
             }
-            Product::where('id', $product["id"])
-            ->update(["image"=>$newImages.$product["image"]]);
             
             if ($product["is_variant"]==true) {
 
@@ -147,10 +165,10 @@ class ProductController extends Controller
                 }
                 
             }
-           /*  DB::commit();
+            DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-        } */
+        }
     }
     
     public function delete(request $request){
