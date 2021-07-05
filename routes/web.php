@@ -101,3 +101,5 @@ Route::post('/api/brand/delete', 'BrandController@delete')->middleware('auth');
 
 //NOTIFICATIONS
 Route::get('/api/notification/bell', 'NotificationController@bell')->middleware('auth');
+
+Route::get('/api/sales/load', 'SaleController@load')->middleware('auth');

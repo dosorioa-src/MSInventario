@@ -89,7 +89,7 @@
                           >	
 														<option selected="" disabled="" value="">Seleccione origen</option>
                             <option value="Página Web" >Página Web</option>
-                            <option value="MercadoLibre" >MercadoLibre</option>
+                            <option value="Mercado Libre" >Mercado Libre</option>
                           </select>                          
                         </div>
                       </div>
@@ -102,20 +102,18 @@
                           <label class="form-label" for="validationDefault01"
                           >Producto</label
                           >
-														<input
+                          <div class="dropdown">
+                            <input class="form-control" type="text" id="dropdownMenuButton" v-model="searchValue" @keyup="searchProduct(searchValue)" placeholder="Escriba el titulo o código del producto" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="form-control dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item"  href="#" v-for="item in searchResult" :key="item.id"  data-bs-original-title="" title="" @click="addNewRow(item), searchValue='', searchResult=[]">{{item.code}} | {{item.name}}</a>
+                            </div>
+                          </div>
+														<!-- <input
 															class="form-control"
 															type="text"
 															v-model="product"
 															placeholder="Escriba el título o código de producto"
-														/>	
-                        </div>
-                      </div>
-
-                      <div class="col-md-3">
-                        <div class="mb-3">
-                          <button  type='button' class="btn btn-light" @click="addNewRow">
-                              Agregar
-                          </button>
+														/>	 -->
                         </div>
                       </div>
                     </div>
@@ -138,14 +136,14 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr v-for="(item, index) in sale.product_sales">
-                                      <td style="vertical-align: middle;">Producto</td>
+                                  <tr v-for="(item, index) in sale.product_sale" :key="item.id">
+                                      <td style="vertical-align: middle;">{{item.name}}</td>
                                       <td style="vertical-align: middle;">
                                         <select
                                           class="form-select"
-                                          v-model="item.variant_id"
+                                          v-model="item.product_variant"
                                         >
-                                        <option v-for="variant in variants" :key="variant.id" :value="variant.id" >{{ variant.name }}</option> 
+                                        <option v-for="variant in item.product_variant" :key="variant.id" :value="variant" >{{ variant.name }}</option> 
                                         </select>
                                       </td>
                                       <td>
@@ -394,23 +392,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="item in sales" :key="item.id">
-                                    <td>1</td>
+                                <tr v-for="item in sales.data" :key="item.id">
+                                    <td>{{item.id}}</td>
                                     <td>{{ item.created_at }}</td>
-                                    <td>Referencia</td>
+                                    <td>{{item.reference_no}}</td>
                                     <td>{{ item.origin }}</td>
-                                    <td>Cliente</td>
-
+                                    <td>{{item.client}}</td>
                                     <td v-if="item.sale_status == 1"><span class="badge badge-warning">Pendiente</span></td> 
                                     <td v-if="item.sale_status == 2"><span class="badge badge-primary">Finalizado</span></td> 
                                     <td v-if="item.sale_status == 3"><span class="badge badge-secondary">Cancelado</span></td>
-                                    
                                     <td v-if="item.payment_status == 1"><span class="badge badge-warning">Pendiente</span></td> 
-                                    <td v-if="item.payment_status == 2" ><span class="badge badge-primary">Pagado</span></td>                                        
-                                    
+                                    <td v-if="item.payment_status == 2" ><span class="badge badge-primary">Pagado</span></td>
                                     <td>{{ item.total_price }}</td>
                                     <td>{{ item.paid_amount }}</td>
-                                    <td>00.00</td>
                                     <td>
 																			<div class="btn-group">
 																				<button @click="editSaleData(item), btn_update_active=1, modal_title='Editar Venta'" class="btn btn-primary btn-xs" type="button" title=""  data-bs-toggle="modal"  data-bs-target="#exampleModal">
@@ -468,44 +462,48 @@
 			}, 	
 			data() {
 					return {
+              searchValue:'',
 							btn_update_active:0,
-							modal_title:'',
+							modal_title:null,
 							sales: [],
 							sale: {
-								client: '',
-								origin: '',
-								product_sales: [{ 
-                  product_id: '',
-                  variant_id: '',
+								client: null,
+								origin: null,
+                origin_sale_code:null,
+								product_sale: [{ 
+                  product_id: null,
+                  variant_id: null,
 									qty: 1,
 									unit_price: 0,
 									discount: 0,
-									subtotal: 0
+									subtotal: 0,
+                  product_variant:[]
 								}],
-								tax_id: '',                
-								total_qty: '',
+								tax_id: null,                
+								total_qty: null,
 								total_discount: 0,
-								total_price: '',
-								order_tax: '',
+								total_price: null,
+								order_tax: null,
                 order_discount: 0,                
 								shipping_cost: 0,
-                grand_total: '',                
-								document: '',
-								sale_status: '',
-								payment_status: '',
-								sale_note: '',
-								staff_note: ''
+                grand_total: null,                
+								document: null,
+								sale_status: null,
+								payment_status: null,
+								sale_note: null,
+								staff_note: null
 							},
-							product: '',
+							product: null,
 							warehouses: [],
-              taxes: ''
+              taxes: null,
+              searchResult:[]
 					};
 			},
 
 			created() {
-				//this.loadSales()
+				this.loadSales()
         //this.loadTaxes()
-				this.sale.product_sales = []
+				this.sale.product_sale = []
 			},
 
 			methods: {
@@ -518,28 +516,24 @@
         },
 
 				loadSales: function() {
-					axios.get('/api/product/load').then(res=>{
+					axios.get('/api/sales/load').then(res=>{
 						this.sales = res.data;
 					})
 				},
 
         // Métodos de mantenimiento
         createSale:function(){
-            axios.post('/api/categorie/add',this.categorie).then(res=>{
+          console.log(this.sale)
+            /* axios.post('/api/categorie/add',this.categorie).then(res=>{
               $('#exampleModal').modal('hide')
               this.loadSales()
-            })
+            }) */
         },
         
         editSaleData:function(item) {
             this.sale = item
         },
         editSale:function() {
-            axios.put('/api/categorie/edit',this.categorie).then(res=>{
-                $('#exampleModal').modal('hide')
-                this.loadSales()
-                this.clearFields()
-            })
         },
         deleteCategorie:function(item) {
             this.categorie = item
@@ -550,7 +544,7 @@
         clearFields() {
 					this.sale.client = '',
 					this.sale.origin= '',
-					this.sale.product_sales= [],
+					this.sale.product_sale= [],
 					this.sale.total_qty= '',
 					this.sale.order_tax= '',
 					this.sale.total_price= '',
@@ -568,7 +562,7 @@
 				// Métodos de tabla
         calculateTotal() {
             var totalqty, totaldis, totaltax, totalprice;
-            totalqty = this.sale.product_sales.reduce(function (sum, product) {
+            totalqty = this.sale.product_sale.reduce(function (sum, product) {
                 var lineTotal = parseInt(product.qty,10);
                 if (!isNaN(lineTotal)) {
                     return sum + lineTotal;
@@ -576,7 +570,7 @@
             }, 0);
             this.sale.total_qty = totalqty;
 
-            totaldis = this.sale.product_sales.reduce(function (sum, product) {
+            totaldis = this.sale.product_sale.reduce(function (sum, product) {
                 var lineTotal = parseFloat(product.discount);
                 if (!isNaN(lineTotal)) {
                     return sum + lineTotal;
@@ -584,7 +578,7 @@
             }, 0);
             this.sale.total_discount = totaldis.toFixed(2);
 
-            // totaltax = this.sale.product_sales.reduce(function (sum, product) {
+            // totaltax = this.sale.product_sale.reduce(function (sum, product) {
             //     var lineTotal = parseFloat(product.tax);
             //     if (!isNaN(lineTotal)) {
             //         return sum + lineTotal;
@@ -592,7 +586,7 @@
             // }, 0);
             // this.sale.order_tax = totaltax.toFixed(2);
 
-            totalprice = this.sale.product_sales.reduce(function (sum, product) {
+            totalprice = this.sale.product_sale.reduce(function (sum, product) {
                 var lineTotal = parseFloat(product.subtotal);
                 if (!isNaN(lineTotal)) {
                     return sum + lineTotal;
@@ -642,20 +636,20 @@
             this.calculateTotal();
         },
         deleteRow(index) {
-            this.sale.product_sales.splice(index, 1);
+            this.sale.product_sale.splice(index, 1);
             this.calculateTotal();
         },
-        addNewRow() {
-            this.sale.product_sales.push({ 
-              product_id:'',
-              variant_id: '',
-							qty: 1,
-							unit_price: 0,
-							discount: 0,
-							subtotal: 0
-            });
-            this.product = ""
-        } 
+        addNewRow(item) {
+          this.sale.product_sale.push(item);
+        },
+
+        searchProduct:function(value) {
+          axios.get('/api/product/search',{params: { 
+            value:value,
+          }}).then(res=>{
+            this.searchResult= res.data;
+          })
+        }
 			}
 	};
 </script>

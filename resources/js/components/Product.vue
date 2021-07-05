@@ -232,7 +232,7 @@
                             required=""
                           >
                             <option selected="" disabled="" value="">Seleccione un método</option>
-                            <option value = "1">No aplica</option>
+                            <!-- <option value = "1">No aplica</option> -->
                             <option value = "2">Incluye</option>
                             <option value = "3">No incluye</option>
                           </select>                          
@@ -303,10 +303,10 @@
                         <div class="mb-3">
                           <!-- <label class="form-label" for="validationDefault03">¿Establecer como producto destacado?</label> -->
 
-                          <div class="form-check checkbox checkbox-primary mb-0">
+                          <!-- <div class="form-check checkbox checkbox-primary mb-0">
                             <input class="form-check-input" id="featured" type="checkbox" v-model="product.featured" value="1">
                             <label class="form-check-label" for="featured"> Establecer como producto destacado </label>
-                          </div>         
+                          </div>   -->       
 
                           <!-- <div class="m-checkbox-inline custom-radio-ml">
                             <div class="form-check form-check-inline radio radio-primary">
@@ -383,7 +383,7 @@
                       </div>
                     </div>
 
-                    <div class="row">
+                    <!-- <div class="row">
                       <div class="col-md-12">
                         <div class="mb-3">
                           <div class="form-check checkbox checkbox-primary mb-0">
@@ -392,7 +392,7 @@
                           </div>                                                           
                         </div>                    
                       </div>
-                    </div>
+                    </div> -->
 
                     <!-- <div v-if="product.is_diffPrice == 1">
                       <div class="row align-items-end" v-for="(warehouse,k) in product.warehouse" :key="k"> 
@@ -430,19 +430,19 @@
 
                       </div>
                     </div> -->
-                    <div v-if="btn_update_active == 0 && product.is_diffPrice==1">
+                    <!-- <div v-if="btn_update_active == 0 && product.is_diffPrice==1">
                       <div class="row"> 
                         
                         <div class="col-md-6">
                           <div class="mb-6" v-for="item in product.warehouse" :key="item.id">
                             <div class="input-group">
                               <span class="input-group-text">{{item.name}}</span>
-                              <input class="form-control" v-model="item.product_warehouse_price" type="number"  placeholder="00.00">
+                              <input class="form-control" v-model="item.price" type="number"  placeholder="00.00">
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                     <div v-if="btn_update_active == 1 && product.is_diffPrice==1">
                       <div class="row"> 
                         
@@ -526,6 +526,7 @@
                 </tr>
               </thead>
               <tbody>
+                <tr></tr>
                 <tr v-for="item in products.data" :key="item.id">
                   <th scope="row" ><img :src="'images/product/'+item.image.split(',')[0]" width="50"></th>
                   <td>{{item.name}}</td>

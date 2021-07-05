@@ -8,7 +8,7 @@ class Sale extends Model
 {
     protected $guarded = [];
 
-    public function product_sales()
+    public function product_sale()
     {
         return $this->hasMany(Product_sale::class);
     }
