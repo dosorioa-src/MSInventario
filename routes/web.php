@@ -104,4 +104,7 @@ Route::post('/api/brand/delete', 'BrandController@delete')->middleware('auth');
 //NOTIFICATIONS
 Route::get('/api/notification/bell', 'NotificationController@bell')->middleware('auth');
 
-Route::get('/api/sales/load', 'SaleController@load')->middleware('auth');
+Route::get('/api/sale/load', 'SaleController@load')->middleware('auth');
+Route::post('/api/sale/add', 'SaleController@add')->middleware('auth');
+Route::post('/api/sale/delete', 'SaleController@delete')->middleware('auth');
+Route::post('/api/sale/edit', 'SaleController@edit')->middleware('auth');
