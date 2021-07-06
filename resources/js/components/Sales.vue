@@ -116,6 +116,17 @@
 														/>	 -->
                         </div>
                       </div>
+                      <div class="col-md-6">
+                        <div class="mb-3">
+                          <label class="form-label" for="">Codigo de venta en canal de origen</label>
+														<input
+															class="form-control"
+															type="text"
+															v-model="sale.origin_sale_code"
+															placeholder=""
+														/>														
+                        </div>
+                      </div>
                     </div>
 
                     <div class="row">
@@ -135,25 +146,73 @@
 																		<th scope="col">Acción</th>
                                   </tr>
                                 </thead>
-                                <tbody>
+                                <tbody v-if="btn_update_active == 1">
+                                  <tr v-for="(item, index) in sale.product_sale" :key="item.id">
+                                      <td v-if="!Array.isArray(item.product_variant)">
+                                        {{item.product.name}}
+                                      </td>
+                                      <td v-if="Array.isArray(item.product_variant)">
+                                       {{item.name}}
+                                      </td>
+                                      <td >
+                                        <div v-if="!Array.isArray(item.product_variant) && item.product_variant!=null">
+                                          {{item.product_variant.name}}
+                                        </div>
+                                        <select v-if="Array.isArray(item.product_variant)" v-model="item.product_variant_selected" name="" class="form-select" id="">
+                                          <option v-for="item in item.product_variant" :key="item.id" :value="item">{{item.name}}</option>
+                                        </select>
+                                      </td>
+
+                                      <td>
+																				<vue-number-input v-model="item.qty" :min="1" inline center controls @change="calculateLineTotal(item)"></vue-number-input>
+																			</td>
+                                      
+                                      <td>
+                                        <div v-if="!item.product_variant_selected" >{{parseFloat(item.unit_price)}}</div>
+
+                                        <div v-if="item.product_variant_selected" >{{ parseFloat(item.price)+parseFloat(item.product_variant_selected.additional_price)}}</div>
+                                       
+																			  </td>
+                                      <td>
+																				<input @change="calculateLineTotal(item)" class="form-control" type="number" v-model="item.discount" placeholder="0">
+																			</td>
+                                      <td style="vertical-align: middle;">
+																				{{ item.subtotal }}
+																			</td>
+                                      <td>
+                                        <div class="btn-group">
+                                          <button @click="deleteRow(index)" class="btn btn-secondary" type="button">
+                                            Borrar
+                                          </button>
+                                        </div>
+                                      </td>
+                                  </tr>
+                                </tbody>
+                                <tbody v-if="btn_update_active == 0">
                                   <tr v-for="(item, index) in sale.product_sale" :key="item.id">
                                       <td style="vertical-align: middle;">{{item.name}}</td>
                                       <td style="vertical-align: middle;">
                                         <select
+                                        @change="calculateLineTotal(item)"
                                           class="form-select"
-                                          v-model="item.product_variant"
+                                          v-model="item.product_variant_selected"
                                         >
-                                        <option v-for="variant in item.product_variant" :key="variant.id" :value="variant" >{{ variant.name }}</option> 
+                                        <option  v-for="variant in item.product_variant" :key="variant.id" :value="variant" >{{ variant.name }}</option> 
                                         </select>
                                       </td>
+
                                       <td>
 																				<vue-number-input v-model="item.qty" :min="1" inline center controls @change="calculateLineTotal(item)"></vue-number-input>
 																			</td>
+                                      
                                       <td>
-																				<input class="form-control" type="number" v-model="item.unit_price" @change="calculateLineTotal(item)">
+                                        <div v-if="item.product_variant_selected" >{{parseFloat(item.price)+parseFloat(item.product_variant_selected.additional_price)}}</div>
+                                        <div v-if="!item.product_variant_selected" >{{item.price}}</div>
+																				<!-- <input class="form-control" type="number" v-model="item.unit_price" @change="calculateLineTotal(item)"> -->
 																			</td>
+
                                       <td>
-																				<input class="form-control" type="number" v-model="item.discount" placeholder="00.00" @change="calculateLineTotal(item)">
+																				<input @change="calculateLineTotal(item)" class="form-control" type="number" v-model="item.discount" placeholder="0">
 																			</td>
                                       <td style="vertical-align: middle;">
 																				{{ item.subtotal }}
@@ -192,12 +251,12 @@
                           <select
                             class="form-select"
                             @change="calculateTotal()"
-                            v-model="sale.tax_id"
+                            v-model="sale.taxe"
                           >
                           <option selected="" disabled="" value="">
                             Seleccione impuesto
                           </option>
-                          <option v-for="item in taxes" :key="item.id" :value="item.id" >{{ item.name }}</option> 
+                          <option v-for="item in taxes" :key="item.id" :value="item" >{{ item.name }}</option> 
                           </select>													
                         </div>
                       </div>
@@ -227,7 +286,7 @@
                       <div class="col-md-4">
                         <div class="mb-3">
                           <label class="form-label" for="">Documento adjunto</label>
-													<input class="form-control" type="file" title="">													
+													<input class="form-control" @change="handleFile" ref="file" type="file" title="">													
                         </div>
                       </div>
 
@@ -286,7 +345,7 @@
                           <label class="form-label" for="">Artículos</label>
                           <div class="input-group">
                             <span class="input-group-text">#</span>
-                            <input disabled class="form-control" type="number" v-model="sale.total_qty" placeholder="0">
+                            <input disabled class="form-control" type="text" v-model="sale.total_qty" placeholder="0">
                           </div>                          
                         </div>
                       </div>  
@@ -341,7 +400,7 @@
 
                 <div class="modal-footer">
                   <button
-          
+                    @click="createSale()"
                     v-if="btn_update_active == 0"
                     class="btn btn-primary"
                     type="submit"
@@ -351,7 +410,7 @@
                     Guardar
                   </button>
                   <button
-                   
+                    @click="editSale()"
                     v-if="btn_update_active == 1"
                     class="btn btn-primary"
                     type="submit"
@@ -386,8 +445,8 @@
                                     <th scope="col">Cliente</th>
                                     <th scope="col">Estado de venta</th>
                                     <th scope="col">Estado de pago</th>
-                                    <th scope="col">Gran total</th>
-                                    <th scope="col">Pagado</th>
+                                    <th scope="col">Total</th>
+                                    <!-- <th scope="col">Pagado</th> -->
                                     <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
@@ -404,7 +463,7 @@
                                     <td v-if="item.payment_status == 1"><span class="badge badge-warning">Pendiente</span></td> 
                                     <td v-if="item.payment_status == 2" ><span class="badge badge-primary">Pagado</span></td>
                                     <td>{{ item.total_price }}</td>
-                                    <td>{{ item.paid_amount }}</td>
+<!--                                     <td>{{ item.paid_amount }}</td> -->
                                     <td>
 																			<div class="btn-group">
 																				<button @click="editSaleData(item), btn_update_active=1, modal_title='Editar Venta'" class="btn btn-primary btn-xs" type="button" title=""  data-bs-toggle="modal"  data-bs-target="#exampleModal">
@@ -438,14 +497,16 @@
                             </tbody>
                         </table>
                     </div>
-                    <nav class = "m-b-30" aria-label="...">
-                        <ul class="pagination justify-content-center pagination-primary">
-                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" data-bs-original-title="" title="">Anterior</a></li>
-                            <li class="page-item"><a class="page-link" href="#" data-bs-original-title="" title="">1</a></li>
-                            <li class="page-item active"><a class="page-link" href="#" data-bs-original-title="" title="">2 <span class="sr-only">(current)</span></a></li>
-                            <li class="page-item"><a class="page-link" href="#" data-bs-original-title="" title="">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#" data-bs-original-title="" title="">Siguiente</a></li>
-                        </ul>
+                    <nav aria-label="..." class="m-b-30">
+                      <ul class="pagination justify-content-center pagination-primary">
+                          <li   :class="(sales.current_page==1)?'page-item disabled':'page-item'" ><a @click.prevent="loadSales(sales.current_page-1)" href="" tabindex="-1" data-bs-original-title="" title="" class="page-link">Anterior</a></li>
+                          <li v-if="sales.current_page>1" class="page-item"><a @click.prevent="loadSales(sales.current_page-1)" href="" data-bs-original-title="" title="" class="page-link">{{sales.current_page-1}}</a></li>
+                          <li class="page-item active">
+                              <a href="#" data-bs-original-title="" title="" class="page-link">{{sales.current_page}}<span class="sr-only">(current)</span></a>
+                          </li>
+                          <li v-if="sales.current_page!=sales.last_page" class="page-item"><a @click.prevent="loadSales(sales.current_page+1)" href="" data-bs-original-title="" title="" class="page-link">{{sales.current_page+1}}</a></li>
+                          <li :class="(sales.current_page==sales.last_page)?'page-item disabled':'page-item'"><a @click.prevent="loadSales(sales.current_page+1)"  href="" data-bs-original-title="" title="" class="page-link">Siguiente</a></li>
+                      </ul>
                     </nav>
 
                 </div>
@@ -462,24 +523,28 @@
 			}, 	
 			data() {
 					return {
+              page:1,
               searchValue:'',
 							btn_update_active:0,
 							modal_title:null,
 							sales: [],
+              attached:[],
 							sale: {
 								client: null,
 								origin: null,
+                item:0,
                 origin_sale_code:null,
-								product_sale: [{ 
+								product_sale: [/* { 
                   product_id: null,
-                  variant_id: null,
+                  //variant_id: null,
 									qty: 1,
+                  unit_cost: 0,
 									unit_price: 0,
 									discount: 0,
 									subtotal: 0,
                   product_variant:[]
-								}],
-								tax_id: null,                
+								} */],
+								taxe: null,                
 								total_qty: null,
 								total_discount: 0,
 								total_price: null,
@@ -495,15 +560,14 @@
 							},
 							product: null,
 							warehouses: [],
-              taxes: null,
+              taxes: [],
               searchResult:[]
 					};
 			},
 
 			created() {
-				this.loadSales()
-        //this.loadTaxes()
-				this.sale.product_sale = []
+				this.loadSales(this.page)
+        this.loadTaxes()
 			},
 
 			methods: {
@@ -511,34 +575,45 @@
         loadTaxes:function() {
             axios.get('/api/taxe/load').then(res=>{
               this.taxes = res.data;
-              console.log(this.taxes)
             })
         },
 
-				loadSales: function() {
-					axios.get('/api/sales/load').then(res=>{
+				loadSales: function(page) {
+          this.page = page
+					axios.get('/api/sale/load?page='+this.page).then(res=>{
 						this.sales = res.data;
 					})
 				},
 
         // Métodos de mantenimiento
         createSale:function(){
-          console.log(this.sale)
-            /* axios.post('/api/categorie/add',this.categorie).then(res=>{
-              $('#exampleModal').modal('hide')
-              this.loadSales()
-            }) */
+          const blob = JSON.stringify(this.sale);
+          let formData = new FormData();
+          formData.append('file', this.attached);
+          formData.append("document", blob);
+          axios.post( '/api/sale/add',formData).then(res=>{  
+            this.loadSales(this.page);                 
+          })
+
+          console.log(this.sale);
         },
         
         editSaleData:function(item) {
             this.sale = item
         },
         editSale:function() {
+          const blob = JSON.stringify(this.sale);
+          let formData = new FormData();
+          formData.append('file', this.attached);
+          formData.append("document", blob);
+          axios.post( '/api/sale/edit',formData).then(res=>{
+            this.loadSales(this.page);                  
+          })
         },
-        deleteCategorie:function(item) {
+        deleteSale:function(item) {
             this.categorie = item
-            axios.post('/api/categorie/delete',this.categorie).then(res=>{
-                this.loadSales()
+            axios.post('/api/sale/delete',this.categorie).then(res=>{
+                this.loadSales(this.page)
             })
         },
         clearFields() {
@@ -562,21 +637,23 @@
 				// Métodos de tabla
         calculateTotal() {
             var totalqty, totaldis, totaltax, totalprice;
+            var totalItem=0;
             totalqty = this.sale.product_sale.reduce(function (sum, product) {
+              totalItem+=1
                 var lineTotal = parseInt(product.qty,10);
                 if (!isNaN(lineTotal)) {
                     return sum + lineTotal;
                 }
             }, 0);
             this.sale.total_qty = totalqty;
-
+            this.sale.item=totalItem
             totaldis = this.sale.product_sale.reduce(function (sum, product) {
                 var lineTotal = parseFloat(product.discount);
                 if (!isNaN(lineTotal)) {
                     return sum + lineTotal;
                 }
             }, 0);
-            this.sale.total_discount = totaldis.toFixed(2);
+            this.sale.total_discount = totaldis;
 
             // totaltax = this.sale.product_sale.reduce(function (sum, product) {
             //     var lineTotal = parseFloat(product.tax);
@@ -592,17 +669,17 @@
                     return sum + lineTotal;
                 }
             }, 0);
-            this.sale.total_price = totalprice.toFixed(2);
+            this.sale.total_price = totalprice;
 
             console.log(totalprice);
-            console.log(this.sale.tax_id);
+            console.log(this.sale.taxe);
 
-            if (this.sale.tax_id == 1) {
-              this.sale.order_tax = totalprice * 0.15;
+            /* if (this.sale.tax_id == 1) { */
+              this.sale.order_tax = totalprice * parseFloat(this.sale.taxe.rate)/100
               var tax = this.sale.order_tax;
               var shipping = parseFloat(this.sale.shipping_cost);
               var discount = parseFloat(this.sale.order_discount);
-              console.log(this.sale.order_tax,shipping,discount);
+
               if (!isNaN(shipping) && !isNaN(discount)) {
                 this.sale.grand_total = totalprice + tax + shipping - discount;
               }else if(isNaN(shipping) && !isNaN(discount)){
@@ -612,7 +689,7 @@
               }else if(isNaN(shipping) && isNaN(discount)){
                 this.sale.grand_total = totalprice + tax;
               }
-            }else{
+            /* }else{
               this.sale.order_tax = 0;
               var shipping = parseFloat(this.sale.shipping_cost);
               var discount = parseFloat(this.sale.order_discount);
@@ -624,15 +701,19 @@
                 this.sale.grand_total = totalprice + shipping;
               }else if(isNaN(shipping) && isNaN(discount)){
                 this.sale.grand_total = totalprice;
-              }
-            }
+              } 
+
+
+            }*/
 
         },
         calculateLineTotal(item) {
-            var total = (parseFloat(item.unit_price) * parseInt(item.qty,10)) - parseFloat(item.discount) ;
+/*           console.log( (item.price * parseInt(item.qty,10)) - parseFloat(item.discount??0) ) */
+             var total = ((parseFloat(item.price)+ parseFloat(item.product_variant_selected?item.product_variant_selected.additional_price:0)) * parseInt(item.qty)) - parseFloat(item.discount??0) ;
             if (!isNaN(total)) {
-                item.subtotal = total.toFixed(2);
-            }
+              console.log(total)
+                item.subtotal = total;
+            } 
             this.calculateTotal();
         },
         deleteRow(index) {
@@ -649,7 +730,13 @@
           }}).then(res=>{
             this.searchResult= res.data;
           })
-        }
+        },
+
+        handleFile(){
+          this.attached=this.$refs.file.files[0]
+        },
+
+
 			}
 	};
 </script>

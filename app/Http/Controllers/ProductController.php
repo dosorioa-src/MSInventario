@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Http;
 class ProductController extends Controller
 {
     public function search(request $request){
-        return Product::search($request->value)->where('is_deleted','=',false)->with('product_variant')->get(['products.id','products.name','products.price','code','products.is_warehouse']);
+        return Product::search($request->value)->where('is_deleted','=',false)->with('product_variant')->get(['products.id','products.name','products.price','products.cost','code','products.is_warehouse']);
     }
     public function load(){
         return Product::with('categorie')->with('brand')->with('unit')->with('product_variant')->with('warehouse')->where('is_deleted','=',false)->orderBy('id', 'desc')->paginate(1);
@@ -70,6 +70,7 @@ class ProductController extends Controller
         foreach ($product["warehouse"] as $item ) {
             $addProduct->product_warehouse()->create([
                 "additional_price"=>$item["product_warehouse_additional_price"]??null,
+                "additional_cost"=>$item["product_warehouse_additional_cost"]??null,
                 "warehouse_id"=> $item["id"],
             ]);
         }

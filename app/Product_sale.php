@@ -19,7 +19,7 @@ class Product_sale extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function variants()
+    public function product_variant()
     {
         return $this->belongsTo(Product_variant::class);
     }

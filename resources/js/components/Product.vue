@@ -361,7 +361,15 @@
                             />
                           </div>
                         </div>
-
+                        <div class="col-md-3">
+                          <div class="mb-3">
+                            <label class="form-label" for="validationDefault01">Costo adicional</label>
+                            <div class="input-group">
+                              <span class="input-group-text">$</span>
+                              <input class="form-control" type="number" v-model="product_variant.additional_cost" placeholder="00.00">
+                            </div>
+                          </div>
+                        </div>
                         <div class="col-md-3">
                           <div class="mb-3">
                             <label class="form-label" for="validationDefault01">Precio adicional</label>
@@ -621,6 +629,7 @@ export default {
         is_variant: false,
         product_variant: [{
           name: null,
+          additional_cost: 0,
           additional_price: 0,
         }],
         is_diffPrice: false,
@@ -707,6 +716,7 @@ export default {
           this.product.product_variant= [{
           name: null,
           additional_price: 0,
+          additional_cost: 0,
           }];
         }
         if (this.product.is_diffPrice==false) {

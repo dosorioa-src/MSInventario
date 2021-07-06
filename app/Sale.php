@@ -13,7 +13,7 @@ class Sale extends Model
         return $this->hasMany(Product_sale::class);
     }
 
-    public function tax()
+    public function taxe()
     {
         return $this->belongsTo(Taxe::class);
     }
