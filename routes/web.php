@@ -66,6 +66,7 @@ Route::put('/api/user/edit', 'UserController@edit')->middleware('auth');
 
 Route::get('/api/typeid/load', 'TypeIndetificationController@load')->middleware('auth');
 
+Route::get('/api/categorie/index', 'CategorieController@index')->middleware('auth');
 Route::get('/api/categorie/load', 'CategorieController@load')->middleware('auth');
 Route::post('/api/categorie/add', 'CategorieController@add')->middleware('auth');
 Route::put('/api/categorie/edit', 'CategorieController@edit')->middleware('auth');
@@ -94,6 +95,7 @@ Route::post('/api/adjustment/delete', 'AdjustmentController@delete')->middleware
 
 Route::get('/api/alertstock/load', 'AlertStockController@load')->middleware('auth');
 
+Route::get('/api/brand/index', 'BrandController@index')->middleware('auth');
 Route::get('/api/brand/load', 'BrandController@load')->middleware('auth');
 Route::post('/api/brand/add', 'BrandController@add')->middleware('auth');
 Route::post('/api/brand/edit', 'BrandController@edit')->middleware('auth');

@@ -6,9 +6,17 @@ use App\Brand;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
-{
-    public function load(){
-        return Brand::where('is_deleted',false)->get();
+{   
+    public function index(){
+        $data = Brand::where('is_deleted',false)->get();
+        return $data;
+    }
+
+    public function load(Request $request){
+        $filtro = $request->buscador;
+        return Brand::where('is_deleted',false)
+                    ->search($filtro)
+                    ->paginate(10);
     }
 
     public function add(request $request){

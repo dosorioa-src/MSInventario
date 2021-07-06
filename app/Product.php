@@ -34,6 +34,30 @@ class Product extends Model
             return $query->Where(DB::raw("CONCAT(products.name, ' ', products.code)"),'like',"%$value%");
         }
     }
+
+    public function scopeSearchNameOrCode($query,$filtro){
+        if (!empty($filtro)) {
+            return $query->where(DB::raw("CONCAT(name, ' ',code)"),'like',"%$filtro%");
+        }  
+    }
+
+    public function scopeSearchCategory($query,$filtroC){
+        if (!empty($filtroC) && $filtroC!="Todos") {
+            return $query->where('categorie_id','=',"$filtroC");
+        }  
+    }
+
+    public function scopeSearchBrand($query,$filtroB){
+        if (!empty($filtroB) && $filtroB!="Todos") {
+            return $query->where('brand_id','=',"$filtroB");
+        }  
+    }
+
+    public function scopeSearchAlertStock($query,$filtro){
+        if (!empty($filtro)) {
+            return $query->where(DB::raw("CONCAT(name, ' ',code)"),'like',"%$filtro%");
+        }  
+    }
     
 
     

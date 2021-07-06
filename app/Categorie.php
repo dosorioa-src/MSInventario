@@ -11,5 +11,12 @@ class Categorie extends Model
         return $this->hasMany(Product::class);
     }
 
-    protected $fillable = [];
+    public function scopeSearch($query,$filtro){
+        if (!empty($filtro)) {
+            return $query->where('name','like',"%$filtro%")
+                         ->orWhere('id','like',"%$filtro%");
+        }   
+    }
+
+    protected $guarded = [];
 }

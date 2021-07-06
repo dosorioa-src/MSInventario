@@ -7,27 +7,33 @@ use App\Product;
 use Illuminate\Http\Request;
 
 class CategorieController extends Controller
-{
-    public function load()
-    {
-        $data = Categorie::with('Product')->get()->where('is_deleted', false);
-        $json_data = [];
-        foreach ($data as $item) {
-            array_push($json_data, [
-                "id" => $item->id,
-                "parent_id" => $item->parent_id,
-                "parent" => ($item->parent_id) ? Categorie::find($item->parent_id)->name : "N/A",
-                "total_products" => count($item->product),
-                "stock" => $item->product->sum('qty'),
-                "name" => $item->name,
-                "is_active" => $item->is_active,
-                "sum_price" => $item->product->sum('price'),
-                "sum_cost" => $item->product->sum('cost'),
-            ]);
+{   
+    public function index(){
+        $data = Categorie::where('is_deleted', false)->where('is_active','=',1)->get();
+        return $data;
+    }
 
+    public function load(Request $request)
+    {
+        $filtro = $request->buscador;
+        $data = Categorie::with('Product')
+        ->where('is_deleted', false)
+        ->search($filtro)
+        ->paginate(10);
+
+        foreach ($data->items() as $item) {
+            $item->id = $item->id;
+            $item->parent_id = $item->parent_id;
+            $item->name = $item->name;
+            $item->parent = ($item->parent_id) ? Categorie::find($item->parent_id)->name : "N/A";
+            $item->total_products = count($item->product);
+            $item->stock = $item->product->sum('qty');
+            $item->sum_price = $item->product->sum('price');
+            $item->sum_cost = $item->product->sum('cost');
+            $item->is_active = $item->is_active;
         }
 
-        return $json_data;
+        return $data;
     }
 
     public function add(request $request)
