@@ -50,6 +50,10 @@ Route::get('/sales', function () {
     return view('/sales/index');
 })->middleware('auth');
 
+Route::get('/purchases', function () {
+    return view('/purchases/purchase');
+})->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -106,3 +110,8 @@ Route::get('/api/sale/load', 'SaleController@load')->middleware('auth');
 Route::post('/api/sale/add', 'SaleController@add')->middleware('auth');
 Route::post('/api/sale/delete', 'SaleController@delete')->middleware('auth');
 Route::post('/api/sale/edit', 'SaleController@edit')->middleware('auth');
+
+Route::get('/api/purchase/load', 'PurchaseController@load')->middleware('auth');
+Route::post('/api/purchase/add', 'PurchaseController@add')->middleware('auth');
+Route::post('/api/purchase/edit', 'PurchaseController@edit')->middleware('auth');
+Route::post('/api/purchase/delete', 'PurchaseController@delete')->middleware('auth');
