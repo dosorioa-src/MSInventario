@@ -7,9 +7,13 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
-    public function load()
+    public function load(Request $request)
     {
-        return Supplier::select('id', 'name', 'company_name', 'rut_number', 'email', 'phone_number', 'address', 'is_active')->where('is_deleted', false)->get();
+        $filtro = $request->buscador;
+        return Supplier::select('id', 'name', 'company_name', 'rut_number', 'email', 'phone_number', 'address', 'is_active')
+                        ->where('is_deleted', false)
+                        ->search($filtro)
+                        ->paginate(10);
     }
 
     public function add(request $request)

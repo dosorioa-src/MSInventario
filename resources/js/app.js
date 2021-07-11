@@ -35,6 +35,7 @@ Vue.component('brand-component', require('./components/Brand.vue').default);
 Vue.component('sale-component', require('./components/Sales.vue').default);
 Vue.component('dashboard-component', require('./components/Dashboard.vue').default);
 Vue.component('bell-component', require('./components/BellComponent.vue').default);
+Vue.component('kardex-component', require('./components/Kardex.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -60,6 +60,11 @@
                             <i data-feather="shopping-cart"></i><span>Ventas</span>
                         </a>
                     </li>
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="/kardex">
+                            <i data-feather="refresh-ccw"></i><span>Kardex</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

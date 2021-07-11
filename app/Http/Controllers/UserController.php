@@ -9,8 +9,14 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function load(){
-        return User::select('id', 'name', 'email', 'role_id', 'phone','type_indetification_id','number_identification','photo','is_active')->where('is_deleted',false)->get();
+    public function load(Request $request){
+        $filtro = $request->buscador;
+        $filtroS = $request->buscadorS;
+        return User::select('id', 'name', 'email', 'role_id', 'phone','type_indetification_id','number_identification','photo','is_active')
+                    ->where('is_deleted',false)
+                    ->search($filtro)
+                    ->searchStatus($filtroS)
+                    ->paginate(10);
     }
 
     public function add(request $request){

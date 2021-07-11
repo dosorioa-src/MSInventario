@@ -28,7 +28,7 @@
                   <option selected="" disabled="" value="">
                     Seleccionar
                   </option>
-                  <option :value="todos">Todos</option>
+                  <option value="Todos">Todos</option>
                   <option v-for="item in categories" :key="item.id" :value="item.id">{{ item.name }}</option>
                 </select>
               </div>
@@ -43,7 +43,7 @@
                   <option selected="" disabled="" value="">
                     Seleccionar
                   </option>
-                  <option :value="todos">Todos</option>
+                  <option value="Todos">Todos</option>
                   <option v-for="item in brands" :key="item.id" :value="item.id">{{ item.title}}</option>
                 </select> 
               </div>
@@ -700,7 +700,6 @@
                 </tbody>
               </table>
             </div>
-            <br>
 
             <div class="row mt-4 align-items-center">
               <div class="col-md-6">

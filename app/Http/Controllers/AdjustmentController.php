@@ -9,11 +9,61 @@ use App\Product_warehouse;
 use App\Product_adjustment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class AdjustmentController extends Controller
 {
-    public function load(){
-        return Adjustment::with(['warehouse','product_adjustment.product_variant'])->with('product_adjustment.product')->orderBy('adjustments.id','desc')->paginate(10);
+    public function load(Request $request){
+        if ($request->from == "" AND $request->to != "") {
+            $to = new Carbon($request->to, 'America/Lima');
+            $to->tz = date_default_timezone_get();
+            $to->addDay();
+
+            return Adjustment::whereDate('created_at', '<=', $to)
+                        ->with(['warehouse','product_adjustment.product_variant'])
+                        ->with('product_adjustment.product')
+                        ->tipoAjuste($request->filtroA)
+                        ->porAlmacen($request->filtroB)
+                        ->orderBy('adjustments.id','desc')
+                        ->paginate(10);
+
+        } elseif ($request->from != "" AND $request->to == "") {
+            $from = new Carbon($request->from, 'America/Lima'); 
+            $from->tz = date_default_timezone_get();
+
+            return Adjustment::whereDate('created_at', '>=', $from)
+                        ->with(['warehouse','product_adjustment.product_variant'])
+                        ->with('product_adjustment.product')
+                        ->tipoAjuste($request->filtroA)
+                        ->porAlmacen($request->filtroB)
+                        ->orderBy('adjustments.id','desc')
+                        ->paginate(10);
+
+        } elseif ($request->from == "" AND $request->to == "") {
+            
+            return Adjustment::with(['warehouse','product_adjustment.product_variant'])
+                        ->with('product_adjustment.product')
+                        ->tipoAjuste($request->filtroA)
+                        ->porAlmacen($request->filtroB)
+                        ->orderBy('adjustments.id','desc')
+                        ->paginate(10);
+
+        } elseif ($request->from != "" AND $request->to != "") {
+            $from = new Carbon($request->from, 'America/Lima'); 
+            $from->tz = date_default_timezone_get();
+            $to = new Carbon($request->to, 'America/Lima');
+            $to->tz = date_default_timezone_get();
+            $to->addDay();
+
+            return Adjustment::whereBetween('created_at', [$from, $to])
+                        ->with(['warehouse','product_adjustment.product_variant'])
+                        ->with('product_adjustment.product')
+                        ->tipoAjuste($request->filtroA)
+                        ->porAlmacen($request->filtroB)
+                        ->orderBy('adjustments.id','desc')
+                        ->paginate(10);            
+        }
+        
     }
     public function add(request $request){
         try {

@@ -50,6 +50,10 @@ Route::get('/sales', function () {
     return view('/sales/index');
 })->middleware('auth');
 
+Route::get('/kardex', function () {
+    return view('/kardex/index');
+})->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -108,3 +112,4 @@ Route::get('/api/sale/load', 'SaleController@load')->middleware('auth');
 Route::post('/api/sale/add', 'SaleController@add')->middleware('auth');
 Route::post('/api/sale/delete', 'SaleController@delete')->middleware('auth');
 Route::post('/api/sale/edit', 'SaleController@edit')->middleware('auth');
+
