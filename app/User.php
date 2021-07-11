@@ -48,4 +48,16 @@ class User extends Authenticatable
     public function Type_indetification(){
         return $this->belongsTo(Type_indetification::class);
     }
+
+    public function scopeSearch($query,$filtro){
+        if ($filtro) {
+            return $query->where('name','like',"%$filtro%");
+        }
+    }
+
+    public function scopeSearchStatus($query,$filtroS){
+        if (!empty($filtroS) && $filtroS!="todos") {
+            return $query->where('is_active','=',"$filtroS");
+        }  
+    }
 }

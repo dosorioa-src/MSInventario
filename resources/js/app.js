@@ -8,6 +8,9 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate);  
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -32,6 +35,7 @@ Vue.component('brand-component', require('./components/Brand.vue').default);
 Vue.component('sale-component', require('./components/Sales.vue').default);
 Vue.component('dashboard-component', require('./components/Dashboard.vue').default);
 Vue.component('bell-component', require('./components/BellComponent.vue').default);
+Vue.component('kardex-component', require('./components/Kardex.vue').default);
 Vue.component('purchase-component', require('./components/Purchase.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

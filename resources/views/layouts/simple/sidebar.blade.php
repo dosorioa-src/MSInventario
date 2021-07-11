@@ -40,8 +40,9 @@
                         </a>
                         <ul class="sidebar-submenu" style="display: none;">
                             <li><a href="/products">Lista de Productos</a></li>
-                            <li><a href="/categorie">Categorias</a></li>
                             <li><a href="/stock">Alerta de Stock</a></li>
+                            <li><a href="/categorie">Categorias</a></li>
+                            <li><a href="/brand">Marcas</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-list">
@@ -57,6 +58,11 @@
                     <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav" href="/sales">
                             <i data-feather="shopping-cart"></i><span>Ventas</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="/kardex">
+                            <i data-feather="refresh-ccw"></i><span>Kardex</span>
                         </a>
                     </li>
                 </ul>

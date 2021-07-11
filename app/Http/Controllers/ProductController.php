@@ -14,10 +14,19 @@ use Illuminate\Support\Facades\Http;
 class ProductController extends Controller
 {
     public function search(request $request){
-        return Product::search($request->value)->where('is_deleted','=',false)->with('product_variant')->get(['products.id','products.name','products.price','products.cost','code','products.is_warehouse']);
+        return Product::search($request->value)->where('is_deleted','=',false)->with('product_variant')->get(['products.id','products.name','products.price','products.cost','code','products.is_warehouse', 'products.qty']);
     }
-    public function load(){
-        return Product::with('categorie')->with('brand')->with('unit')->with('product_variant')->with('warehouse')->where('is_deleted','=',false)->orderBy('id', 'desc')->paginate(1);
+    public function load(Request $request){
+        $filtro = $request->buscador;
+        $filtroC = $request->buscadorC;
+        $filtroB = $request->buscadorB;
+        return Product::with('categorie')->with('brand')->with('unit')->with('product_variant')->with('warehouse')
+                        ->where('is_deleted','=',false)
+                        ->searchNameOrCode($filtro)
+                        ->searchCategory($filtroC)
+                        ->searchBrand($filtroB)
+                        ->orderBy('id', 'desc')
+                        ->paginate(10);
     }
     public function add(request $request){
         try {

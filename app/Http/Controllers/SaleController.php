@@ -6,11 +6,83 @@ use App\Sale;
 use App\Product_sale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class SaleController extends Controller
 {
-    public function load(){
-        return Sale::with('product_sale')->with('taxe')->with('product_sale.product')->with('product_sale.product_variant')->where('is_deleted', false)->orderBy('sales.id','desc')->paginate(20);
+    public function load(Request $request){
+        
+        if ($request->from == "" AND $request->to != "") {
+            $to = new Carbon($request->to, 'America/Lima');
+            $to->tz = date_default_timezone_get();
+            $to->addDay();
+
+            return Sale::whereDate('created_at', '<=', $to)
+                        ->with('product_sale')
+                        ->with('taxe')
+                        ->with('product_sale.product')
+                        ->with('product_sale.product_variant')
+                        ->where('is_deleted', false)
+                        ->numReferencia($request->filtroA)
+                        ->origen($request->filtroB)
+                        ->estadoVenta($request->filtroC)
+                        ->estadoPago($request->filtroD)
+                        ->orderBy('sales.id','desc')
+                        ->paginate(7);
+
+        } elseif ($request->from != "" AND $request->to == "") {
+            $from = new Carbon($request->from, 'America/Lima'); 
+            $from->tz = date_default_timezone_get();
+
+            return Sale::whereDate('created_at', '>=', $from)
+                        ->with('product_sale')
+                        ->with('taxe')
+                        ->with('product_sale.product')
+                        ->with('product_sale.product_variant')
+                        ->where('is_deleted', false)
+                        ->numReferencia($request->filtroA)
+                        ->origen($request->filtroB)
+                        ->estadoVenta($request->filtroC)
+                        ->estadoPago($request->filtroD)
+                        ->orderBy('sales.id','desc')
+                        ->paginate(7);
+
+        } elseif ($request->from == "" AND $request->to == "") {
+
+            return Sale::with('product_sale')
+                        ->with('taxe')
+                        ->with('product_sale.product')
+                        ->with('product_sale.product_variant')
+                        ->where('is_deleted', false)
+                        ->numReferencia($request->filtroA)
+                        ->origen($request->filtroB)
+                        ->estadoVenta($request->filtroC)
+                        ->estadoPago($request->filtroD)
+                        ->orderBy('sales.id','desc')
+                        ->paginate(7);
+
+        } elseif ($request->from != "" AND $request->to != "") {
+            $from = new Carbon($request->from, 'America/Lima'); 
+            $from->tz = date_default_timezone_get();
+            $to = new Carbon($request->to, 'America/Lima');
+            $to->tz = date_default_timezone_get();
+            $to->addDay();
+
+            return Sale::whereBetween('created_at', [$from, $to])
+                        ->with('product_sale')
+                        ->with('taxe')
+                        ->with('product_sale.product')
+                        ->with('product_sale.product_variant')
+                        ->where('is_deleted', false)
+                        ->numReferencia($request->filtroA)
+                        ->origen($request->filtroB)
+                        ->estadoVenta($request->filtroC)
+                        ->estadoPago($request->filtroD)
+                        ->orderBy('sales.id','desc')
+                        ->paginate(7);
+
+        }
+
     }
 
     public function add(request $request){
