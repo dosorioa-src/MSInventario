@@ -5,12 +5,68 @@ namespace App\Http\Controllers;
 use App\Purchase;
 use App\Product_purchase;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PurchaseController extends Controller
 {
-    public function load(){
+    public function load(Request $request){
         
-        return Purchase::with('product_purchase')->with('taxe')->with('supplier')->with('product_purchase.product')->with('product_purchase.product_variant')->where('is_deleted', false)->orderBy('Purchases.id','desc')->paginate(10);
+        if ($request->from == "" AND $request->to != "") {
+            $to = new Carbon($request->to, 'America/Lima');
+            $to->tz = date_default_timezone_get();
+
+            return Purchase::whereDate('created_at', '<=', $to)
+                        ->with('product_purchase')->with('taxe')->with('supplier')->with('product_purchase.product')->with('product_purchase.product_variant')
+                        ->where('is_deleted', false)
+                        ->numReferencia($request->filtroA)
+                        ->proveedor($request->filtroB)
+                        ->estadoPago($request->filtroC)
+                        ->orderBy('Purchases.id','desc')
+                        ->paginate(7);
+
+        } elseif ($request->from != "" AND $request->to == "") {
+            $from = new Carbon($request->from, 'America/Lima'); 
+            $from->tz = date_default_timezone_get();
+
+            return Purchase::whereDate('created_at', '>=', $from)
+                        ->with('product_purchase')->with('taxe')->with('supplier')->with('product_purchase.product')->with('product_purchase.product_variant')
+                        ->where('is_deleted', false)
+                        ->numReferencia($request->filtroA)
+                        ->proveedor($request->filtroB)
+                        ->estadoPago($request->filtroC)
+                        ->orderBy('Purchases.id','desc')
+                        ->paginate(7);
+
+
+        } elseif ($request->from == "" AND $request->to == "") {
+
+            return Purchase::with('product_purchase')
+                        ->with('taxe')->with('supplier')->with('product_purchase.product')->with('product_purchase.product_variant')
+                        ->where('is_deleted', false)
+                        ->numReferencia($request->filtroA)
+                        ->proveedor($request->filtroB)
+                        ->estadoPago($request->filtroC)
+                        ->orderBy('Purchases.id','desc')
+                        ->paginate(7);
+
+        } elseif ($request->from != "" AND $request->to != "") {
+            $from = new Carbon($request->from, 'America/Lima'); 
+            $from->tz = date_default_timezone_get();
+            $to = new Carbon($request->to, 'America/Lima');
+            $to->tz = date_default_timezone_get();
+            $to->addDay();
+
+            return Purchase::whereBetween('created_at', [$from, $to])
+                        ->with('product_purchase')->with('taxe')->with('supplier')->with('product_purchase.product')->with('product_purchase.product_variant')
+                        ->where('is_deleted', false)
+                        ->numReferencia($request->filtroA)
+                        ->proveedor($request->filtroB)
+                        ->estadoPago($request->filtroC)
+                        ->orderBy('Purchases.id','desc')
+                        ->paginate(7);
+            
+        }
+
     }
 
     public function add(request $request){

@@ -56,6 +56,11 @@
                         </a>
                     </li>
                     <li class="sidebar-list">
+                        <a class="sidebar-link sidebar-title link-nav" href="/purchases">
+                            <i data-feather="package"></i><span>Compras</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-list">
                         <a class="sidebar-link sidebar-title link-nav" href="/sales">
                             <i data-feather="shopping-cart"></i><span>Ventas</span>
                         </a>
