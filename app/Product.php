@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    public function product_adjustment(){
+        return $this->hasMany(Product_adjustment::class);
+    }
+    public function product_sale(){
+        return $this->hasMany(Product_sale::class);
+    }
+    public function product_purchase(){
+        return $this->hasMany(Product_purchase::class);
+    }
     public function product_variant(){
         return $this->hasMany(Product_variant::class);
     }
@@ -53,10 +62,22 @@ class Product extends Model
         }  
     }
 
+
+
+
+
     public function scopeSearchAlertStock($query,$filtro){
         if (!empty($filtro)) {
             return $query->where(DB::raw("CONCAT(name, ' ',code)"),'like',"%$filtro%");
         }  
+    }
+
+    public function scopeKardexFromTo($query,$from,$to){
+        if ($from && $to) {
+            $query->WhereHas('Product_adjustment', function($query) use ($from,$to) {
+                $query->FromTo($from,$to);
+            });
+        }
     }
     
 

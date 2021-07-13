@@ -135,7 +135,7 @@
                                 <thead>
                                   <tr>
 																		<th scope="col">Producto</th>
-																		<th scope="col">Variante</th>
+																		<!-- <th scope="col">Variante</th> -->
 																		<th scope="col">Cantidad</th>
 																		<th scope="col">Costo Unitario Neto</th>
 																		<!-- <th scope="col">Descuento</th> -->
@@ -151,23 +151,23 @@
                                       <td v-if="Array.isArray(item.product_variant)">
                                        {{item.name}}
                                       </td>
-                                      <td >
+                                      <!-- <td >
                                         <div v-if="!Array.isArray(item.product_variant) && item.product_variant!=null">
                                           {{item.product_variant.name}}
                                         </div>
                                         <select v-if="Array.isArray(item.product_variant)" v-model="item.product_variant_selected" name="" class="form-select" id="">
                                           <option v-for="item in item.product_variant" :key="item.id" :value="item">{{item.name}}</option>
                                         </select>
-                                      </td>
+                                      </td> -->
 
                                       <td>
 																				<vue-number-input v-model="item.qty" :min="1" inline center controls @change="calculateLineTotal(item)"></vue-number-input>
 																			</td>
                                       
                                       <td>
-                                        <div v-if="!item.product_variant_selected" >{{parseFloat(item.cost)}}</div>
-
-                                        <div v-if="item.product_variant_selected" >{{ parseFloat(item.cost)+parseFloat(item.product_variant_selected.additional_cost)}}</div>
+                                        <input @change="calculateLineTotal(item)" type="number"  v-model="item.cost" placeholder="00.00" class="form-control" data-bs-original-title="" title="">
+                                        <!-- <div v-if="!item.product_variant_selected" >{{parseFloat(item.cost)}}</div>
+                                        <div v-if="item.product_variant_selected" >{{ parseFloat(item.cost)+parseFloat(item.product_variant_selected.additional_cost)}}</div> -->
                                        
 																			  </td>
                                       <!-- <td>
@@ -188,7 +188,7 @@
                                 <tbody v-if="btn_update_active == 0">
                                   <tr v-for="(item, index) in purchase.product_purchase" :key="item.id">
                                       <td style="vertical-align: middle;">{{item.name}}</td>
-                                      <td style="vertical-align: middle;">
+                                      <!-- <td style="vertical-align: middle;">
                                         <select
                                         @change="calculateLineTotal(item)"
                                           class="form-select"
@@ -196,15 +196,16 @@
                                         >
                                         <option  v-for="variant in item.product_variant" :key="variant.id" :value="variant" >{{ variant.name }}</option> 
                                         </select>
-                                      </td>
+                                      </td> -->
 
                                       <td>
 																				<vue-number-input v-model="item.qty" :min="1" inline center controls @change="calculateLineTotal(item)"></vue-number-input>
 																			</td>
                                       
                                       <td>
-                                        <div v-if="item.product_variant_selected" >{{parseFloat(item.cost)+parseFloat(item.product_variant_selected.additional_cost)}}</div>
-                                        <div v-if="!item.product_variant_selected" >{{item.cost}}</div>
+                                        <input @change="calculateLineTotal(item)" type="number"  v-model="item.cost" placeholder="00.00" class="form-control" data-bs-original-title="" title="">
+                                        <!-- <div v-if="item.product_variant_selected" >{{parseFloat(item.cost)+parseFloat(item.product_variant_selected.additional_cost)}}</div>
+                                        <div v-if="!item.product_variant_selected" >{{item.cost}}</div> -->
 																				<!-- <input class="form-control" type="number" v-model="item.unit_price" @change="calculateLineTotal(item)"> -->
 																			</td>
 
@@ -540,7 +541,7 @@
           })
         },
         loadSuppliers:function() {
-            axios.get('/api/provider/load').then(res=>{
+            axios.get('/api/provider/loadSelect').then(res=>{
               this.suppliers = res.data;
             })
         },

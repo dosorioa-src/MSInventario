@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Adjustment extends Model
@@ -27,10 +28,11 @@ class Adjustment extends Model
             });
         }
     }
-
     public function scopePorAlmacen ($query,$filtroB){
         if (!empty($filtroB) && $filtroB!="Todos") {
             return $query->where('warehouse_id','=',"$filtroB");
         } 
     }
+
+    
 }

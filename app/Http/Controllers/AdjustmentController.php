@@ -87,11 +87,15 @@ class AdjustmentController extends Controller
                 ->update(["document"=>$name]);
             }
             foreach ($adjustment["product_adjustment"] as $item) {
+                $additional_cost = isset($item["product_variant_selected"]) ? $item["product_variant_selected"]["additional_cost"]:0;
+
                 $addAdjustment->product_adjustment()->create([
                     "product_id"=>$item["id"],
                     "adjustment_id"=>$addAdjustment->id,
                     "product_variant_id"=>  $item["product_variant_selected"]["id"]??null,
                     "qty"=>$item["qty"],
+                    "cost"=>$item["cost"]+$additional_cost,
+                    "subtotal"=>$item["qty"]*($item["cost"]+$additional_cost),
                     "action"=>$item["action"],
                 ]);
 
@@ -203,6 +207,8 @@ class AdjustmentController extends Controller
                         "adjustment_id"=>$item["adjustment_id"],
                         "product_variant_id"=>  $item["product_variant_id"]??null,
                         "qty"=>$item["qty"],
+                        "cost"=>$item["product"]["cost"],
+                        "subtotal"=>$item["qty"]*$item["product"]["cost"],
                         "action"=>$item["action"],
                     ]);
 
@@ -216,12 +222,15 @@ class AdjustmentController extends Controller
                     }
                     $product_warehouse->update(["qty"=>$product_warehouse_qty_total]);
                     }else{
+                        $additional_cost = isset($item["product_variant_selected"]) ? $item["product_variant_selected"]["additional_cost"]:0;
                         //se crea un nuevo product_adjustment
                         Product_adjustment::create([
                             "product_id"=>$item["id"],
                             "adjustment_id"=>$adjustment["id"],
                             "product_variant_id"=>  $item["product_variant_selected"]??null,
                             "qty"=>$item["qty"],
+                            "cost"=>$item["cost"]+$additional_cost,
+                            "subtotal"=>$item["qty"]*($item["cost"]+$additional_cost),
                             "action"=>$item["action"],
                         ]);
                     }

@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
+    public function loadSelect()
+    {
+        return Supplier::all();
+    }
+
     public function load(Request $request)
     {
         $filtro = $request->buscador;

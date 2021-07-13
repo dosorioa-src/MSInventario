@@ -83,7 +83,7 @@
             style="display: none"
             aria-hidden="true"
           >
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog modal-xl" role="document">
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">
@@ -263,7 +263,8 @@
                                 <tr>
                                   <th scope="col">Producto</th>
                                   <th scope="col">Código</th>
-                                  <th scope="col">Variante</th>
+                                  <!-- <th scope="col">Variante</th> -->
+                                  <th scope="col">Costo</th>
                                   <th scope="col">Cantidad</th>
                                   <th scope="col">Ajuste</th>
                                   <th scope="col">Acción</th>
@@ -277,11 +278,7 @@
                                   <td style="vertical-align: middle">
                                     {{ item.code }}
                                   </td>
-                                  <td style="vertical-align: middle">
-                                    <!-- <select v-if="btn_update_active==1">
-                                        <option selected disabled>{{item.product_variant.name}}</option>
-                                      </select> -->
-
+                                  <!-- <td style="vertical-align: middle">
                                     <select
                                       class="form-select"
                                       v-model="item.product_variant_selected"
@@ -296,7 +293,33 @@
                                         {{ item.name }}
                                       </option>
                                     </select>
+                                  </td> -->
+                                  <td>
+                                    <input
+                                      @change="totalQty()"
+                                      v-model="item.cost"
+                                      :min="1"
+                                      class="touchspin form-control"
+                                      type="number"
+                                      style="display: block"
+                                      data-bs-original-title=""
+                                      title=""
+                                    />
                                   </td>
+                                  <!-- <td>
+                                    <input
+                                      v-if="item.product_variant_selected"
+                                      @change="totalQty()"
+                                      v-model="item.product_variant_selected.additional_cost"
+                                      :min="1"
+                                      class="touchspin form-control"
+                                      type="number"
+                                      style="display: block"
+                                      data-bs-original-title=""
+                                      title=""
+                                    />
+                                  </td> -->
+                                  
                                   <td style="vertical-align: middle">
                                     <input
                                       @change="totalQty()"
@@ -333,6 +356,7 @@
                                   </td>
                                 </tr>
                               </tbody>
+                              <!-- editar -->
                               <tbody v-if="btn_update_active == 1">
                                 <tr v-for="(item, index) in adjustment.product_adjustment" :key="item.id">
                                   <td v-if="!Array.isArray(item.product_variant)" >
@@ -349,7 +373,7 @@
                                     {{ item.code }}
                                   </td>
 
-                                  <td>
+                                  <!-- <td>
                                     <div v-if="!Array.isArray(item.product_variant) && item.product_variant != null">
                                       {{ item.product_variant.name }}
                                     </div>
@@ -364,8 +388,55 @@
                                         {{ item.name }}
                                       </option>
                                     </select>
+                                  </td> -->
+                                  <td v-if="!Array.isArray(item.product_variant)" >
+                                    <input 
+                                      @change="totalQty()"
+                                      v-model="item.product.cost"
+                                      :min="1"
+                                      class="touchspin form-control"
+                                      type="number"
+                                      style="display: block"
+                                      data-bs-original-title=""
+                                      title=""
+                                    />
                                   </td>
-
+                                  <td v-if="Array.isArray(item.product_variant)">
+                                    <input
+                                      @change="totalQty()"
+                                      v-model="item.cost"
+                                      :min="1"
+                                      class="touchspin form-control"
+                                      type="number"
+                                      style="display: block"
+                                      data-bs-original-title=""
+                                      title=""
+                                    />
+                                  </td>
+                                  <!-- <td>
+                                    <input
+                                      v-if="item.product_variant_selected"
+                                      @change="totalQty()"
+                                      v-model="item.product_variant_selected.additional_cost"
+                                      :min="1"
+                                      class="touchspin form-control"
+                                      type="number"
+                                      style="display: block"
+                                      data-bs-original-title=""
+                                      title=""
+                                    />
+                                    <input
+                                      v-if="item.product_variant"
+                                      @change="totalQty()"
+                                      v-model="item.product_variant.additional_cost"
+                                      :min="1"
+                                      class="touchspin form-control"
+                                      type="number"
+                                      style="display: block"
+                                      data-bs-original-title=""
+                                      title=""
+                                    />
+                                  </td> -->
                                   <td style="vertical-align: middle">
                                     <input
                                       @change="totalQty()"

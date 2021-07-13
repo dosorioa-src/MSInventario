@@ -29,8 +29,8 @@ class ProductController extends Controller
                         ->paginate(10);
     }
     public function add(request $request){
-        try {
-        DB::beginTransaction();
+        /* try {
+        DB::beginTransaction(); */
         $product=$request->document;
         $product=json_decode($product, true);
         $addProduct=Product::create([
@@ -78,15 +78,13 @@ class ProductController extends Controller
 
         foreach ($product["warehouse"] as $item ) {
             $addProduct->product_warehouse()->create([
-                "additional_price"=>$item["product_warehouse_additional_price"]??null,
-                "additional_cost"=>$item["product_warehouse_additional_cost"]??null,
                 "warehouse_id"=> $item["id"],
             ]);
         }
-        DB::commit();
+        /* DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-        }
+        } */
     }
 
     public function edit(request $request){

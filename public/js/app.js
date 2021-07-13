@@ -3061,6 +3061,77 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4454,6 +4525,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _chenfengyuan_vue_number_input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @chenfengyuan/vue-number-input */ "./node_modules/@chenfengyuan/vue-number-input/dist/vue-number-input.js");
+/* harmony import */ var _chenfengyuan_vue_number_input__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_chenfengyuan_vue_number_input__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -4536,7 +4613,63 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    VueNumberInput: _chenfengyuan_vue_number_input__WEBPACK_IMPORTED_MODULE_1___default.a
+  },
+  data: function data() {
+    return {
+      page: 1,
+      kardex: [],
+      filter: {},
+      searchResult: []
+    };
+  },
+  created: function created() {},
+  methods: {
+    search: function search() {
+      var _this = this;
+
+      axios.get('/api/kardex/load', {
+        params: this.filter
+      }).then(function (res) {
+        _this.kardex = res.data;
+      });
+    },
+    searchProduct: function searchProduct(value) {
+      var _this2 = this;
+
+      axios.get('/api/product/search', {
+        params: {
+          value: value
+        }
+      }).then(function (res) {
+        _this2.searchResult = res.data;
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -6621,6 +6754,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -6684,7 +6818,7 @@ __webpack_require__.r(__webpack_exports__);
     loadSuppliers: function loadSuppliers() {
       var _this2 = this;
 
-      axios.get('/api/provider/load').then(function (res) {
+      axios.get('/api/provider/loadSelect').then(function (res) {
         _this2.suppliers = res.data;
       });
     },
@@ -70404,7 +70538,7 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "modal-dialog modal-lg",
+                  staticClass: "modal-dialog modal-xl",
                   attrs: { role: "document" }
                 },
                 [
@@ -70865,102 +70999,58 @@ var render = function() {
                                                         ]
                                                       ),
                                                       _vm._v(" "),
-                                                      _c(
-                                                        "td",
-                                                        {
-                                                          staticStyle: {
-                                                            "vertical-align":
-                                                              "middle"
-                                                          }
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "select",
+                                                      _c("td", [
+                                                        _c("input", {
+                                                          directives: [
                                                             {
-                                                              directives: [
-                                                                {
-                                                                  name: "model",
-                                                                  rawName:
-                                                                    "v-model",
-                                                                  value:
-                                                                    item.product_variant_selected,
-                                                                  expression:
-                                                                    "item.product_variant_selected"
-                                                                }
-                                                              ],
-                                                              staticClass:
-                                                                "form-select",
-                                                              attrs: {
-                                                                name: "",
-                                                                id: ""
-                                                              },
-                                                              on: {
-                                                                change: function(
-                                                                  $event
-                                                                ) {
-                                                                  var $$selectedVal = Array.prototype.filter
-                                                                    .call(
-                                                                      $event
-                                                                        .target
-                                                                        .options,
-                                                                      function(
-                                                                        o
-                                                                      ) {
-                                                                        return o.selected
-                                                                      }
-                                                                    )
-                                                                    .map(
-                                                                      function(
-                                                                        o
-                                                                      ) {
-                                                                        var val =
-                                                                          "_value" in
-                                                                          o
-                                                                            ? o._value
-                                                                            : o.value
-                                                                        return val
-                                                                      }
-                                                                    )
-                                                                  _vm.$set(
-                                                                    item,
-                                                                    "product_variant_selected",
-                                                                    $event
-                                                                      .target
-                                                                      .multiple
-                                                                      ? $$selectedVal
-                                                                      : $$selectedVal[0]
-                                                                  )
-                                                                }
-                                                              }
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value: item.cost,
+                                                              expression:
+                                                                "item.cost"
+                                                            }
+                                                          ],
+                                                          staticClass:
+                                                            "touchspin form-control",
+                                                          staticStyle: {
+                                                            display: "block"
+                                                          },
+                                                          attrs: {
+                                                            min: 1,
+                                                            type: "number",
+                                                            "data-bs-original-title":
+                                                              "",
+                                                            title: ""
+                                                          },
+                                                          domProps: {
+                                                            value: item.cost
+                                                          },
+                                                          on: {
+                                                            change: function(
+                                                              $event
+                                                            ) {
+                                                              return _vm.totalQty()
                                                             },
-                                                            _vm._l(
-                                                              item.product_variant,
-                                                              function(item) {
-                                                                return _c(
-                                                                  "option",
-                                                                  {
-                                                                    key:
-                                                                      item.id,
-                                                                    domProps: {
-                                                                      value: item
-                                                                    }
-                                                                  },
-                                                                  [
-                                                                    _vm._v(
-                                                                      "\n                                        " +
-                                                                        _vm._s(
-                                                                          item.name
-                                                                        ) +
-                                                                        "\n                                      "
-                                                                    )
-                                                                  ]
-                                                                )
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
                                                               }
-                                                            ),
-                                                            0
-                                                          )
-                                                        ]
-                                                      ),
+                                                              _vm.$set(
+                                                                item,
+                                                                "cost",
+                                                                $event.target
+                                                                  .value
+                                                              )
+                                                            }
+                                                          }
+                                                        })
+                                                      ]),
                                                       _vm._v(" "),
                                                       _c(
                                                         "td",
@@ -71245,117 +71335,128 @@ var render = function() {
                                                           ])
                                                         : _vm._e(),
                                                       _vm._v(" "),
-                                                      _c("td", [
-                                                        !Array.isArray(
-                                                          item.product_variant
-                                                        ) &&
-                                                        item.product_variant !=
-                                                          null
-                                                          ? _c("div", [
-                                                              _vm._v(
-                                                                "\n                                      " +
-                                                                  _vm._s(
-                                                                    item
-                                                                      .product_variant
-                                                                      .name
-                                                                  ) +
-                                                                  "\n                                    "
-                                                              )
-                                                            ])
-                                                          : _vm._e(),
-                                                        _vm._v(" "),
-                                                        Array.isArray(
-                                                          item.product_variant
-                                                        )
-                                                          ? _c(
-                                                              "select",
-                                                              {
-                                                                directives: [
-                                                                  {
-                                                                    name:
-                                                                      "model",
-                                                                    rawName:
-                                                                      "v-model",
-                                                                    value:
-                                                                      item.product_variant_selected,
-                                                                    expression:
-                                                                      "item.product_variant_selected"
-                                                                  }
-                                                                ],
-                                                                staticClass:
-                                                                  "form-select",
-                                                                attrs: {
-                                                                  name: "",
-                                                                  id: ""
-                                                                },
-                                                                on: {
-                                                                  change: function(
-                                                                    $event
-                                                                  ) {
-                                                                    var $$selectedVal = Array.prototype.filter
-                                                                      .call(
-                                                                        $event
-                                                                          .target
-                                                                          .options,
-                                                                        function(
-                                                                          o
-                                                                        ) {
-                                                                          return o.selected
-                                                                        }
-                                                                      )
-                                                                      .map(
-                                                                        function(
-                                                                          o
-                                                                        ) {
-                                                                          var val =
-                                                                            "_value" in
-                                                                            o
-                                                                              ? o._value
-                                                                              : o.value
-                                                                          return val
-                                                                        }
-                                                                      )
-                                                                    _vm.$set(
-                                                                      item,
-                                                                      "product_variant_selected",
-                                                                      $event
-                                                                        .target
-                                                                        .multiple
-                                                                        ? $$selectedVal
-                                                                        : $$selectedVal[0]
-                                                                    )
-                                                                  }
+                                                      !Array.isArray(
+                                                        item.product_variant
+                                                      )
+                                                        ? _c("td", [
+                                                            _c("input", {
+                                                              directives: [
+                                                                {
+                                                                  name: "model",
+                                                                  rawName:
+                                                                    "v-model",
+                                                                  value:
+                                                                    item.product
+                                                                      .cost,
+                                                                  expression:
+                                                                    "item.product.cost"
                                                                 }
+                                                              ],
+                                                              staticClass:
+                                                                "touchspin form-control",
+                                                              staticStyle: {
+                                                                display: "block"
                                                               },
-                                                              _vm._l(
-                                                                item.product_variant,
-                                                                function(item) {
-                                                                  return _c(
-                                                                    "option",
-                                                                    {
-                                                                      key:
-                                                                        item.id,
-                                                                      domProps: {
-                                                                        value:
-                                                                          item.id
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        "\n                                        " +
-                                                                          _vm._s(
-                                                                            item.name
-                                                                          ) +
-                                                                          "\n                                      "
-                                                                      )
-                                                                    ]
+                                                              attrs: {
+                                                                min: 1,
+                                                                type: "number",
+                                                                "data-bs-original-title":
+                                                                  "",
+                                                                title: ""
+                                                              },
+                                                              domProps: {
+                                                                value:
+                                                                  item.product
+                                                                    .cost
+                                                              },
+                                                              on: {
+                                                                change: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.totalQty()
+                                                                },
+                                                                input: function(
+                                                                  $event
+                                                                ) {
+                                                                  if (
+                                                                    $event
+                                                                      .target
+                                                                      .composing
+                                                                  ) {
+                                                                    return
+                                                                  }
+                                                                  _vm.$set(
+                                                                    item.product,
+                                                                    "cost",
+                                                                    $event
+                                                                      .target
+                                                                      .value
                                                                   )
                                                                 }
-                                                              ),
-                                                              0
-                                                            )
-                                                          : _vm._e()
-                                                      ]),
+                                                              }
+                                                            })
+                                                          ])
+                                                        : _vm._e(),
+                                                      _vm._v(" "),
+                                                      Array.isArray(
+                                                        item.product_variant
+                                                      )
+                                                        ? _c("td", [
+                                                            _c("input", {
+                                                              directives: [
+                                                                {
+                                                                  name: "model",
+                                                                  rawName:
+                                                                    "v-model",
+                                                                  value:
+                                                                    item.cost,
+                                                                  expression:
+                                                                    "item.cost"
+                                                                }
+                                                              ],
+                                                              staticClass:
+                                                                "touchspin form-control",
+                                                              staticStyle: {
+                                                                display: "block"
+                                                              },
+                                                              attrs: {
+                                                                min: 1,
+                                                                type: "number",
+                                                                "data-bs-original-title":
+                                                                  "",
+                                                                title: ""
+                                                              },
+                                                              domProps: {
+                                                                value: item.cost
+                                                              },
+                                                              on: {
+                                                                change: function(
+                                                                  $event
+                                                                ) {
+                                                                  return _vm.totalQty()
+                                                                },
+                                                                input: function(
+                                                                  $event
+                                                                ) {
+                                                                  if (
+                                                                    $event
+                                                                      .target
+                                                                      .composing
+                                                                  ) {
+                                                                    return
+                                                                  }
+                                                                  _vm.$set(
+                                                                    item,
+                                                                    "cost",
+                                                                    $event
+                                                                      .target
+                                                                      .value
+                                                                  )
+                                                                }
+                                                              }
+                                                            })
+                                                          ])
+                                                        : _vm._e(),
                                                       _vm._v(" "),
                                                       _c(
                                                         "td",
@@ -72065,7 +72166,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Código")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Variante")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Costo")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Cantidad")]),
         _vm._v(" "),
@@ -74625,48 +74726,282 @@ var render = function() {
                 _c("div", { staticClass: "col-md-4 col-sm-12" }, [
                   _c("label", { attrs: { for: "" } }, [_vm._v("Buscar por:")]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "input-group input-group-sm" }, [
-                    _c("div", { staticClass: "input-group-prepend" }, [
-                      _c("span", { staticClass: "input-group-text" }, [
-                        _c(
-                          "svg",
+                  _c("div", { staticClass: "dropdown" }, [
+                    _c("input", {
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "dropdownMenuButton",
+                        placeholder: "Escriba el titulo o código del producto",
+                        "data-toggle": "dropdown",
+                        "aria-haspopup": "true",
+                        "aria-expanded": "false"
+                      },
+                      on: {
+                        keyup: function($event) {
+                          return _vm.searchProduct(_vm.searchValue)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "form-control dropdown-menu",
+                        attrs: { "aria-labelledby": "dropdownMenuButton" }
+                      },
+                      _vm._l(_vm.searchResult, function(item) {
+                        return _c(
+                          "a",
                           {
-                            staticClass: "bi bi-search",
+                            key: item.id,
+                            staticClass: "dropdown-item",
                             attrs: {
-                              xmlns: "http://www.w3.org/2000/svg",
-                              width: "12",
-                              height: "17",
-                              fill: "currentColor",
-                              viewBox: "0 0 16 16"
+                              href: "#",
+                              "data-bs-original-title": "",
+                              title: ""
+                            },
+                            on: {
+                              click: function($event) {
+                                _vm.search(
+                                  (_vm.filter.searchValue = item.code)
+                                ),
+                                  (_vm.searchValue = ""),
+                                  (_vm.searchResult = [])
+                              }
                             }
                           },
                           [
-                            _c("path", {
-                              attrs: {
-                                d:
-                                  "M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-                              }
-                            })
+                            _vm._v(
+                              _vm._s(item.code) + " | " + _vm._s(item.name)
+                            )
                           ]
                         )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: { type: "text", placeholder: "Nombre o código..." }
-                    })
+                      }),
+                      0
+                    )
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(0),
+                _c("div", { staticClass: "col-md-3 col-sm-6" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Desde:")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.filter.from,
+                        expression: "filter.from"
+                      }
+                    ],
+                    staticClass: "form-control digits form-control-sm",
+                    attrs: {
+                      type: "date",
+                      value: "",
+                      "data-bs-original-title": "",
+                      title: ""
+                    },
+                    domProps: { value: _vm.filter.from },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.filter, "from", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
                 _vm._v(" "),
-                _vm._m(1)
+                _c("div", { staticClass: "col-md-3 col-sm-6" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Hasta:")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.filter.to,
+                        expression: "filter.to"
+                      }
+                    ],
+                    staticClass: "form-control digits form-control-sm",
+                    attrs: {
+                      type: "date",
+                      value: "",
+                      "data-bs-original-title": "",
+                      title: ""
+                    },
+                    domProps: { value: _vm.filter.to },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.filter, "to", $event.target.value)
+                      }
+                    }
+                  })
+                ])
               ])
             ]
           ),
           _vm._v(" "),
-          _vm._m(2)
+          _c(
+            "div",
+            {
+              staticClass: "card-body",
+              staticStyle: { padding: "20px 40px !important" }
+            },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "table-responsive style-1 table-hover non-hover"
+                },
+                [
+                  _c(
+                    "table",
+                    { staticClass: "table table-striped table-double" },
+                    [
+                      _c("thead", [
+                        _c("tr", [
+                          _c(
+                            "th",
+                            {
+                              staticClass: "text-center bg-primary",
+                              attrs: { colspan: "2" }
+                            },
+                            [_vm._v("Producto")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            {
+                              staticClass: "text-center bg-light",
+                              attrs: { colspan: "10" }
+                            },
+                            [_vm._v(_vm._s(_vm.kardex.name))]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("tr", [
+                          _c(
+                            "th",
+                            {
+                              staticClass: "text-center bg-primary",
+                              attrs: { colspan: "2" }
+                            },
+                            [_vm._v("Almacen")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            {
+                              staticClass: "text-center bg-light",
+                              attrs: { colspan: "3" }
+                            },
+                            [_vm._v("Bodega")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            {
+                              staticClass: "text-center bg-primary",
+                              attrs: { colspan: "2" }
+                            },
+                            [_vm._v("Minimo")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "th",
+                            {
+                              staticClass: "text-center bg-light",
+                              attrs: { colspan: "3" }
+                            },
+                            [_vm._v(_vm._s(_vm.kardex.alert_quantity))]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(0),
+                        _vm._v(" "),
+                        _vm._m(1)
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.kardex.kardex, function(item) {
+                          return _c("tr", { key: item.id }, [
+                            _c("th", [
+                              _vm._v(
+                                _vm._s(_vm._f("timeformat")(item.created_at))
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v(_vm._s(item.type))]),
+                            _vm._v(" "),
+                            _c("th", [
+                              item.type == "Compra"
+                                ? _c("div", [_vm._v(_vm._s(item.qty))])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              item.action == "+"
+                                ? _c("div", [_vm._v(_vm._s(item.qty))])
+                                : _vm._e()
+                            ]),
+                            _vm._v(" "),
+                            _c("th", [
+                              item.type == "Ajuste +" || item.type == "Ajuste -"
+                                ? _c("div", [
+                                    item.action == "-"
+                                      ? _c("div", [_vm._v(_vm._s(item.qty))])
+                                      : _vm._e()
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              item.type == "Venta"
+                                ? _c("div", [_vm._v(_vm._s(item.qty))])
+                                : _vm._e()
+                            ]),
+                            _vm._v(" "),
+                            _c("th", [
+                              _vm._v(
+                                "\n           " +
+                                  _vm._s(item.existence) +
+                                  "\n         "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("$ " + _vm._s(item.cost))]),
+                            _vm._v(" "),
+                            _c("th", [
+                              item.type == "Compra" || item.type == "Ajuste +"
+                                ? _c("div", [
+                                    _vm._v("$ " + _vm._s(item.qty * item.cost))
+                                  ])
+                                : _vm._e()
+                            ]),
+                            _vm._v(" "),
+                            _c("th", [
+                              item.type == "Venta" || item.type == "Ajuste -"
+                                ? _c("div", [
+                                    _vm._v("$ " + _vm._s(item.qty * item.cost))
+                                  ])
+                                : _vm._e()
+                            ]),
+                            _vm._v(" "),
+                            _c("th", [_vm._v("$ " + _vm._s(item.saldo))])
+                          ])
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                ]
+              )
+            ]
+          )
         ])
       ])
     ])
@@ -74677,137 +75012,90 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3 col-sm-6" }, [
-      _c("label", { attrs: { for: "" } }, [_vm._v("Desde:")]),
+    return _c("tr", [
+      _c("th", {
+        staticClass: "text-center bg-light",
+        attrs: { colspan: "2" }
+      }),
       _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control digits form-control-sm",
-        attrs: {
-          type: "date",
-          value: "",
-          "data-bs-original-title": "",
-          title: ""
-        }
-      })
+      _c(
+        "th",
+        { staticClass: "text-center bg-light", attrs: { colspan: "3" } },
+        [_vm._v("Unidades")]
+      ),
+      _vm._v(" "),
+      _c(
+        "th",
+        { staticClass: "text-center bg-light", attrs: { colspan: "1" } },
+        [_vm._v("Costo")]
+      ),
+      _vm._v(" "),
+      _c(
+        "th",
+        { staticClass: "text-center bg-light", attrs: { colspan: "3" } },
+        [_vm._v("Valores")]
+      )
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3 col-sm-6" }, [
-      _c("label", { attrs: { for: "" } }, [_vm._v("Hasta:")]),
+    return _c("tr", [
+      _c(
+        "th",
+        { staticClass: "text-center bg-primary", attrs: { colspan: "1" } },
+        [_vm._v("Fecha")]
+      ),
       _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control digits form-control-sm",
-        attrs: {
-          type: "date",
-          value: "",
-          "data-bs-original-title": "",
-          title: ""
-        }
-      })
+      _c(
+        "th",
+        { staticClass: "text-center bg-primary", attrs: { colspan: "1" } },
+        [_vm._v("Referencia")]
+      ),
+      _vm._v(" "),
+      _c(
+        "th",
+        { staticClass: "text-center bg-primary", attrs: { colspan: "1" } },
+        [_vm._v("Entrada")]
+      ),
+      _vm._v(" "),
+      _c(
+        "th",
+        { staticClass: "text-center bg-primary", attrs: { colspan: "1" } },
+        [_vm._v("Salida")]
+      ),
+      _vm._v(" "),
+      _c(
+        "th",
+        { staticClass: "text-center bg-primary", attrs: { colspan: "1" } },
+        [_vm._v("Existencia")]
+      ),
+      _vm._v(" "),
+      _c(
+        "th",
+        { staticClass: "text-center bg-primary", attrs: { colspan: "1" } },
+        [_vm._v("Unitario")]
+      ),
+      _vm._v(" "),
+      _c(
+        "th",
+        { staticClass: "text-center bg-primary", attrs: { colspan: "1" } },
+        [_vm._v("Debe")]
+      ),
+      _vm._v(" "),
+      _c(
+        "th",
+        { staticClass: "text-center bg-primary", attrs: { colspan: "1" } },
+        [_vm._v("Haber")]
+      ),
+      _vm._v(" "),
+      _c(
+        "th",
+        { staticClass: "text-center bg-primary", attrs: { colspan: "1" } },
+        [_vm._v("Saldo")]
+      )
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "card-body",
-        staticStyle: { padding: "20px 40px !important" }
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "table-responsive style-1 table-hover non-hover" },
-          [
-            _c("table", { staticClass: "table table-bordered" }, [
-              _c("thead", [
-                _c("tr", [
-                  _c("th"),
-                  _vm._v(" "),
-                  _c("th"),
-                  _vm._v(" "),
-                  _c("th"),
-                  _vm._v(" "),
-                  _c(
-                    "th",
-                    {
-                      staticClass: "text-center bg-primary",
-                      attrs: { colspan: "2" }
-                    },
-                    [_vm._v("Entradas")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "th",
-                    {
-                      staticClass: "text-center bg-primary",
-                      attrs: { colspan: "2" }
-                    },
-                    [_vm._v("Salidas")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "th",
-                    {
-                      staticClass: "text-center bg-primary",
-                      attrs: { colspan: "2" }
-                    },
-                    [_vm._v("Saldo")]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tbody", [
-                _c("tr", [
-                  _c("th", [_vm._v("Fecha")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Producto")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Detalle")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Cantidad")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Total")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Cantidad")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Total")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Cantidad")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Total")])
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th"),
-                  _vm._v(" "),
-                  _c("th"),
-                  _vm._v(" "),
-                  _c("th"),
-                  _vm._v(" "),
-                  _c("td"),
-                  _vm._v(" "),
-                  _c("td"),
-                  _vm._v(" "),
-                  _c("td"),
-                  _vm._v(" "),
-                  _c("td"),
-                  _vm._v(" "),
-                  _c("td"),
-                  _vm._v(" "),
-                  _c("td")
-                ])
-              ])
-            ])
-          ]
-        )
-      ]
-    )
   }
 ]
 render._withStripped = true
@@ -76469,94 +76757,7 @@ var render = function() {
                           _vm._v(" "),
                           _vm._m(2),
                           _vm._v(" "),
-                          _c("div", { staticClass: "row" }, [
-                            _c("div", { staticClass: "col-md-12" }, [
-                              _c("div", { staticClass: "mb-3" }, [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass:
-                                      "form-check checkbox checkbox-primary mb-0"
-                                  },
-                                  [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.product.is_variant,
-                                          expression: "product.is_variant"
-                                        }
-                                      ],
-                                      staticClass: "form-check-input",
-                                      attrs: {
-                                        id: "variant",
-                                        type: "checkbox",
-                                        value: "1"
-                                      },
-                                      domProps: {
-                                        checked: Array.isArray(
-                                          _vm.product.is_variant
-                                        )
-                                          ? _vm._i(
-                                              _vm.product.is_variant,
-                                              "1"
-                                            ) > -1
-                                          : _vm.product.is_variant
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          var $$a = _vm.product.is_variant,
-                                            $$el = $event.target,
-                                            $$c = $$el.checked ? true : false
-                                          if (Array.isArray($$a)) {
-                                            var $$v = "1",
-                                              $$i = _vm._i($$a, $$v)
-                                            if ($$el.checked) {
-                                              $$i < 0 &&
-                                                _vm.$set(
-                                                  _vm.product,
-                                                  "is_variant",
-                                                  $$a.concat([$$v])
-                                                )
-                                            } else {
-                                              $$i > -1 &&
-                                                _vm.$set(
-                                                  _vm.product,
-                                                  "is_variant",
-                                                  $$a
-                                                    .slice(0, $$i)
-                                                    .concat($$a.slice($$i + 1))
-                                                )
-                                            }
-                                          } else {
-                                            _vm.$set(
-                                              _vm.product,
-                                              "is_variant",
-                                              $$c
-                                            )
-                                          }
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "label",
-                                      {
-                                        staticClass: "form-check-label",
-                                        attrs: { for: "variant" }
-                                      },
-                                      [
-                                        _vm._v(
-                                          " El producto tiene variante(s) "
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
-                              ])
-                            ])
-                          ]),
+                          _vm._m(3),
                           _vm._v(" "),
                           _vm.product.is_variant == 1
                             ? _c(
@@ -76976,7 +77177,7 @@ var render = function() {
                 },
                 [
                   _c("table", { staticClass: "table table-bordered" }, [
-                    _vm._m(3),
+                    _vm._m(4),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -77360,6 +77561,16 @@ var staticRenderFns = [
         _c("th", [_vm._v("Imagen")]),
         _vm._v(" "),
         _c("th", [_vm._v("Eliminar")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "mb-3" })
       ])
     ])
   },
@@ -79029,115 +79240,6 @@ var render = function() {
                                                           ])
                                                         : _vm._e(),
                                                       _vm._v(" "),
-                                                      _c("td", [
-                                                        !Array.isArray(
-                                                          item.product_variant
-                                                        ) &&
-                                                        item.product_variant !=
-                                                          null
-                                                          ? _c("div", [
-                                                              _vm._v(
-                                                                "\n                                          " +
-                                                                  _vm._s(
-                                                                    item
-                                                                      .product_variant
-                                                                      .name
-                                                                  ) +
-                                                                  "\n                                        "
-                                                              )
-                                                            ])
-                                                          : _vm._e(),
-                                                        _vm._v(" "),
-                                                        Array.isArray(
-                                                          item.product_variant
-                                                        )
-                                                          ? _c(
-                                                              "select",
-                                                              {
-                                                                directives: [
-                                                                  {
-                                                                    name:
-                                                                      "model",
-                                                                    rawName:
-                                                                      "v-model",
-                                                                    value:
-                                                                      item.product_variant_selected,
-                                                                    expression:
-                                                                      "item.product_variant_selected"
-                                                                  }
-                                                                ],
-                                                                staticClass:
-                                                                  "form-select",
-                                                                attrs: {
-                                                                  name: "",
-                                                                  id: ""
-                                                                },
-                                                                on: {
-                                                                  change: function(
-                                                                    $event
-                                                                  ) {
-                                                                    var $$selectedVal = Array.prototype.filter
-                                                                      .call(
-                                                                        $event
-                                                                          .target
-                                                                          .options,
-                                                                        function(
-                                                                          o
-                                                                        ) {
-                                                                          return o.selected
-                                                                        }
-                                                                      )
-                                                                      .map(
-                                                                        function(
-                                                                          o
-                                                                        ) {
-                                                                          var val =
-                                                                            "_value" in
-                                                                            o
-                                                                              ? o._value
-                                                                              : o.value
-                                                                          return val
-                                                                        }
-                                                                      )
-                                                                    _vm.$set(
-                                                                      item,
-                                                                      "product_variant_selected",
-                                                                      $event
-                                                                        .target
-                                                                        .multiple
-                                                                        ? $$selectedVal
-                                                                        : $$selectedVal[0]
-                                                                    )
-                                                                  }
-                                                                }
-                                                              },
-                                                              _vm._l(
-                                                                item.product_variant,
-                                                                function(item) {
-                                                                  return _c(
-                                                                    "option",
-                                                                    {
-                                                                      key:
-                                                                        item.id,
-                                                                      domProps: {
-                                                                        value: item
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          item.name
-                                                                        )
-                                                                      )
-                                                                    ]
-                                                                  )
-                                                                }
-                                                              ),
-                                                              0
-                                                            )
-                                                          : _vm._e()
-                                                      ]),
-                                                      _vm._v(" "),
                                                       _c(
                                                         "td",
                                                         [
@@ -79180,34 +79282,56 @@ var render = function() {
                                                       ),
                                                       _vm._v(" "),
                                                       _c("td", [
-                                                        !item.product_variant_selected
-                                                          ? _c("div", [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  parseFloat(
-                                                                    item.cost
-                                                                  )
-                                                                )
+                                                        _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value: item.cost,
+                                                              expression:
+                                                                "item.cost"
+                                                            }
+                                                          ],
+                                                          staticClass:
+                                                            "form-control",
+                                                          attrs: {
+                                                            type: "number",
+                                                            placeholder:
+                                                              "00.00",
+                                                            "data-bs-original-title":
+                                                              "",
+                                                            title: ""
+                                                          },
+                                                          domProps: {
+                                                            value: item.cost
+                                                          },
+                                                          on: {
+                                                            change: function(
+                                                              $event
+                                                            ) {
+                                                              return _vm.calculateLineTotal(
+                                                                item
                                                               )
-                                                            ])
-                                                          : _vm._e(),
-                                                        _vm._v(" "),
-                                                        item.product_variant_selected
-                                                          ? _c("div", [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  parseFloat(
-                                                                    item.cost
-                                                                  ) +
-                                                                    parseFloat(
-                                                                      item
-                                                                        .product_variant_selected
-                                                                        .additional_cost
-                                                                    )
-                                                                )
+                                                            },
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                item,
+                                                                "cost",
+                                                                $event.target
+                                                                  .value
                                                               )
-                                                            ])
-                                                          : _vm._e()
+                                                            }
+                                                          }
+                                                        })
                                                       ]),
                                                       _vm._v(" "),
                                                       _c(
@@ -79299,108 +79423,6 @@ var render = function() {
                                                       _vm._v(" "),
                                                       _c(
                                                         "td",
-                                                        {
-                                                          staticStyle: {
-                                                            "vertical-align":
-                                                              "middle"
-                                                          }
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "select",
-                                                            {
-                                                              directives: [
-                                                                {
-                                                                  name: "model",
-                                                                  rawName:
-                                                                    "v-model",
-                                                                  value:
-                                                                    item.product_variant_selected,
-                                                                  expression:
-                                                                    "item.product_variant_selected"
-                                                                }
-                                                              ],
-                                                              staticClass:
-                                                                "form-select",
-                                                              on: {
-                                                                change: [
-                                                                  function(
-                                                                    $event
-                                                                  ) {
-                                                                    var $$selectedVal = Array.prototype.filter
-                                                                      .call(
-                                                                        $event
-                                                                          .target
-                                                                          .options,
-                                                                        function(
-                                                                          o
-                                                                        ) {
-                                                                          return o.selected
-                                                                        }
-                                                                      )
-                                                                      .map(
-                                                                        function(
-                                                                          o
-                                                                        ) {
-                                                                          var val =
-                                                                            "_value" in
-                                                                            o
-                                                                              ? o._value
-                                                                              : o.value
-                                                                          return val
-                                                                        }
-                                                                      )
-                                                                    _vm.$set(
-                                                                      item,
-                                                                      "product_variant_selected",
-                                                                      $event
-                                                                        .target
-                                                                        .multiple
-                                                                        ? $$selectedVal
-                                                                        : $$selectedVal[0]
-                                                                    )
-                                                                  },
-                                                                  function(
-                                                                    $event
-                                                                  ) {
-                                                                    return _vm.calculateLineTotal(
-                                                                      item
-                                                                    )
-                                                                  }
-                                                                ]
-                                                              }
-                                                            },
-                                                            _vm._l(
-                                                              item.product_variant,
-                                                              function(
-                                                                variant
-                                                              ) {
-                                                                return _c(
-                                                                  "option",
-                                                                  {
-                                                                    key:
-                                                                      variant.id,
-                                                                    domProps: {
-                                                                      value: variant
-                                                                    }
-                                                                  },
-                                                                  [
-                                                                    _vm._v(
-                                                                      _vm._s(
-                                                                        variant.name
-                                                                      )
-                                                                    )
-                                                                  ]
-                                                                )
-                                                              }
-                                                            ),
-                                                            0
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "td",
                                                         [
                                                           _c(
                                                             "vue-number-input",
@@ -79441,32 +79463,56 @@ var render = function() {
                                                       ),
                                                       _vm._v(" "),
                                                       _c("td", [
-                                                        item.product_variant_selected
-                                                          ? _c("div", [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  parseFloat(
-                                                                    item.cost
-                                                                  ) +
-                                                                    parseFloat(
-                                                                      item
-                                                                        .product_variant_selected
-                                                                        .additional_cost
-                                                                    )
-                                                                )
+                                                        _c("input", {
+                                                          directives: [
+                                                            {
+                                                              name: "model",
+                                                              rawName:
+                                                                "v-model",
+                                                              value: item.cost,
+                                                              expression:
+                                                                "item.cost"
+                                                            }
+                                                          ],
+                                                          staticClass:
+                                                            "form-control",
+                                                          attrs: {
+                                                            type: "number",
+                                                            placeholder:
+                                                              "00.00",
+                                                            "data-bs-original-title":
+                                                              "",
+                                                            title: ""
+                                                          },
+                                                          domProps: {
+                                                            value: item.cost
+                                                          },
+                                                          on: {
+                                                            change: function(
+                                                              $event
+                                                            ) {
+                                                              return _vm.calculateLineTotal(
+                                                                item
                                                               )
-                                                            ])
-                                                          : _vm._e(),
-                                                        _vm._v(" "),
-                                                        !item.product_variant_selected
-                                                          ? _c("div", [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  item.cost
-                                                                )
+                                                            },
+                                                            input: function(
+                                                              $event
+                                                            ) {
+                                                              if (
+                                                                $event.target
+                                                                  .composing
+                                                              ) {
+                                                                return
+                                                              }
+                                                              _vm.$set(
+                                                                item,
+                                                                "cost",
+                                                                $event.target
+                                                                  .value
                                                               )
-                                                            ])
-                                                          : _vm._e()
+                                                            }
+                                                          }
+                                                        })
                                                       ]),
                                                       _vm._v(" "),
                                                       _c(
@@ -80677,8 +80723,6 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Producto")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Variante")]),
-        _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Cantidad")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Costo Unitario Neto")]),
@@ -81488,115 +81532,6 @@ var render = function() {
                                                           ])
                                                         : _vm._e(),
                                                       _vm._v(" "),
-                                                      _c("td", [
-                                                        !Array.isArray(
-                                                          item.product_variant
-                                                        ) &&
-                                                        item.product_variant !=
-                                                          null
-                                                          ? _c("div", [
-                                                              _vm._v(
-                                                                "\n                                          " +
-                                                                  _vm._s(
-                                                                    item
-                                                                      .product_variant
-                                                                      .name
-                                                                  ) +
-                                                                  "\n                                        "
-                                                              )
-                                                            ])
-                                                          : _vm._e(),
-                                                        _vm._v(" "),
-                                                        Array.isArray(
-                                                          item.product_variant
-                                                        )
-                                                          ? _c(
-                                                              "select",
-                                                              {
-                                                                directives: [
-                                                                  {
-                                                                    name:
-                                                                      "model",
-                                                                    rawName:
-                                                                      "v-model",
-                                                                    value:
-                                                                      item.product_variant_selected,
-                                                                    expression:
-                                                                      "item.product_variant_selected"
-                                                                  }
-                                                                ],
-                                                                staticClass:
-                                                                  "form-select",
-                                                                attrs: {
-                                                                  name: "",
-                                                                  id: ""
-                                                                },
-                                                                on: {
-                                                                  change: function(
-                                                                    $event
-                                                                  ) {
-                                                                    var $$selectedVal = Array.prototype.filter
-                                                                      .call(
-                                                                        $event
-                                                                          .target
-                                                                          .options,
-                                                                        function(
-                                                                          o
-                                                                        ) {
-                                                                          return o.selected
-                                                                        }
-                                                                      )
-                                                                      .map(
-                                                                        function(
-                                                                          o
-                                                                        ) {
-                                                                          var val =
-                                                                            "_value" in
-                                                                            o
-                                                                              ? o._value
-                                                                              : o.value
-                                                                          return val
-                                                                        }
-                                                                      )
-                                                                    _vm.$set(
-                                                                      item,
-                                                                      "product_variant_selected",
-                                                                      $event
-                                                                        .target
-                                                                        .multiple
-                                                                        ? $$selectedVal
-                                                                        : $$selectedVal[0]
-                                                                    )
-                                                                  }
-                                                                }
-                                                              },
-                                                              _vm._l(
-                                                                item.product_variant,
-                                                                function(item) {
-                                                                  return _c(
-                                                                    "option",
-                                                                    {
-                                                                      key:
-                                                                        item.id,
-                                                                      domProps: {
-                                                                        value: item
-                                                                      }
-                                                                    },
-                                                                    [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          item.name
-                                                                        )
-                                                                      )
-                                                                    ]
-                                                                  )
-                                                                }
-                                                              ),
-                                                              0
-                                                            )
-                                                          : _vm._e()
-                                                      ]),
-                                                      _vm._v(" "),
                                                       _c(
                                                         "td",
                                                         [
@@ -81752,108 +81687,6 @@ var render = function() {
                                                         [
                                                           _vm._v(
                                                             _vm._s(item.name)
-                                                          )
-                                                        ]
-                                                      ),
-                                                      _vm._v(" "),
-                                                      _c(
-                                                        "td",
-                                                        {
-                                                          staticStyle: {
-                                                            "vertical-align":
-                                                              "middle"
-                                                          }
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "select",
-                                                            {
-                                                              directives: [
-                                                                {
-                                                                  name: "model",
-                                                                  rawName:
-                                                                    "v-model",
-                                                                  value:
-                                                                    item.product_variant_selected,
-                                                                  expression:
-                                                                    "item.product_variant_selected"
-                                                                }
-                                                              ],
-                                                              staticClass:
-                                                                "form-select",
-                                                              on: {
-                                                                change: [
-                                                                  function(
-                                                                    $event
-                                                                  ) {
-                                                                    var $$selectedVal = Array.prototype.filter
-                                                                      .call(
-                                                                        $event
-                                                                          .target
-                                                                          .options,
-                                                                        function(
-                                                                          o
-                                                                        ) {
-                                                                          return o.selected
-                                                                        }
-                                                                      )
-                                                                      .map(
-                                                                        function(
-                                                                          o
-                                                                        ) {
-                                                                          var val =
-                                                                            "_value" in
-                                                                            o
-                                                                              ? o._value
-                                                                              : o.value
-                                                                          return val
-                                                                        }
-                                                                      )
-                                                                    _vm.$set(
-                                                                      item,
-                                                                      "product_variant_selected",
-                                                                      $event
-                                                                        .target
-                                                                        .multiple
-                                                                        ? $$selectedVal
-                                                                        : $$selectedVal[0]
-                                                                    )
-                                                                  },
-                                                                  function(
-                                                                    $event
-                                                                  ) {
-                                                                    return _vm.calculateLineTotal(
-                                                                      item
-                                                                    )
-                                                                  }
-                                                                ]
-                                                              }
-                                                            },
-                                                            _vm._l(
-                                                              item.product_variant,
-                                                              function(
-                                                                variant
-                                                              ) {
-                                                                return _c(
-                                                                  "option",
-                                                                  {
-                                                                    key:
-                                                                      variant.id,
-                                                                    domProps: {
-                                                                      value: variant
-                                                                    }
-                                                                  },
-                                                                  [
-                                                                    _vm._v(
-                                                                      _vm._s(
-                                                                        variant.name
-                                                                      )
-                                                                    )
-                                                                  ]
-                                                                )
-                                                              }
-                                                            ),
-                                                            0
                                                           )
                                                         ]
                                                       ),
@@ -83310,8 +83143,6 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Producto")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Variante")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Cantidad")]),
         _vm._v(" "),

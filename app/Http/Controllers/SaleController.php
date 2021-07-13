@@ -98,7 +98,7 @@ class SaleController extends Controller
             "taxe_id"=> $sale["taxe"]["id"],
             "item" => $sale["item"],
             "total_qty"=> $sale["total_qty"],
-            "total_discount"=> $sale["total_discount"],
+            "order_discount"=> $sale["order_discount"],
             "total_price"=> $sale["total_price"],
             "order_tax"=> $sale["order_tax"],
             "shipping_cost"=> $sale["shipping_cost"],
@@ -129,8 +129,8 @@ class SaleController extends Controller
                 "product_variant_id"=>  $product_variant_id,
                 "qty"=>$item["qty"],
                 "unit_price"=>$item["price"]+ $additional_price,
-                "unit_cost" => $item["cost"]+ $additional_cost,
-                "discount"=>$item["discount"],
+                "cost" => $item["cost"]+ $additional_cost,
+                /* "discount"=>$item["discount"], */
                 "subtotal"=>$item["subtotal"],
             ]);
         }
@@ -155,7 +155,7 @@ class SaleController extends Controller
             "taxe_id"=> $sale["taxe"]["id"],
             "item" => $sale["item"],
             "total_qty"=> $sale["total_qty"],
-            "total_discount"=> $sale["total_discount"],
+            "order_discount"=> $sale["order_discount"],
             "total_price"=> $sale["total_price"],
             "order_tax"=> $sale["order_tax"],
             "shipping_cost"=> $sale["shipping_cost"],
@@ -196,8 +196,8 @@ class SaleController extends Controller
                     "product_variant_id"=>  $product_variant_id,
                     "qty"=>$item["qty"],
                     "unit_price"=>$item["product"]["price"] + $additional_price,
-                    "unit_cost" => $item["product"]["cost"] + $additional_cost,
-                    "discount"=>$item["discount"],
+                    "cost" => $item["product"]["cost"] + $additional_cost,
+                    /* "discount"=>$item["discount"], */
                     "subtotal"=>$item["subtotal"],
                 ]);
                 }else{
@@ -211,8 +211,8 @@ class SaleController extends Controller
                         "product_variant_id"=>  $product_variant_id,
                         "qty"=>$item["qty"],
                         "unit_price"=>$item["price"]+ $additional_price,
-                        "unit_cost" => $item["cost"]+ $additional_cost,
-                        "discount"=>$item["discount"],
+                        "cost" => $item["cost"]+ $additional_cost,
+                        /* "discount"=>$item["discount"], */
                         "subtotal"=>$item["subtotal"],
                     ]);
                 }

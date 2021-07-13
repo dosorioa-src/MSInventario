@@ -445,10 +445,10 @@
                           
                           <!-- <label class="form-label" for="validationDefault03">¿El producto tiene variante(s)?</label> -->
 
-                          <div class="form-check checkbox checkbox-primary mb-0">
+                          <!-- <div class="form-check checkbox checkbox-primary mb-0">
                             <input class="form-check-input" id="variant" type="checkbox" v-model="product.is_variant" value="1">
                             <label class="form-check-label" for="variant"> El producto tiene variante(s) </label>
-                          </div>                             
+                          </div> -->                             
                                                       
                           <!-- <div class="m-checkbox-inline custom-radio-ml">
                             <div class="form-check form-check-inline radio radio-primary">

@@ -92,6 +92,7 @@ Route::get('/api/provider/load', 'SupplierController@load')->middleware('auth');
 Route::post('/api/provider/add', 'SupplierController@add')->middleware('auth');
 Route::put('/api/provider/edit', 'SupplierController@edit')->middleware('auth');
 Route::post('/api/provider/delete', 'SupplierController@delete')->middleware('auth');
+Route::get('/api/provider/loadSelect', 'SupplierController@loadSelect')->middleware('auth');
 
 Route::get('/api/warehouse/load', 'WarehouseController@load')->middleware('auth');
 
@@ -120,3 +121,6 @@ Route::get('/api/purchase/load', 'PurchaseController@load')->middleware('auth');
 Route::post('/api/purchase/add', 'PurchaseController@add')->middleware('auth');
 Route::post('/api/purchase/edit', 'PurchaseController@edit')->middleware('auth');
 Route::post('/api/purchase/delete', 'PurchaseController@delete')->middleware('auth');
+
+
+Route::get('/api/kardex/load', 'KardexController@load')->middleware('auth');
