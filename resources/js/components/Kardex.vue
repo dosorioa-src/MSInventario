@@ -27,12 +27,12 @@
 
               <div class="col-md-3 col-sm-6">
                 <label for="">Desde:</label>
-								<input v-model="filter.from" class="form-control digits form-control-sm" type="date" value="" data-bs-original-title="" title="">
+								<input v-model="filter.from" @change="search()" class="form-control digits form-control-sm" type="date" value="" data-bs-original-title="" title="">
               </div>
 
               <div class="col-md-3 col-sm-6">
                 <label for="">Hasta:</label>
-								<input v-model="filter.to" class="form-control digits form-control-sm" type="date" value="" data-bs-original-title="" title=""> 
+								<input v-model="filter.to" @change="search()" class="form-control digits form-control-sm" type="date" value="" data-bs-original-title="" title=""> 
               </div>
             </div> 
 
@@ -54,20 +54,20 @@
       </tr>
       <tr>
          <th colspan="2" class="text-center bg-light"></th>
-         <th colspan="3" class="text-center bg-light">Unidades</th>
-         <th colspan="1" class="text-center bg-light">Costo</th>
-         <th colspan="3" class="text-center bg-light">Valores</th>
+         <th colspan="3" class="text-center text-white" style="background-color: #7b9227">Unidades</th>
+         <th colspan="1" class="text-center text-white" style="background-color: #8faa2e">Costo</th>
+         <th colspan="3" class="text-center text-white" style="background-color: #7b9227">Valores</th>
       </tr>
       <tr>
          <th colspan="1" class="text-center bg-primary">Fecha</th>
          <th colspan="1" class="text-center bg-primary">Referencia</th>
-         <th colspan="1" class="text-center bg-primary">Entrada</th>
-         <th colspan="1" class="text-center bg-primary">Salida</th>
-         <th colspan="1" class="text-center bg-primary">Existencia</th>
-         <th colspan="1" class="text-center bg-primary">Unitario</th>
-         <th colspan="1" class="text-center bg-primary">Debe</th>
-         <th colspan="1" class="text-center bg-primary">Haber</th>
-         <th colspan="1" class="text-center bg-primary">Saldo</th>
+         <th colspan="1" class="text-center text-white" style="background-color: #7b9227">Entrada</th>
+         <th colspan="1" class="text-center text-white" style="background-color: #7b9227">Salida</th>
+         <th colspan="1" class="text-center text-white" style="background-color: #7b9227">Existencia</th>
+         <th colspan="1" class="text-center text-white" style="background-color: #8faa2e">Unitario</th>
+         <th colspan="1" class="text-center text-white" style="background-color: #7b9227">Debe</th>
+         <th colspan="1" class="text-center text-white" style="background-color: #7b9227">Haber</th>
+         <th colspan="1" class="text-center text-white" style="background-color: #7b9227">Saldo</th>
       </tr>
    </thead>
    <tbody>

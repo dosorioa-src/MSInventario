@@ -32,21 +32,6 @@ class DashboardController extends Controller
         $consulta11 = Sale::where('sale_status', '=', 2)->count();//#Pedidos Finalizados
         $consulta12 = Sale::where('sale_status', '=', 3)->count();//#Pedidos Cancelados
 
-        $data = array(
-            'ganancias' =>  $consulta1,
-            'ventas'    =>  $consulta2,
-            'productos' =>  $consulta3,
-            'clientes'  =>  $consulta4,
-            'vhoy'      =>  $consulta5,
-            'vmes'      =>  $consulta6,
-            'vsemana'   =>  $consulta7,
-            'vanual'    =>  $consulta8,
-            'nsemana'   =>  $consulta9,
-            'npendientes' => $consulta10,
-            'nfinalizados' => $consulta11,
-            'ncancelados' => $consulta12,
-            );
-
         //Tasa de abastecimiento de pedidos
         $npsc = Sale::where('sale_status', '=', 2)->count();
         $ntp = Sale::count();
@@ -119,8 +104,27 @@ class DashboardController extends Controller
         }
         
         $stockPromedio=($initialStock+$finalStock)/2;
-        $indiceRotacion=$salesTotal/$stockPromedio;
+        $indiceRotacion=round($salesTotal/$stockPromedio,2);
         
-        return $indiceRotacion;
+
+        
+        $data = array(
+            'ganancias' =>  $consulta1,
+            'ventas'    =>  $consulta2,
+            'productos' =>  $consulta3,
+            'clientes'  =>  $consulta4,
+            'vhoy'      =>  $consulta5,
+            'vmes'      =>  $consulta6,
+            'vsemana'   =>  $consulta7,
+            'vanual'    =>  $consulta8,
+            'nsemana'   =>  $consulta9,
+            'npendientes' => $consulta10,
+            'nfinalizados' => $consulta11,
+            'ncancelados' => $consulta12,
+            'tap'      =>   $tap,
+            'irs'      =>   $indiceRotacion
+            );
+
+        return $data;
     }
 }
