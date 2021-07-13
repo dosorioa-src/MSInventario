@@ -654,9 +654,15 @@
 			created() {
 				this.loadSales(this.page)
         this.loadTaxes()
+        this.updateCost()
 			},
 
 			methods: {
+        updateCost: function(){
+            axios.get('/api/sale/updatecost').then(res=>{
+              
+            })
+        },
 				//Métodos de carga
         loadTaxes:function() {
             axios.get('/api/taxe/load').then(res=>{

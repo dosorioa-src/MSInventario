@@ -116,6 +116,7 @@ Route::get('/api/sale/load', 'SaleController@load')->middleware('auth');
 Route::post('/api/sale/add', 'SaleController@add')->middleware('auth');
 Route::post('/api/sale/delete', 'SaleController@delete')->middleware('auth');
 Route::post('/api/sale/edit', 'SaleController@edit')->middleware('auth');
+Route::get('/api/sale/updatecost', 'SaleController@updateCost')->middleware('auth');
 
 Route::get('/api/purchase/load', 'PurchaseController@load')->middleware('auth');
 Route::post('/api/purchase/add', 'PurchaseController@add')->middleware('auth');
