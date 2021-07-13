@@ -3171,8 +3171,12 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.loadWarehouse();
     this.loadAdjustment();
+    this.updateCost();
   },
   methods: {
+    updateCost: function updateCost() {
+      axios.get('/api/sale/updatecost').then(function (res) {});
+    },
     //Métodos de carga
     loadAdjustment: function loadAdjustment() {
       var _this = this;
@@ -7834,8 +7838,12 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.loadSales(this.page);
     this.loadTaxes();
+    this.updateCost();
   },
   methods: {
+    updateCost: function updateCost() {
+      axios.get('/api/sale/updatecost').then(function (res) {});
+    },
     //Métodos de carga
     loadTaxes: function loadTaxes() {
       var _this = this;

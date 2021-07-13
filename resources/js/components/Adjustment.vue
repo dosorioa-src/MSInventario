@@ -712,8 +712,14 @@ export default {
   created() {
     this.loadWarehouse();
     this.loadAdjustment();
+    this.updateCost();
   },
   methods: {
+    updateCost: function(){
+            axios.get('/api/sale/updatecost').then(res=>{
+              
+            })
+        },
     //Métodos de carga
     loadAdjustment: function () {
       axios.get("/api/adjustment/load?page="+this.page, {
