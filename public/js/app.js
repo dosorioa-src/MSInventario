@@ -4479,7 +4479,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      dash: []
+    };
+  },
+  created: function created() {
+    this.loadDashboard();
+  },
+  methods: {
+    loadDashboard: function loadDashboard() {
+      var _this = this;
+
+      axios.get('/api/dashboard/load').then(function (res) {
+        _this.dash = res.data;
+        console.log(_this.dash);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -6268,712 +6289,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Purchase.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _chenfengyuan_vue_number_input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @chenfengyuan/vue-number-input */ "./node_modules/@chenfengyuan/vue-number-input/dist/vue-number-input.js");
-/* harmony import */ var _chenfengyuan_vue_number_input__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_chenfengyuan_vue_number_input__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    VueNumberInput: _chenfengyuan_vue_number_input__WEBPACK_IMPORTED_MODULE_0___default.a
-  },
-  data: function data() {
-    return {
-      page: 1,
-      searchValue: '',
-      btn_update_active: 0,
-      modal_title: null,
-      attached: [],
-      purchases: [],
-      purchase: {
-        taxe: {},
-        supplier_id: null,
-        item: 0,
-        total_qty: 0,
-        total_tax: 0,
-        total_cost: 0,
-        order_tax: 0,
-        order_discount: 0,
-        shipping_cost: 0,
-        grand_total: 0,
-        status: 0,
-        payment_status: 0,
-        document: null,
-        note: null,
-        product_purchase: [
-          /* {
-          product_id:0,
-          product_variant_id:null,
-          qty:0,
-          net_cost:0,
-          discount:0,
-          tax_rate:0,
-          tax:0,
-          total:0
-          } */
-        ]
-      },
-      suppliers: [],
-      taxes: [],
-      searchResult: []
-    };
-  },
-  created: function created() {
-    this.loadTaxes();
-    this.loadSuppliers();
-    this.loadpurchases();
-  },
-  methods: {
-    //Métodos de carga
-    loadpurchases: function loadpurchases() {
-      var _this = this;
-
-      axios.get('/api/purchase/load').then(function (res) {
-        _this.purchases = res.data;
-      });
-    },
-    loadSuppliers: function loadSuppliers() {
-      var _this2 = this;
-
-      axios.get('/api/provider/loadSelect').then(function (res) {
-        _this2.suppliers = res.data;
-      });
-    },
-    loadTaxes: function loadTaxes() {
-      var _this3 = this;
-
-      axios.get('/api/taxe/load').then(function (res) {
-        _this3.taxes = res.data;
-      });
-    },
-    loadPurchase: function loadPurchase(page) {
-      var _this4 = this;
-
-      this.page = page;
-      axios.get('/api/purchase/load?page=' + this.page).then(function (res) {
-        _this4.purchases = res.data;
-      });
-    },
-    // Métodos de mantenimiento
-    createPurchase: function createPurchase() {
-      var _this5 = this;
-
-      var blob = JSON.stringify(this.purchase);
-      var formData = new FormData();
-      formData.append('file', this.attached);
-      formData.append("document", blob);
-      axios.post('/api/purchase/add', formData).then(function (res) {
-        _this5.loadpurchases(_this5.page);
-      });
-      console.log(this.purchase);
-    },
-    editPurchaseData: function editPurchaseData(item) {
-      this.purchase = item;
-    },
-    editPurchase: function editPurchase() {
-      var _this6 = this;
-
-      var blob = JSON.stringify(this.purchase);
-      var formData = new FormData();
-      formData.append('file', this.attached);
-      formData.append("document", blob);
-      axios.post('/api/purchase/edit', formData).then(function (res) {
-        _this6.loadpurchases(_this6.page);
-      });
-    },
-    deletePurchase: function deletePurchase(item) {
-      var _this7 = this;
-
-      this.purchase = item;
-      axios.post('/api/purchase/delete', this.purchase).then(function (res) {
-        _this7.loadpurchases(_this7.page);
-      });
-    },
-    clearFields: function clearFields() {},
-    // Métodos de tabla
-    calculateTotal: function calculateTotal() {
-      var totalqty, totaldis, totaltax, totalCost;
-      var totalItem = 0;
-      totalqty = this.purchase.product_purchase.reduce(function (sum, product) {
-        totalItem += 1;
-        var lineTotal = parseInt(product.qty, 10);
-
-        if (!isNaN(lineTotal)) {
-          return sum + lineTotal;
-        }
-      }, 0);
-      this.purchase.total_qty = totalqty;
-      this.purchase.item = totalItem;
-      /* totaldis = this.purchase.product_purchase.reduce(function (sum, product) {
-          var lineTotal = parseFloat(product.discount);
-          if (!isNaN(lineTotal)) {
-              return sum + lineTotal;
-          }
-      }, 0);
-      console.log(totaldis)
-      this.purchase.total_discount = totaldis; */
-
-      totalCost = this.purchase.product_purchase.reduce(function (sum, product) {
-        var lineTotal = parseFloat(product.subtotal);
-
-        if (!isNaN(lineTotal)) {
-          return sum + lineTotal;
-        }
-      }, 0);
-      this.purchase.total_cost = totalCost;
-      console.log(totalCost);
-      /* if (this.purchase.tax_id == 1) { */
-
-      this.purchase.order_tax = totalCost * parseFloat(this.purchase.taxe.rate) / 100;
-      var tax = this.purchase.order_tax;
-      var shipping = parseFloat(this.purchase.shipping_cost);
-      var discount = parseFloat(this.purchase.order_discount);
-      console.log(this.purchase.order_tax);
-
-      if (!isNaN(shipping) && !isNaN(discount)) {
-        this.purchase.grand_total = totalCost + tax + shipping - discount;
-      } else if (isNaN(shipping) && !isNaN(discount)) {
-        this.purchase.grand_total = totalCost + tax - discount;
-      } else if (!isNaN(shipping) && isNaN(discount)) {
-        this.purchase.grand_total = totalCost + tax + shipping;
-      } else if (isNaN(shipping) && isNaN(discount)) {
-        this.purchase.grand_total = totalCost + tax;
-      }
-      /* }else{
-        this.purchase.order_tax = 0;
-        var shipping = parseFloat(this.purchase.shipping_cost);
-        var discount = parseFloat(this.purchase.order_discount);
-        if (!isNaN(shipping) && !isNaN(discount)) {
-          this.purchase.grand_total = totalCost + shipping - discount;
-        }else if(isNaN(shipping) && !isNaN(discount)){
-          this.purchase.grand_total = totalCost - discount;
-        }else if(!isNaN(shipping) && isNaN(discount)){
-          this.purchase.grand_total = totalCost + shipping;
-        }else if(isNaN(shipping) && isNaN(discount)){
-          this.purchase.grand_total = totalCost;
-        } 
-        }*/
-
-    },
-    calculateLineTotal: function calculateLineTotal(item) {
-      var _item$discount;
-
-      /*           console.log( (item.price * parseInt(item.qty,10)) - parseFloat(item.discount??0) ) */
-      var total = (parseFloat(item.cost) + parseFloat(item.product_variant_selected ? item.product_variant_selected.additional_cost : 0)) * parseInt(item.qty) - parseFloat((_item$discount = item.discount) !== null && _item$discount !== void 0 ? _item$discount : 0);
-
-      if (!isNaN(total)) {
-        console.log(total);
-        item.subtotal = total;
-      }
-
-      this.calculateTotal();
-    },
-    deleteRow: function deleteRow(index) {
-      this.purchase.product_purchase.splice(index, 1);
-      this.calculateTotal();
-    },
-    addNewRow: function addNewRow(item) {
-      this.purchase.product_purchase.push(item);
-    },
-    searchProduct: function searchProduct(value) {
-      var _this8 = this;
-
-      axios.get('/api/product/search', {
-        params: {
-          value: value
-        }
-      }).then(function (res) {
-        _this8.searchResult = res.data;
-      });
-    },
-    handleFile: function handleFile() {
-      this.attached = this.$refs.file.files[0];
-    }
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\laragon\\www\\MSInventario\\resources\\js\\components\\Purchase.vue: Unexpected token (642:0)\n\n\u001b[0m \u001b[90m 640 |\u001b[39m         }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 641 |\u001b[39m         loadSuppliers\u001b[33m:\u001b[39m\u001b[36mfunction\u001b[39m() {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 642 |\u001b[39m \u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     |\u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 643 |\u001b[39m             axios\u001b[33m.\u001b[39m\u001b[36mget\u001b[39m(\u001b[32m'/api/provider/loadSelect'\u001b[39m)\u001b[33m.\u001b[39mthen(res\u001b[33m=>\u001b[39m{\u001b[0m\n\u001b[0m \u001b[90m 644 |\u001b[39m               \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msuppliers \u001b[33m=\u001b[39m res\u001b[33m.\u001b[39mdata\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 645 |\u001b[39m \u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n    at Parser._raise (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:810:17)\n    at Parser.raiseWithData (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:803:17)\n    at Parser.raise (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:764:17)\n    at Parser.unexpected (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:9980:16)\n    at Parser.parseExprAtom (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:11382:20)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10954:23)\n    at Parser.parseUpdate (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10934:21)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10912:23)\n    at Parser.parseExprOps (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10769:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10743:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10706:21)\n    at Parser.parseExpressionBase (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10651:23)\n    at C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10645:39\n    at Parser.allowInAnd (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:12390:16)\n    at Parser.parseExpression (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10645:17)\n    at Parser.parseStatementContent (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:12727:23)\n    at Parser.parseStatement (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:12596:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:13185:25)\n    at Parser.parseBlockBody (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:13176:10)\n    at Parser.parseBlock (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:13160:10)\n    at Parser.parseFunctionBody (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:12069:24)\n    at Parser.parseFunctionBodyAndFinish (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:12053:10)\n    at C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:13318:12\n    at Parser.withTopicForbiddingContext (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:12365:14)\n    at Parser.parseFunction (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:13317:10)\n    at Parser.parseFunctionOrFunctionSent (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:11476:17)\n    at Parser.parseExprAtom (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:11302:21)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10954:23)\n    at Parser.parseUpdate (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10934:21)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10912:23)\n    at Parser.parseExprOps (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10769:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10743:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10706:21)\n    at C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10673:39\n    at Parser.allowInAnd (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:12396:12)\n    at Parser.parseMaybeAssignAllowIn (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10673:17)");
 
 /***/ }),
 
@@ -74313,333 +73631,639 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container-fluid" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
-          _c("div", { staticClass: "card o-hidden" }, [
-            _c("div", { staticClass: "bg-primary b-r-4 card-body" }, [
-              _c("div", { staticClass: "media static-top-widget" }, [
-                _c("div", { staticClass: "align-self-center text-center" }, [
-                  _c("i", { attrs: { "data-feather": "database" } })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "media-body" }, [
-                  _c("span", { staticClass: "m-0" }, [_vm._v("Ganancias")]),
-                  _vm._v(" "),
-                  _c("h4", { staticClass: "mb-0 counter" }, [_vm._v("6659")]),
-                  _vm._v(" "),
-                  _c("i", {
-                    staticClass: "icon-bg",
-                    attrs: { "data-feather": "database" }
-                  })
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
-          _c("div", { staticClass: "card o-hidden" }, [
-            _c("div", { staticClass: "bg-secondary b-r-4 card-body" }, [
-              _c("div", { staticClass: "media static-top-widget" }, [
-                _c("div", { staticClass: "align-self-center text-center" }, [
-                  _c("i", { attrs: { "data-feather": "shopping-bag" } })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "media-body" }, [
-                  _c("span", { staticClass: "m-0" }, [_vm._v("Ventas")]),
-                  _vm._v(" "),
-                  _c("h4", { staticClass: "mb-0 counter" }, [_vm._v("9856")]),
-                  _vm._v(" "),
-                  _c("i", {
-                    staticClass: "icon-bg",
-                    attrs: { "data-feather": "shopping-bag" }
-                  })
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
-          _c("div", { staticClass: "card o-hidden" }, [
-            _c("div", { staticClass: "bg-primary b-r-4 card-body" }, [
-              _c("div", { staticClass: "media static-top-widget" }, [
-                _c("div", { staticClass: "align-self-center text-center" }, [
-                  _c("i", { attrs: { "data-feather": "message-circle" } })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "media-body" }, [
-                  _c("span", { staticClass: "m-0" }, [_vm._v("Productos")]),
-                  _vm._v(" "),
-                  _c("h4", { staticClass: "mb-0 counter" }, [_vm._v("893")]),
-                  _vm._v(" "),
-                  _c("i", {
-                    staticClass: "icon-bg",
-                    attrs: { "data-feather": "message-circle" }
-                  })
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
-          _c("div", { staticClass: "card o-hidden" }, [
-            _c("div", { staticClass: "bg-primary b-r-4 card-body" }, [
-              _c("div", { staticClass: "media static-top-widget" }, [
-                _c("div", { staticClass: "align-self-center text-center" }, [
-                  _c("i", { attrs: { "data-feather": "user-plus" } })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "media-body" }, [
-                  _c("span", { staticClass: "m-0" }, [_vm._v("Clientes")]),
-                  _vm._v(" "),
-                  _c("h4", { staticClass: "mb-0 counter" }, [_vm._v("45631")]),
-                  _vm._v(" "),
-                  _c("i", {
-                    staticClass: "icon-bg",
-                    attrs: { "data-feather": "user-plus" }
-                  })
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xl-6 xl-100 box-col-12" }, [
-          _c("div", { staticClass: "widget-joins card widget-arrow" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-6 pe-0" }, [
-                _c("div", { staticClass: "media border-after-xs" }, [
-                  _c(
-                    "div",
-                    { staticClass: "align-self-center me-3 text-start" },
-                    [
-                      _c("h6", { staticClass: "mb-1" }, [_vm._v("Venta")]),
-                      _vm._v(" "),
-                      _c("h4", { staticClass: "mb-0" }, [_vm._v("Hoy")])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body align-self-center" }, [
-                    _c("i", {
-                      staticClass: "font-primary",
-                      attrs: { "data-feather": "arrow-down" }
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
+        _c("div", { staticClass: "card o-hidden" }, [
+          _c("div", { staticClass: "bg-primary b-r-4 card-body" }, [
+            _c("div", { staticClass: "media static-top-widget" }, [
+              _c("div", { staticClass: "align-self-center text-center" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-database",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("ellipse", {
+                      attrs: { cx: "12", cy: "5", rx: "9", ry: "3" }
+                    }),
+                    _c("path", {
+                      attrs: { d: "M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" }
+                    }),
+                    _c("path", {
+                      attrs: { d: "M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" }
                     })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body" }, [
-                    _c("h5", { staticClass: "mb-0" }, [
-                      _vm._v("$"),
-                      _c("span", { staticClass: "counter" }, [_vm._v("25698")])
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "mb-1" }, [_vm._v("-$2658(36%)")])
-                  ])
-                ])
+                  ]
+                )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-sm-6 ps-0" }, [
-                _c("div", { staticClass: "media" }, [
-                  _c(
-                    "div",
-                    { staticClass: "align-self-center me-3 text-start" },
-                    [
-                      _c("h6", { staticClass: "mb-1" }, [_vm._v("Venta")]),
-                      _vm._v(" "),
-                      _c("h4", { staticClass: "mb-0" }, [_vm._v("Mensual")])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body align-self-center" }, [
-                    _c("i", {
-                      staticClass: "font-primary",
-                      attrs: { "data-feather": "arrow-up" }
+              _c("div", { staticClass: "media-body" }, [
+                _c("span", { staticClass: "m-0" }, [_vm._v("Ganancias")]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "mb-0 counter" }, [
+                  _vm._v("$" + _vm._s(_vm.dash.ganancias))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-database icon-bg",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("ellipse", {
+                      attrs: { cx: "12", cy: "5", rx: "9", ry: "3" }
+                    }),
+                    _c("path", {
+                      attrs: { d: "M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" }
+                    }),
+                    _c("path", {
+                      attrs: { d: "M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" }
                     })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body ps-2" }, [
-                    _c("h5", { staticClass: "mb-0" }, [
-                      _vm._v("$"),
-                      _c("span", { staticClass: "counter" }, [_vm._v("6954")])
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "mb-1" }, [_vm._v("+$369(15%)")])
-                  ])
-                ])
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
+        _c("div", { staticClass: "card o-hidden" }, [
+          _c("div", { staticClass: "bg-secondary b-r-4 card-body" }, [
+            _c("div", { staticClass: "media static-top-widget" }, [
+              _c("div", { staticClass: "align-self-center text-center" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-shopping-cart",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("circle", { attrs: { cx: "9", cy: "21", r: "1" } }),
+                    _c("circle", { attrs: { cx: "20", cy: "21", r: "1" } }),
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                      }
+                    })
+                  ]
+                )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-sm-6 pe-0" }, [
-                _c("div", { staticClass: "media border-after-xs" }, [
-                  _c(
-                    "div",
-                    { staticClass: "align-self-center me-3 text-start" },
-                    [
-                      _c("h6", { staticClass: "mb-1" }, [_vm._v("Venta")]),
-                      _vm._v(" "),
-                      _c("h4", { staticClass: "mb-0" }, [_vm._v("Semanal")])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body align-self-center" }, [
-                    _c("i", {
-                      staticClass: "font-primary",
-                      attrs: { "data-feather": "arrow-up" }
+              _c("div", { staticClass: "media-body" }, [
+                _c("span", { staticClass: "m-0" }, [_vm._v("Ventas")]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "mb-0 counter" }, [
+                  _vm._v(_vm._s(_vm.dash.ventas))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-shopping-cart icon-bg",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("circle", { attrs: { cx: "9", cy: "21", r: "1" } }),
+                    _c("circle", { attrs: { cx: "20", cy: "21", r: "1" } }),
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                      }
                     })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body" }, [
-                    _c("h5", { staticClass: "mb-0" }, [
-                      _vm._v("$"),
-                      _c("span", { staticClass: "counter" }, [_vm._v("63147")])
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "mb-1" }, [_vm._v("+$69(65%)")])
-                  ])
-                ])
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
+        _c("div", { staticClass: "card o-hidden" }, [
+          _c("div", { staticClass: "bg-primary b-r-4 card-body" }, [
+            _c("div", { staticClass: "media static-top-widget" }, [
+              _c("div", { staticClass: "align-self-center text-center" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-shopping-bag",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d: "M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                      }
+                    }),
+                    _c("line", {
+                      attrs: { x1: "3", y1: "6", x2: "21", y2: "6" }
+                    }),
+                    _c("path", { attrs: { d: "M16 10a4 4 0 0 1-8 0" } })
+                  ]
+                )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-sm-6 ps-0" }, [
-                _c("div", { staticClass: "media" }, [
-                  _c(
-                    "div",
-                    { staticClass: "align-self-center me-3 text-start" },
-                    [
-                      _c("h6", { staticClass: "mb-1" }, [_vm._v("Venta")]),
-                      _vm._v(" "),
-                      _c("h4", { staticClass: "mb-0" }, [_vm._v("Anual")])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "media-body align-self-center ps-3" },
-                    [
-                      _c("i", {
-                        staticClass: "font-primary",
-                        attrs: { "data-feather": "arrow-up" }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body ps-2" }, [
-                    _c("h5", { staticClass: "mb-0" }, [
-                      _vm._v("$"),
-                      _c("span", { staticClass: "counter" }, [_vm._v("963198")])
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "mb-1" }, [
-                      _vm._v("+$3654(90%)          ")
+              _c("div", { staticClass: "media-body" }, [
+                _c("span", { staticClass: "m-0" }, [_vm._v("Productos")]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "mb-0 counter" }, [
+                  _vm._v(_vm._s(_vm.dash.productos))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-shopping-bag icon-bg",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d: "M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                      }
+                    }),
+                    _c("line", {
+                      attrs: { x1: "3", y1: "6", x2: "21", y2: "6" }
+                    }),
+                    _c("path", { attrs: { d: "M16 10a4 4 0 0 1-8 0" } })
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
+        _c("div", { staticClass: "card o-hidden" }, [
+          _c("div", { staticClass: "bg-primary b-r-4 card-body" }, [
+            _c("div", { staticClass: "media static-top-widget" }, [
+              _c("div", { staticClass: "align-self-center text-center" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-user-plus",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: { d: "M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" }
+                    }),
+                    _c("circle", { attrs: { cx: "8.5", cy: "7", r: "4" } }),
+                    _c("line", {
+                      attrs: { x1: "20", y1: "8", x2: "20", y2: "14" }
+                    }),
+                    _c("line", {
+                      attrs: { x1: "23", y1: "11", x2: "17", y2: "11" }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "media-body" }, [
+                _c("span", { staticClass: "m-0" }, [_vm._v("Clientes")]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "mb-0 counter" }, [
+                  _vm._v(_vm._s(_vm.dash.clientes))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-user-plus icon-bg",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: { d: "M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" }
+                    }),
+                    _c("circle", { attrs: { cx: "8.5", cy: "7", r: "4" } }),
+                    _c("line", {
+                      attrs: { x1: "20", y1: "8", x2: "20", y2: "14" }
+                    }),
+                    _c("line", {
+                      attrs: { x1: "23", y1: "11", x2: "17", y2: "11" }
+                    })
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-xl-6 xl-100 box-col-12" }, [
+        _c("div", { staticClass: "widget-joins card widget-arrow" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-6 pe-0" }, [
+              _c("div", { staticClass: "media border-after-xs" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body" }, [
+                  _c("h5", { staticClass: "mb-0" }, [
+                    _vm._v("$"),
+                    _c("span", { staticClass: "counter" }, [
+                      _vm._v(_vm._s(_vm.dash.vhoy))
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6 ps-0" }, [
+              _c("div", { staticClass: "media" }, [
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._m(3),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body ps-2" }, [
+                  _c("h5", { staticClass: "mb-0" }, [
+                    _vm._v("$"),
+                    _c("span", { staticClass: "counter" }, [
+                      _vm._v(_vm._s(_vm.dash.vmes))
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6 pe-0" }, [
+              _c("div", { staticClass: "media border-after-xs" }, [
+                _vm._m(4),
+                _vm._v(" "),
+                _vm._m(5),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body" }, [
+                  _c("h5", { staticClass: "mb-0" }, [
+                    _vm._v("$"),
+                    _c("span", { staticClass: "counter" }, [
+                      _vm._v(_vm._s(_vm.dash.vsemana))
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6 ps-0" }, [
+              _c("div", { staticClass: "media" }, [
+                _vm._m(6),
+                _vm._v(" "),
+                _vm._m(7),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body ps-2" }, [
+                  _c("h5", { staticClass: "mb-0" }, [
+                    _vm._v("$"),
+                    _c("span", { staticClass: "counter" }, [
+                      _vm._v(_vm._s(_vm.dash.vanual))
                     ])
                   ])
                 ])
               ])
             ])
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xl-6 xl-100 box-col-12" }, [
-          _c("div", { staticClass: "widget-joins card" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-6 pe-0" }, [
-                _c("div", { staticClass: "media border-after-xs" }, [
-                  _c("div", { staticClass: "align-self-center me-3" }, [
-                    _vm._v("68%"),
-                    _c("i", { staticClass: "fa fa-angle-up ms-2" })
-                  ]),
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-xl-6 xl-100 box-col-12" }, [
+        _c("div", { staticClass: "widget-joins card" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-6 pe-0" }, [
+              _c("div", { staticClass: "media border-after-xs" }, [
+                _c("div", { staticClass: "media-body details ps-3" }, [
+                  _c("span", { staticClass: "mb-1" }, [_vm._v("Nuevo")]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "media-body details ps-3" }, [
-                    _c("span", { staticClass: "mb-1" }, [_vm._v("Nuevo")]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "mb-0 counter" }, [_vm._v("6982")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body align-self-center" }, [
-                    _c("i", {
-                      staticClass: "font-primary float-end ms-2",
-                      attrs: { "data-feather": "shopping-bag" }
-                    })
+                  _c("h4", { staticClass: "mb-0 counter" }, [
+                    _vm._v(_vm._s(_vm.dash.nsemana))
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body align-self-center" }, [
+                  _c(
+                    "svg",
+                    {
+                      staticClass:
+                        "feather feather-plus-circle font-primary float-end ms-2",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "24",
+                        height: "24",
+                        viewBox: "0 0 24 24",
+                        fill: "none",
+                        stroke: "currentColor",
+                        "stroke-width": "2",
+                        "stroke-linecap": "round",
+                        "stroke-linejoin": "round"
+                      }
+                    },
+                    [
+                      _c("circle", { attrs: { cx: "12", cy: "12", r: "10" } }),
+                      _c("line", {
+                        attrs: { x1: "12", y1: "8", x2: "12", y2: "16" }
+                      }),
+                      _c("line", {
+                        attrs: { x1: "8", y1: "12", x2: "16", y2: "12" }
+                      })
+                    ]
+                  )
                 ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-6 ps-0" }, [
-                _c("div", { staticClass: "media" }, [
-                  _c("div", { staticClass: "align-self-center me-3" }, [
-                    _vm._v("12%"),
-                    _c("i", { staticClass: "fa fa-angle-down ms-2" })
-                  ]),
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6 ps-0" }, [
+              _c("div", { staticClass: "media" }, [
+                _c("div", { staticClass: "media-body details ps-3" }, [
+                  _c("span", { staticClass: "mb-1" }, [_vm._v("Pendiente")]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "media-body details ps-3" }, [
-                    _c("span", { staticClass: "mb-1" }, [_vm._v("Pendiente")]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "mb-0 counter" }, [_vm._v("783")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body align-self-center" }, [
-                    _c("i", {
-                      staticClass: "font-primary float-end ms-3",
-                      attrs: { "data-feather": "layers" }
-                    })
+                  _c("h4", { staticClass: "mb-0 counter" }, [
+                    _vm._v(_vm._s(_vm.dash.npendientes))
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body align-self-center" }, [
+                  _c(
+                    "svg",
+                    {
+                      staticClass:
+                        "feather feather-clock font-primary float-end ms-2",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "24",
+                        height: "24",
+                        viewBox: "0 0 24 24",
+                        fill: "none",
+                        stroke: "currentColor",
+                        "stroke-width": "2",
+                        "stroke-linecap": "round",
+                        "stroke-linejoin": "round"
+                      }
+                    },
+                    [
+                      _c("circle", { attrs: { cx: "12", cy: "12", r: "10" } }),
+                      _c("polyline", { attrs: { points: "12 6 12 12 16 14" } })
+                    ]
+                  )
                 ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-6 pe-0" }, [
-                _c("div", { staticClass: "media border-after-xs" }, [
-                  _c("div", { staticClass: "align-self-center me-3" }, [
-                    _vm._v("68%"),
-                    _c("i", { staticClass: "fa fa-angle-up ms-2" })
-                  ]),
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6 pe-0" }, [
+              _c("div", { staticClass: "media border-after-xs" }, [
+                _c("div", { staticClass: "media-body details ps-3 pt-0" }, [
+                  _c("span", { staticClass: "mb-1" }, [_vm._v("Finalizado")]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "media-body details ps-3 pt-0" }, [
-                    _c("span", { staticClass: "mb-1" }, [_vm._v("Finalizado")]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "mb-0 counter" }, [_vm._v("3674")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body align-self-center" }, [
-                    _c("i", {
-                      staticClass: "font-primary float-end ms-2",
-                      attrs: { "data-feather": "shopping-cart" }
-                    })
+                  _c("h4", { staticClass: "mb-0 counter" }, [
+                    _vm._v(_vm._s(_vm.dash.nfinalizados))
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body align-self-center" }, [
+                  _c(
+                    "svg",
+                    {
+                      staticClass:
+                        "feather feather-send font-primary float-end ms-2",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "24",
+                        height: "24",
+                        viewBox: "0 0 24 24",
+                        fill: "none",
+                        stroke: "currentColor",
+                        "stroke-width": "2",
+                        "stroke-linecap": "round",
+                        "stroke-linejoin": "round"
+                      }
+                    },
+                    [
+                      _c("line", {
+                        attrs: { x1: "22", y1: "2", x2: "11", y2: "13" }
+                      }),
+                      _c("polygon", {
+                        attrs: { points: "22 2 15 22 11 13 2 9 22 2" }
+                      })
+                    ]
+                  )
                 ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-6 ps-0" }, [
-                _c("div", { staticClass: "media" }, [
-                  _c("div", { staticClass: "align-self-center me-3" }, [
-                    _vm._v("68%"),
-                    _c("i", { staticClass: "fa fa-angle-up ms-2" })
-                  ]),
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6 ps-0" }, [
+              _c("div", { staticClass: "media" }, [
+                _c("div", { staticClass: "media-body details ps-3 pt-0" }, [
+                  _c("span", { staticClass: "mb-1" }, [_vm._v("Cancelado")]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "media-body details ps-3 pt-0" }, [
-                    _c("span", { staticClass: "mb-1" }, [_vm._v("Cancelado")]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "mb-0 counter" }, [_vm._v("069")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body align-self-center" }, [
-                    _c("i", {
-                      staticClass: "font-primary float-end ms-2",
-                      attrs: { "data-feather": "dollar-sign" }
-                    })
+                  _c("h4", { staticClass: "mb-0 counter" }, [
+                    _vm._v(_vm._s(_vm.dash.ncancelados))
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body align-self-center" }, [
+                  _c(
+                    "svg",
+                    {
+                      staticClass:
+                        "feather feather-x-circle font-primary float-end ms-3",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "24",
+                        height: "24",
+                        viewBox: "0 0 24 24",
+                        fill: "none",
+                        stroke: "currentColor",
+                        "stroke-width": "2",
+                        "stroke-linecap": "round",
+                        "stroke-linejoin": "round"
+                      }
+                    },
+                    [
+                      _c("circle", { attrs: { cx: "12", cy: "12", r: "10" } }),
+                      _c("line", {
+                        attrs: { x1: "15", y1: "9", x2: "9", y2: "15" }
+                      }),
+                      _c("line", {
+                        attrs: { x1: "9", y1: "9", x2: "15", y2: "15" }
+                      })
+                    ]
+                  )
                 ])
               ])
             ])
           ])
         ])
       ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "align-self-center me-3 text-start" }, [
+      _c("h6", { staticClass: "mb-1" }, [_vm._v("Venta")]),
+      _vm._v(" "),
+      _c("h4", { staticClass: "mb-0" }, [_vm._v("Hoy")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "media-body align-self-center" }, [
+      _c("i", {
+        staticClass: "font-primary",
+        attrs: { "data-feather": "arrow-down" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "align-self-center me-3 text-start" }, [
+      _c("h6", { staticClass: "mb-1" }, [_vm._v("Venta")]),
+      _vm._v(" "),
+      _c("h4", { staticClass: "mb-0" }, [_vm._v("Mensual")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "media-body align-self-center" }, [
+      _c("i", {
+        staticClass: "font-primary",
+        attrs: { "data-feather": "arrow-up" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "align-self-center me-3 text-start" }, [
+      _c("h6", { staticClass: "mb-1" }, [_vm._v("Venta")]),
+      _vm._v(" "),
+      _c("h4", { staticClass: "mb-0" }, [_vm._v("Semanal")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "media-body align-self-center" }, [
+      _c("i", {
+        staticClass: "font-primary",
+        attrs: { "data-feather": "arrow-up" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "align-self-center me-3 text-start" }, [
+      _c("h6", { staticClass: "mb-1" }, [_vm._v("Venta")]),
+      _vm._v(" "),
+      _c("h4", { staticClass: "mb-0" }, [_vm._v("Anual")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "media-body align-self-center ps-3" }, [
+      _c("i", {
+        staticClass: "font-primary",
+        attrs: { "data-feather": "arrow-up" }
+      })
     ])
   }
 ]
@@ -78825,40 +78449,312 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-sm-12" }, [
         _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _c("div", { staticClass: "file-content" }, [
-              _c("div", { staticClass: "media" }, [
-                _vm._m(0),
-                _vm._v(" "),
-                _c("div", { staticClass: "media-body text-end" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: {
-                        type: "button",
-                        "data-bs-toggle": "modal",
-                        "data-original-title": "test",
-                        "data-bs-target": "#exampleModal",
-                        "data-bs-original-title": "",
-                        title: ""
-                      },
-                      on: {
-                        click: function($event) {
-                          _vm.modal_title = "Nueva Compra"
+          _c(
+            "div",
+            {
+              staticClass: "card-header",
+              staticStyle: { padding: "20px 40px !important" }
+            },
+            [
+              _c("div", { staticClass: "row mb-1" }, [
+                _c("div", { staticClass: "col-md-3 col-sm-6" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Buscar por:")]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group input-group-sm" }, [
+                    _c("div", { staticClass: "input-group-prepend" }, [
+                      _c("span", { staticClass: "input-group-text" }, [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "bi bi-search",
+                            attrs: {
+                              xmlns: "http://www.w3.org/2000/svg",
+                              width: "12",
+                              height: "17",
+                              fill: "currentColor",
+                              viewBox: "0 0 16 16"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                              }
+                            })
+                          ]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.filtroA,
+                          expression: "filtroA"
                         }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "N° de referencia..."
+                      },
+                      domProps: { value: _vm.filtroA },
+                      on: {
+                        keyup: _vm.buscarCompra,
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.filtroA = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-3 col-sm-6" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Desde:")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.from,
+                        expression: "from"
+                      }
+                    ],
+                    staticClass: "form-control digits form-control-sm",
+                    attrs: {
+                      type: "date",
+                      "data-bs-original-title": "",
+                      title: ""
+                    },
+                    domProps: { value: _vm.from },
+                    on: {
+                      change: _vm.buscarCompra,
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.from = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-3 col-sm-6" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Hasta:")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.to,
+                        expression: "to"
+                      }
+                    ],
+                    staticClass: "form-control digits form-control-sm",
+                    attrs: {
+                      type: "date",
+                      "data-bs-original-title": "",
+                      title: ""
+                    },
+                    domProps: { value: _vm.to },
+                    on: {
+                      change: _vm.buscarCompra,
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.to = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-md-3 col-sm-12 align-self-end text-end" },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-light",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            _vm.clearFilters(), _vm.buscarCompra()
+                          }
+                        }
+                      },
+                      [_vm._v("\n                  Limpiar\n                ")]
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-3 col-sm-6" }, [
+                  _c("label", { attrs: { for: "" } }, [_vm._v("Proveedor:")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.filtroB,
+                          expression: "filtroB"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.filtroB = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          _vm.buscarCompra
+                        ]
                       }
                     },
                     [
-                      _vm._v(
-                        "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tNueva Compra\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                      )
+                      _c(
+                        "option",
+                        { attrs: { selected: "", disabled: "", value: "" } },
+                        [
+                          _vm._v(
+                            "\n                    Seleccionar\n                  "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Todos" } }, [
+                        _vm._v("Todos")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.suppliers, function(item) {
+                        return _c(
+                          "option",
+                          { key: item.id, domProps: { value: item.id } },
+                          [_vm._v(_vm._s(item.company_name))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-3 col-sm-6" }, [
+                  _c("label", { attrs: { for: "" } }, [
+                    _vm._v("Estado de Pago:")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.filtroC,
+                          expression: "filtroC"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.filtroC = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          _vm.buscarCompra
+                        ]
+                      }
+                    },
+                    [
+                      _c(
+                        "option",
+                        { attrs: { selected: "", disabled: "", value: "" } },
+                        [
+                          _vm._v(
+                            "\n                    Seleccionar\n                  "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Todos" } }, [
+                        _vm._v("Todos")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "1" } }, [
+                        _vm._v("Pendiente")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "2" } }, [
+                        _vm._v("Pagado")
+                      ])
                     ]
                   )
-                ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "col-md-6 col-sm-12 align-self-end text-end" },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: {
+                          type: "button",
+                          "data-bs-toggle": "modal",
+                          "data-original-title": "test",
+                          "data-bs-target": "#exampleModal",
+                          "data-bs-original-title": "",
+                          title: ""
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.modal_title = "Nueva Compra"
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                  Nueva Compra\n                "
+                        )
+                      ]
+                    )
+                  ]
+                )
               ])
-            ])
-          ]),
+            ]
+          ),
           _vm._v(" "),
           _c(
             "div",
@@ -79199,7 +79095,7 @@ var render = function() {
                                       "table",
                                       { staticClass: "table table-bordered" },
                                       [
-                                        _vm._m(1),
+                                        _vm._m(0),
                                         _vm._v(" "),
                                         _vm.btn_update_active == 1
                                           ? _c(
@@ -79231,7 +79127,7 @@ var render = function() {
                                                       )
                                                         ? _c("td", [
                                                             _vm._v(
-                                                              "\n                                       " +
+                                                              "\n                                      " +
                                                                 _vm._s(
                                                                   item.name
                                                                 ) +
@@ -79282,6 +79178,9 @@ var render = function() {
                                                       ),
                                                       _vm._v(" "),
                                                       _c("td", [
+                                                        _vm._v(
+                                                          "\n<<<<<<< HEAD\n                                        "
+                                                        ),
                                                         _c("input", {
                                                           directives: [
                                                             {
@@ -79333,6 +79232,41 @@ var render = function() {
                                                           }
                                                         })
                                                       ]),
+                                                      _vm._v(
+                                                        "\n=======\n                                        "
+                                                      ),
+                                                      !item.product_variant_selected
+                                                        ? _c("div", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                parseFloat(
+                                                                  item.cost
+                                                                )
+                                                              )
+                                                            )
+                                                          ])
+                                                        : _vm._e(),
+                                                      _vm._v(" "),
+                                                      item.product_variant_selected
+                                                        ? _c("div", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                parseFloat(
+                                                                  item.cost
+                                                                ) +
+                                                                  parseFloat(
+                                                                    item
+                                                                      .product_variant_selected
+                                                                      .additional_cost
+                                                                  )
+                                                              )
+                                                            )
+                                                          ])
+                                                        : _vm._e(),
+                                                      _vm._v(" "),
+                                                      _vm._v(
+                                                        "\n>>>>>>> 2378b8d23544b827d1c008d19ddd9dfc24ce5659\n                                      "
+                                                      ),
                                                       _vm._v(" "),
                                                       _c(
                                                         "td",
@@ -79344,11 +79278,11 @@ var render = function() {
                                                         },
                                                         [
                                                           _vm._v(
-                                                            "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                            "\n                                        " +
                                                               _vm._s(
                                                                 item.subtotal
                                                               ) +
-                                                              "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                              "\n                                      "
                                                           )
                                                         ]
                                                       ),
@@ -79463,6 +79397,9 @@ var render = function() {
                                                       ),
                                                       _vm._v(" "),
                                                       _c("td", [
+                                                        _vm._v(
+                                                          "\n<<<<<<< HEAD\n                                        "
+                                                        ),
                                                         _c("input", {
                                                           directives: [
                                                             {
@@ -79514,6 +79451,37 @@ var render = function() {
                                                           }
                                                         })
                                                       ]),
+                                                      _vm._v(
+                                                        "\n=======\n                                        "
+                                                      ),
+                                                      item.product_variant_selected
+                                                        ? _c("div", [
+                                                            _vm._v(
+                                                              _vm._s(
+                                                                parseFloat(
+                                                                  item.cost
+                                                                ) +
+                                                                  parseFloat(
+                                                                    item
+                                                                      .product_variant_selected
+                                                                      .additional_cost
+                                                                  )
+                                                              )
+                                                            )
+                                                          ])
+                                                        : _vm._e(),
+                                                      _vm._v(" "),
+                                                      !item.product_variant_selected
+                                                        ? _c("div", [
+                                                            _vm._v(
+                                                              _vm._s(item.cost)
+                                                            )
+                                                          ])
+                                                        : _vm._e(),
+                                                      _vm._v(" "),
+                                                      _vm._v(
+                                                        "\n>>>>>>> 2378b8d23544b827d1c008d19ddd9dfc24ce5659\n\n                                      "
+                                                      ),
                                                       _vm._v(" "),
                                                       _c(
                                                         "td",
@@ -79525,11 +79493,11 @@ var render = function() {
                                                         },
                                                         [
                                                           _vm._v(
-                                                            "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" +
+                                                            "\n                                        " +
                                                               _vm._s(
                                                                 item.subtotal
                                                               ) +
-                                                              "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                                              "\n                                      "
                                                           )
                                                         ]
                                                       ),
@@ -79903,7 +79871,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("div", { staticClass: "row" }, [
                             _c("div", { staticClass: "col-md-12" }, [
-                              _c("div", { staticClass: "mb-6" }, [
+                              _c("div", { staticClass: "mb-3" }, [
                                 _c(
                                   "label",
                                   {
@@ -80350,346 +80318,410 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass:
-                "table-responsive style-1 table-hover non-hover m-b-30"
+              staticClass: "card-body",
+              staticStyle: { padding: "20px 40px !important" }
             },
             [
-              _c("table", { staticClass: "table table-bordered" }, [
-                _vm._m(2),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.purchases.data, function(item) {
-                    return _c("tr", { key: item.id }, [
-                      _c("td", [_vm._v(_vm._s(item.id))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(item.created_at))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(item.reference_no))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(item.supplier.company_name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(item.grand_total))]),
-                      _vm._v(" "),
-                      item.purchase_status == 1
-                        ? _c("td", [
-                            _c("span", { staticClass: "badge badge-warning" }, [
-                              _vm._v("Pendiente")
-                            ])
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      item.purchase_status == 2
-                        ? _c("td", [
-                            _c("span", { staticClass: "badge badge-primary" }, [
-                              _vm._v("Finalizado")
-                            ])
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      item.purchase_status == 3
-                        ? _c("td", [
-                            _c(
-                              "span",
-                              { staticClass: "badge badge-secondary" },
-                              [_vm._v("Cancelado")]
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      item.payment_status == 1
-                        ? _c("td", [
-                            _c("span", { staticClass: "badge badge-warning" }, [
-                              _vm._v("Pendiente")
-                            ])
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      item.payment_status == 2
-                        ? _c("td", [
-                            _c("span", { staticClass: "badge badge-primary" }, [
-                              _vm._v("Pagado")
-                            ])
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("div", { staticClass: "btn-group" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-primary btn-xs",
-                              attrs: {
-                                type: "button",
-                                title: "",
-                                "data-bs-toggle": "modal",
-                                "data-bs-target": "#exampleModal"
-                              },
-                              on: {
-                                click: function($event) {
-                                  _vm.editPurchaseData(item),
-                                    (_vm.btn_update_active = 1),
-                                    (_vm.modal_title = "Editar Venta")
-                                }
-                              }
-                            },
-                            [
-                              _c(
-                                "svg",
-                                {
-                                  staticClass: "align-middle",
-                                  attrs: {
-                                    width: "15",
-                                    height: "15",
-                                    viewBox: "0 0 20 20",
-                                    fill: "none",
-                                    xmlns: "http://www.w3.org/2000/svg"
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "g",
-                                    { attrs: { "clip-path": "url(#clip0)" } },
-                                    [
-                                      _c("path", {
-                                        attrs: {
-                                          "fill-rule": "evenodd",
-                                          "clip-rule": "evenodd",
-                                          d:
-                                            "M16.0721 0.175179C15.9549 0.0580096 15.796 -0.0078125 15.6302 -0.0078125C15.4645 -0.0078125 15.3056 0.0580096 15.1884 0.175179L13.1296 2.23393L17.7634 6.86768L19.8221 4.81018C19.8803 4.75212 19.9265 4.68315 19.958 4.60722C19.9895 4.53129 20.0057 4.44989 20.0057 4.36768C20.0057 4.28547 19.9895 4.20407 19.958 4.12814C19.9265 4.05221 19.8803 3.98324 19.8221 3.92518L16.0721 0.175179ZM16.8796 7.75143L12.2459 3.11768L4.12086 11.2427H4.37961C4.54537 11.2427 4.70435 11.3085 4.82156 11.4257C4.93877 11.5429 5.00461 11.7019 5.00461 11.8677V12.4927H5.62961C5.79537 12.4927 5.95435 12.5585 6.07156 12.6757C6.18877 12.7929 6.25461 12.9519 6.25461 13.1177V13.7427H6.87962C7.04538 13.7427 7.20435 13.8085 7.32156 13.9257C7.43877 14.0429 7.50462 14.2019 7.50462 14.3677V14.9927H8.12962C8.29538 14.9927 8.45435 15.0585 8.57156 15.1757C8.68877 15.2929 8.75462 15.4519 8.75462 15.6177V15.8764L16.8796 7.75143ZM7.54462 17.0864C7.51831 17.0165 7.50477 16.9424 7.50462 16.8677V16.2427H6.87962C6.71386 16.2427 6.55488 16.1768 6.43767 16.0596C6.32046 15.9424 6.25461 15.7834 6.25461 15.6177V14.9927H5.62961C5.46385 14.9927 5.30488 14.9268 5.18767 14.8096C5.07046 14.6924 5.00461 14.5334 5.00461 14.3677V13.7427H4.37961C4.21385 13.7427 4.05488 13.6768 3.93767 13.5596C3.82046 13.4424 3.75461 13.2834 3.75461 13.1177V12.4927H3.12961C3.05489 12.4926 2.98079 12.479 2.91086 12.4527L2.68711 12.6752C2.62755 12.7352 2.58077 12.8066 2.54961 12.8852L0.0496099 19.1352C0.00414655 19.2488 -0.00698284 19.3732 0.0176015 19.493C0.0421858 19.6129 0.101403 19.7229 0.187911 19.8094C0.274419 19.8959 0.384414 19.9551 0.50426 19.9797C0.624105 20.0043 0.748531 19.9931 0.862111 19.9477L7.11212 17.4477C7.19069 17.4165 7.26213 17.3697 7.32212 17.3102L7.54462 17.0877V17.0864Z",
-                                          fill: "white"
-                                        }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("defs", [
-                                    _c("clipPath", { attrs: { id: "clip0" } }, [
-                                      _c("rect", {
-                                        attrs: {
-                                          width: "20",
-                                          height: "20",
-                                          fill: "white"
-                                        }
-                                      })
-                                    ])
-                                  ])
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-secondary btn-xs",
-                              attrs: { type: "button", title: "" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.deletePurchase(item)
-                                }
-                              }
-                            },
-                            [
-                              _c(
-                                "svg",
-                                {
-                                  staticClass: "align-middle",
-                                  attrs: {
-                                    width: "15",
-                                    height: "15",
-                                    viewBox: "0 0 20 20",
-                                    fill: "none",
-                                    xmlns: "http://www.w3.org/2000/svg"
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "g",
-                                    { attrs: { "clip-path": "url(#clip0)" } },
-                                    [
-                                      _c("path", {
-                                        attrs: {
-                                          "fill-rule": "evenodd",
-                                          "clip-rule": "evenodd",
-                                          d:
-                                            "M1.25 17.5C1.25 17.5 0 17.5 0 16.25C0 15 1.25 11.25 7.5 11.25C13.75 11.25 15 15 15 16.25C15 17.5 13.75 17.5 13.75 17.5H1.25ZM7.5 10C8.49456 10 9.44839 9.60491 10.1517 8.90165C10.8549 8.19839 11.25 7.24456 11.25 6.25C11.25 5.25544 10.8549 4.30161 10.1517 3.59835C9.44839 2.89509 8.49456 2.5 7.5 2.5C6.50544 2.5 5.55161 2.89509 4.84835 3.59835C4.14509 4.30161 3.75 5.25544 3.75 6.25C3.75 7.24456 4.14509 8.19839 4.84835 8.90165C5.55161 9.60491 6.50544 10 7.5 10ZM15.1825 6.4325C15.2406 6.3743 15.3095 6.32812 15.3855 6.29661C15.4614 6.2651 15.5428 6.24888 15.625 6.24888C15.7072 6.24888 15.7886 6.2651 15.8645 6.29661C15.9405 6.32812 16.0094 6.3743 16.0675 6.4325L17.5 7.86625L18.9325 6.4325C19.0499 6.31514 19.209 6.24921 19.375 6.24921C19.541 6.24921 19.7001 6.31514 19.8175 6.4325C19.9349 6.54986 20.0008 6.70903 20.0008 6.875C20.0008 7.04097 19.9349 7.20014 19.8175 7.3175L18.3837 8.75L19.8175 10.1825C19.9349 10.2999 20.0008 10.459 20.0008 10.625C20.0008 10.791 19.9349 10.9501 19.8175 11.0675C19.7001 11.1849 19.541 11.2508 19.375 11.2508C19.209 11.2508 19.0499 11.1849 18.9325 11.0675L17.5 9.63375L16.0675 11.0675C15.9501 11.1849 15.791 11.2508 15.625 11.2508C15.459 11.2508 15.2999 11.1849 15.1825 11.0675C15.0651 10.9501 14.9992 10.791 14.9992 10.625C14.9992 10.459 15.0651 10.2999 15.1825 10.1825L16.6163 8.75L15.1825 7.3175C15.1243 7.25944 15.0781 7.19047 15.0466 7.11454C15.0151 7.03861 14.9989 6.95721 14.9989 6.875C14.9989 6.79279 15.0151 6.71139 15.0466 6.63546C15.0781 6.55953 15.1243 6.49056 15.1825 6.4325Z",
-                                          fill: "white"
-                                        }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c("defs", [
-                                    _c("clipPath", { attrs: { id: "clip0" } }, [
-                                      _c("rect", {
-                                        attrs: {
-                                          width: "20",
-                                          height: "20",
-                                          fill: "white"
-                                        }
-                                      })
-                                    ])
-                                  ])
-                                ]
-                              )
-                            ]
-                          )
-                        ])
-                      ])
-                    ])
-                  }),
-                  0
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("nav", { staticClass: "m-b-30", attrs: { "aria-label": "..." } }, [
-            _c(
-              "ul",
-              {
-                staticClass:
-                  "pagination justify-content-center pagination-primary"
-              },
-              [
-                _c(
-                  "li",
-                  {
-                    class:
-                      _vm.purchases.current_page == 1
-                        ? "page-item disabled"
-                        : "page-item"
-                  },
-                  [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "table-responsive style-1 table-hover non-hover m-b-30"
+                },
+                [
+                  _c("table", { staticClass: "table table-bordered" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
                     _c(
-                      "a",
-                      {
-                        staticClass: "page-link",
-                        attrs: {
-                          href: "",
-                          tabindex: "-1",
-                          "data-bs-original-title": "",
-                          title: ""
-                        },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.loadpurchases(
-                              _vm.purchases.current_page - 1
+                      "tbody",
+                      _vm._l(_vm.purchases.data, function(item) {
+                        return _c("tr", { key: item.id }, [
+                          _c("td", [_vm._v(_vm._s(item.id))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(_vm._f("timeformat")(item.created_at))
                             )
-                          }
-                        }
-                      },
-                      [_vm._v("Anterior")]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _vm.purchases.current_page > 1
-                  ? _c("li", { staticClass: "page-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "page-link",
-                          attrs: {
-                            href: "",
-                            "data-bs-original-title": "",
-                            title: ""
-                          },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.loadpurchases(
-                                _vm.purchases.current_page - 1
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.reference_no))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(_vm._s(item.supplier.company_name))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.grand_total))]),
+                          _vm._v(" "),
+                          item.purchase_status == 1
+                            ? _c("td", [
+                                _c(
+                                  "span",
+                                  { staticClass: "badge badge-warning" },
+                                  [_vm._v("Pendiente")]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          item.purchase_status == 2
+                            ? _c("td", [
+                                _c(
+                                  "span",
+                                  { staticClass: "badge badge-primary" },
+                                  [_vm._v("Finalizado")]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          item.purchase_status == 3
+                            ? _c("td", [
+                                _c(
+                                  "span",
+                                  { staticClass: "badge badge-secondary" },
+                                  [_vm._v("Cancelado")]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          item.payment_status == 1
+                            ? _c("td", [
+                                _c(
+                                  "span",
+                                  { staticClass: "badge badge-warning" },
+                                  [_vm._v("Pendiente")]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          item.payment_status == 2
+                            ? _c("td", [
+                                _c(
+                                  "span",
+                                  { staticClass: "badge badge-primary" },
+                                  [_vm._v("Pagado")]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c("div", { staticClass: "btn-group" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-primary btn-xs",
+                                  attrs: {
+                                    type: "button",
+                                    title: "",
+                                    "data-bs-toggle": "modal",
+                                    "data-bs-target": "#exampleModal"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.editPurchaseData(item),
+                                        (_vm.btn_update_active = 1),
+                                        (_vm.modal_title = "Editar Venta")
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "svg",
+                                    {
+                                      staticClass: "align-middle",
+                                      attrs: {
+                                        width: "15",
+                                        height: "15",
+                                        viewBox: "0 0 20 20",
+                                        fill: "none",
+                                        xmlns: "http://www.w3.org/2000/svg"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "g",
+                                        {
+                                          attrs: { "clip-path": "url(#clip0)" }
+                                        },
+                                        [
+                                          _c("path", {
+                                            attrs: {
+                                              "fill-rule": "evenodd",
+                                              "clip-rule": "evenodd",
+                                              d:
+                                                "M16.0721 0.175179C15.9549 0.0580096 15.796 -0.0078125 15.6302 -0.0078125C15.4645 -0.0078125 15.3056 0.0580096 15.1884 0.175179L13.1296 2.23393L17.7634 6.86768L19.8221 4.81018C19.8803 4.75212 19.9265 4.68315 19.958 4.60722C19.9895 4.53129 20.0057 4.44989 20.0057 4.36768C20.0057 4.28547 19.9895 4.20407 19.958 4.12814C19.9265 4.05221 19.8803 3.98324 19.8221 3.92518L16.0721 0.175179ZM16.8796 7.75143L12.2459 3.11768L4.12086 11.2427H4.37961C4.54537 11.2427 4.70435 11.3085 4.82156 11.4257C4.93877 11.5429 5.00461 11.7019 5.00461 11.8677V12.4927H5.62961C5.79537 12.4927 5.95435 12.5585 6.07156 12.6757C6.18877 12.7929 6.25461 12.9519 6.25461 13.1177V13.7427H6.87962C7.04538 13.7427 7.20435 13.8085 7.32156 13.9257C7.43877 14.0429 7.50462 14.2019 7.50462 14.3677V14.9927H8.12962C8.29538 14.9927 8.45435 15.0585 8.57156 15.1757C8.68877 15.2929 8.75462 15.4519 8.75462 15.6177V15.8764L16.8796 7.75143ZM7.54462 17.0864C7.51831 17.0165 7.50477 16.9424 7.50462 16.8677V16.2427H6.87962C6.71386 16.2427 6.55488 16.1768 6.43767 16.0596C6.32046 15.9424 6.25461 15.7834 6.25461 15.6177V14.9927H5.62961C5.46385 14.9927 5.30488 14.9268 5.18767 14.8096C5.07046 14.6924 5.00461 14.5334 5.00461 14.3677V13.7427H4.37961C4.21385 13.7427 4.05488 13.6768 3.93767 13.5596C3.82046 13.4424 3.75461 13.2834 3.75461 13.1177V12.4927H3.12961C3.05489 12.4926 2.98079 12.479 2.91086 12.4527L2.68711 12.6752C2.62755 12.7352 2.58077 12.8066 2.54961 12.8852L0.0496099 19.1352C0.00414655 19.2488 -0.00698284 19.3732 0.0176015 19.493C0.0421858 19.6129 0.101403 19.7229 0.187911 19.8094C0.274419 19.8959 0.384414 19.9551 0.50426 19.9797C0.624105 20.0043 0.748531 19.9931 0.862111 19.9477L7.11212 17.4477C7.19069 17.4165 7.26213 17.3697 7.32212 17.3102L7.54462 17.0877V17.0864Z",
+                                              fill: "white"
+                                            }
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("defs", [
+                                        _c(
+                                          "clipPath",
+                                          { attrs: { id: "clip0" } },
+                                          [
+                                            _c("rect", {
+                                              attrs: {
+                                                width: "20",
+                                                height: "20",
+                                                fill: "white"
+                                              }
+                                            })
+                                          ]
+                                        )
+                                      ])
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-secondary btn-xs",
+                                  attrs: { type: "button", title: "" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.deletePurchase(item)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "svg",
+                                    {
+                                      staticClass: "align-middle",
+                                      attrs: {
+                                        width: "15",
+                                        height: "15",
+                                        viewBox: "0 0 20 20",
+                                        fill: "none",
+                                        xmlns: "http://www.w3.org/2000/svg",
+                                        "xmlns:xlink":
+                                          "http://www.w3.org/1999/xlink"
+                                      }
+                                    },
+                                    [
+                                      _c("rect", {
+                                        attrs: {
+                                          width: "19.1667",
+                                          height: "20",
+                                          fill: "url(#pattern0)"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("defs", [
+                                        _c(
+                                          "pattern",
+                                          {
+                                            attrs: {
+                                              id: "pattern0",
+                                              patternContentUnits:
+                                                "objectBoundingBox",
+                                              width: "1",
+                                              height: "1"
+                                            }
+                                          },
+                                          [
+                                            _c("use", {
+                                              attrs: {
+                                                "xlink:href": "#image0",
+                                                transform:
+                                                  "translate(-0.0217391) scale(0.0163043 0.015625)"
+                                              }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("image", {
+                                          attrs: {
+                                            id: "image0",
+                                            width: "64",
+                                            height: "64",
+                                            "xlink:href":
+                                              "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABAEAQAAABQ8GUWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAAAGAAAABgAPBrQs8AAAAHdElNRQflBhMGEigOfYnbAAAEjklEQVR42u1bMWsUQRT+3kaTaBKNokYtxKTR1hAtFM0fsBBEwX8gGJBgZyWCaCEIVmktRFBBGwtBBE2hlaWEEJEIKuRiYuId8UxuPos1ubu9ncvuzM7sqfm6zb2dee+b9968eTsBHILs7CRv3aL68IGpUCqR4+NUJ0+61M85yCdP0hkexcoKeeJE3naYGa+OHbMzfhUvX7rUc5O7oY8cqWdkdhZYXEz0qhw4AGz6o9vgoEsCnIEcHa1bSDUykvzd6enqi79+udTToQdMToKPHq09ytRU8nefPQN37Qrfq1RcErCBDfznkCRCVENDkFOngM2b81Y4GQoF8OFDCYpF66HICxdIpbLZ033i/Xty61ZL40XSl7GthIsX17MxaM7A0BBkYCBj//SI8+ftCMC5c3mbYIfhYXLfPgsCzp7N2wQ7BAFw5owRAVR79vzd7r+Ko0eNCIAUCsDTp3mrb4diEXzwoJnEunUAVV8fpKsrb1OMwM+fJSiX81ZjAxv4l0Beu0aWy3nXeA1QU1PkoUNujVft7WGjskWhbt9Oa1OQSrrVuzMG+qUiQKRSAefn87ZTC87OOiUgZKFQ0P94/z4wMgK8erW+shMTwOgoeOcOsLzcXHhpCbx5E7hyBZie1uuWnoDUIF+/jg/AatVI1dFBfvyoD9blZXL//uqY1683D+7Ll6uyhw/rc8Dp02ntSe8B1HnAu3drCxGUy8Dbt/oxPn0S+fKl+oc3b5pPOj6+NrZMTIClUqyYgQcYhIBukmi53CRXiFL1hESeG1AdiwwCyJYt8XIzM+4JgM4Denvrjfr+Pf3YOiwsVMft6QmPuTFgs/zkmwCpUdoKJFj7SW379ni5clmCHz88EKALgQgByIqAUkmClZX1CUi/+mYE6NyMUcWyCoEokRoCDGoAMwJ0dYBEPcARAZK7ByQNAc8eIL4IkIRJ0BkB0XlW4SkERH7+BOI+OXV0kJ2desWzIkCXA3x5AIBkW6HvEPCVBAEk2QpFlpaADBqSTEiAtyTYdDIHtYD8TSHgohZI6gHedgFAz7aTWqDVCiFAn3DogIBEIaAUZG7OHwFoMQ/g3JwY9iuz3QWiOYAZJMGGY3UMAYbxb0GARw+oCQEyCIDu7kYh815gtkkwujqZ9AQSNEMMt0BzAsTXgYgEa5sc2W6B5gRgYQGIu8ObNQFumyHGBIiQwLdv7glwexI0JiBEHOvRxqhtDnB7DrAjIC7xZF4KJ+wGGVaBdgTEJULp6qJqb3dGQOskQUDvdrVKeiLA+zYIIFFPICgWgdos7ogAi4+ijj0gzogUSHQULhbDNp1vAujhE1mik6C5+9sRkLQaFJs8EP0vs23bGmXs7gQ48ICDB9dEKALs3Nkos3s32dZWJWnv3vixduyof+7vb5Sx8wBz+1VfX/wtha9fyePHqXp6whtlOty9S/b2koOD4Q2vOMzMkMPDVN3d5NWr8TL37uVDANvayMXFbK95meDGDRs7jEMg7MC8eJEL+3Ur8fx5fnNzYICcn89v9cfG8uYfZH8/+fixv3CoVMjJSfLSpbBDZIffopjI4lWS+PYAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjEtMDYtMTlUMDY6MTg6NDArMDA6MDAqQ4KvAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIxLTA2LTE5VDA2OjE4OjQwKzAwOjAwWx46EwAAAABJRU5ErkJggg=="
+                                          }
+                                        })
+                                      ])
+                                    ]
+                                  )
+                                ]
                               )
-                            }
-                          }
-                        },
-                        [_vm._v(_vm._s(_vm.purchases.current_page - 1))]
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("li", { staticClass: "page-item active" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "page-link",
-                      attrs: {
-                        href: "#",
-                        "data-bs-original-title": "",
-                        title: ""
-                      }
-                    },
-                    [
-                      _vm._v(_vm._s(_vm.purchases.current_page)),
-                      _c("span", { staticClass: "sr-only" }, [
-                        _vm._v("(current)")
-                      ])
-                    ]
-                  )
+                            ])
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "row mt-4 align-items-center" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("p", { staticClass: "card-text" }, [
+                    _vm._v(
+                      "Mostrando de " +
+                        _vm._s(_vm.purchases.from) +
+                        " a " +
+                        _vm._s(_vm.purchases.to) +
+                        " de " +
+                        _vm._s(_vm.purchases.total) +
+                        " compras."
+                    )
+                  ])
                 ]),
                 _vm._v(" "),
-                _vm.purchases.current_page != _vm.purchases.last_page
-                  ? _c("li", { staticClass: "page-item" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "page-link",
-                          attrs: {
-                            href: "",
-                            "data-bs-original-title": "",
-                            title: ""
-                          },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.loadpurchases(
-                                _vm.purchases.current_page + 1
-                              )
-                            }
-                          }
-                        },
-                        [_vm._v(_vm._s(_vm.purchases.current_page + 1))]
-                      )
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  {
-                    class:
-                      _vm.purchases.current_page == _vm.purchases.last_page
-                        ? "page-item disabled"
-                        : "page-item"
-                  },
-                  [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("nav", [
                     _c(
-                      "a",
+                      "ul",
                       {
-                        staticClass: "page-link",
-                        attrs: {
-                          href: "",
-                          "data-bs-original-title": "",
-                          title: ""
-                        },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.loadpurchases(
-                              _vm.purchases.current_page + 1
-                            )
-                          }
-                        }
+                        staticClass:
+                          "pagination justify-content-end pagination-primary"
                       },
-                      [_vm._v("Siguiente")]
+                      [
+                        _c(
+                          "li",
+                          {
+                            class:
+                              _vm.purchases.current_page == 1
+                                ? "page-item disabled"
+                                : "page-item"
+                          },
+                          [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "page-link",
+                                attrs: {
+                                  href: "",
+                                  tabindex: "-1",
+                                  "data-bs-original-title": "",
+                                  title: ""
+                                },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.loadpurchases(
+                                      _vm.purchases.current_page - 1
+                                    )
+                                  }
+                                }
+                              },
+                              [_vm._v("Anterior")]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _vm.purchases.current_page > 1
+                          ? _c("li", { staticClass: "page-item" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "page-link",
+                                  attrs: {
+                                    href: "",
+                                    "data-bs-original-title": "",
+                                    title: ""
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.loadpurchases(
+                                        _vm.purchases.current_page - 1
+                                      )
+                                    }
+                                  }
+                                },
+                                [_vm._v(_vm._s(_vm.purchases.current_page - 1))]
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "page-item active" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "page-link",
+                              attrs: {
+                                href: "#",
+                                "data-bs-original-title": "",
+                                title: ""
+                              }
+                            },
+                            [
+                              _vm._v(_vm._s(_vm.purchases.current_page)),
+                              _c("span", { staticClass: "sr-only" }, [
+                                _vm._v("(current)")
+                              ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm.purchases.current_page != _vm.purchases.last_page
+                          ? _c("li", { staticClass: "page-item" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "page-link",
+                                  attrs: {
+                                    href: "",
+                                    "data-bs-original-title": "",
+                                    title: ""
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.loadpurchases(
+                                        _vm.purchases.current_page + 1
+                                      )
+                                    }
+                                  }
+                                },
+                                [_vm._v(_vm._s(_vm.purchases.current_page + 1))]
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          {
+                            class:
+                              _vm.purchases.current_page ==
+                              _vm.purchases.last_page
+                                ? "page-item disabled"
+                                : "page-item"
+                          },
+                          [
+                            _c(
+                              "a",
+                              {
+                                staticClass: "page-link",
+                                attrs: {
+                                  href: "",
+                                  "data-bs-original-title": "",
+                                  title: ""
+                                },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.loadpurchases(
+                                      _vm.purchases.current_page + 1
+                                    )
+                                  }
+                                }
+                              },
+                              [_vm._v("Siguiente")]
+                            )
+                          ]
+                        )
+                      ]
                     )
-                  ]
-                )
-              ]
-            )
-          ])
+                  ])
+                ])
+              ])
+            ]
+          )
         ])
       ])
     ])
@@ -80700,27 +80732,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "form",
-      { staticClass: "form-inline", attrs: { action: "#", method: "get" } },
-      [
-        _c("div", { staticClass: "form-group mb-0" }, [
-          _c("i", { staticClass: "fa fa-search" }),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control-plaintext",
-            attrs: { type: "text", placeholder: "Buscar..." }
-          })
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
+        _vm._v("\n<<<<<<< HEAD\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Producto")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Cantidad")]),
@@ -80729,7 +80743,22 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Total")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Acción")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Acción")]),
+        _vm._v("\n=======\n                                    "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Producto")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Variante")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Cantidad")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Costo Unitario Neto")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Acción")]),
+        _vm._v(
+          "\n>>>>>>> 2378b8d23544b827d1c008d19ddd9dfc24ce5659\n                                  "
+        )
       ])
     ])
   },

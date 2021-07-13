@@ -15,7 +15,6 @@ class SaleController extends Controller
         if ($request->from == "" AND $request->to != "") {
             $to = new Carbon($request->to, 'America/Lima');
             $to->tz = date_default_timezone_get();
-            $to->addDay();
 
             return Sale::whereDate('created_at', '<=', $to)
                         ->with('product_sale')

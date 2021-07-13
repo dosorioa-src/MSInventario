@@ -80,8 +80,5 @@ class Product extends Model
         }
     }
     
-
-    
-
     protected $guarded = [];
 }

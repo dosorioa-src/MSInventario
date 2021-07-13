@@ -124,3 +124,5 @@ Route::post('/api/purchase/delete', 'PurchaseController@delete')->middleware('au
 
 
 Route::get('/api/kardex/load', 'KardexController@load')->middleware('auth');
+
+Route::get('/api/dashboard/load', 'DashboardController@load')->middleware('auth');

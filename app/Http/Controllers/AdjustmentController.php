@@ -17,7 +17,6 @@ class AdjustmentController extends Controller
         if ($request->from == "" AND $request->to != "") {
             $to = new Carbon($request->to, 'America/Lima');
             $to->tz = date_default_timezone_get();
-            $to->addDay();
 
             return Adjustment::whereDate('created_at', '<=', $to)
                         ->with(['warehouse','product_adjustment.product_variant'])
