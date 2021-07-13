@@ -131,7 +131,15 @@
             this.searchResult= res.data;
           })
         }
-      }
+      },
+
+      filters: {
+        timeformat: function (arg) {
+          // return moment(arg).subtract(10, 'days').calendar()
+          moment.locale('es');
+          return moment(arg).format('L');
+        }
+      } 
 	};
 </script>
 

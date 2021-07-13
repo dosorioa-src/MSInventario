@@ -4723,6 +4723,13 @@ __webpack_require__.r(__webpack_exports__);
         _this2.searchResult = res.data;
       });
     }
+  },
+  filters: {
+    timeformat: function timeformat(arg) {
+      // return moment(arg).subtract(10, 'days').calendar()
+      moment__WEBPACK_IMPORTED_MODULE_2___default.a.locale('es');
+      return moment__WEBPACK_IMPORTED_MODULE_2___default()(arg).format('L');
+    }
   }
 });
 
