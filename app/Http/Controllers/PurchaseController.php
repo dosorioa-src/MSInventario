@@ -21,7 +21,7 @@ class PurchaseController extends Controller
                         ->numReferencia($request->filtroA)
                         ->proveedor($request->filtroB)
                         ->estadoPago($request->filtroC)
-                        ->orderBy('Purchases.id','desc')
+                        ->orderBy('purchases.id','desc')
                         ->paginate(7);
 
         } elseif ($request->from != "" AND $request->to == "") {
@@ -34,7 +34,7 @@ class PurchaseController extends Controller
                         ->numReferencia($request->filtroA)
                         ->proveedor($request->filtroB)
                         ->estadoPago($request->filtroC)
-                        ->orderBy('Purchases.id','desc')
+                        ->orderBy('purchases.id','desc')
                         ->paginate(7);
 
 
@@ -46,7 +46,7 @@ class PurchaseController extends Controller
                         ->numReferencia($request->filtroA)
                         ->proveedor($request->filtroB)
                         ->estadoPago($request->filtroC)
-                        ->orderBy('Purchases.id','desc')
+                        ->orderBy('purchases.id','desc')
                         ->paginate(7);
 
         } elseif ($request->from != "" AND $request->to != "") {
@@ -62,7 +62,7 @@ class PurchaseController extends Controller
                         ->numReferencia($request->filtroA)
                         ->proveedor($request->filtroB)
                         ->estadoPago($request->filtroC)
-                        ->orderBy('Purchases.id','desc')
+                        ->orderBy('purchases.id','desc')
                         ->paginate(7);
             
         }
