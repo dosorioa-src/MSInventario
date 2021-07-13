@@ -57,7 +57,7 @@ class User extends Authenticatable
 
     public function scopeSearchStatus($query,$filtroS){
         if (!empty($filtroS) && $filtroS!="todos") {
-            return $query->where('is_active','=',"$filtroS");
+            return $query->where('is_active','=',"$filtroS")    ;
         }  
     }
 }

@@ -1,9 +1,39 @@
 <template>
  <div class="container-fluid">
    <div class="row">
-      <div class="col-sm-6 col-xl-3 col-lg-6">
+      <div class="col-sm-6 col-xl-4 col-lg-6">
          <div class="card o-hidden">
-            <div class="bg-primary b-r-4 card-body">
+            <div class="bg-secondary b-r-4 card-body">
+               <div class="media static-top-widget">
+                  <div class="align-self-center text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                  </div>
+                  <div class="media-body">
+                     <span class="m-0">Tasa de Abastecimiento</span>
+                     <h4 class="mb-0 counter">{{ dash.tap }}%</h4>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-repeat icon-bg"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-sm-6 col-xl-4 col-lg-6">
+         <div class="card o-hidden">
+            <div class="bg-secondary b-r-4 card-body">
+               <div class="media static-top-widget">
+                  <div class="align-self-center text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rotate-cw"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                  </div>
+                  <div class="media-body">
+                     <span class="m-0">Índice de Rotación</span>
+                     <h4 class="mb-0 counter">{{ dash.irs }}</h4>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rotate-cw icon-bg"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-sm-6 col-xl-4 col-lg-6">
+         <div class="card o-hidden">
+            <div class="bg-secondary b-r-4 card-body">
                <div class="media static-top-widget">
                   <div class="align-self-center text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-database"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
                   </div>
@@ -16,9 +46,9 @@
             </div>
          </div>
       </div>
-      <div class="col-sm-6 col-xl-3 col-lg-6">
+      <div class="col-sm-6 col-xl-4 col-lg-6">
          <div class="card o-hidden">
-            <div class="bg-secondary b-r-4 card-body">
+            <div class="bg-primary b-r-4 card-body">
                <div class="media static-top-widget">
                   <div class="align-self-center text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg></div>
                   <div class="media-body">
@@ -30,7 +60,7 @@
             </div>
          </div>
       </div>      
-      <div class="col-sm-6 col-xl-3 col-lg-6">
+      <div class="col-sm-6 col-xl-4 col-lg-6">
          <div class="card o-hidden">
             <div class="bg-primary b-r-4 card-body">
                <div class="media static-top-widget">
@@ -45,7 +75,7 @@
             </div>
          </div>
       </div>
-      <div class="col-sm-6 col-xl-3 col-lg-6">
+      <div class="col-sm-6 col-xl-4 col-lg-6">
          <div class="card o-hidden">
             <div class="bg-primary b-r-4 card-body">
                <div class="media static-top-widget">

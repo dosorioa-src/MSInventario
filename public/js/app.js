@@ -4485,6 +4485,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -74509,9 +74539,145 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid" }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
+      _c("div", { staticClass: "col-sm-6 col-xl-4 col-lg-6" }, [
         _c("div", { staticClass: "card o-hidden" }, [
-          _c("div", { staticClass: "bg-primary b-r-4 card-body" }, [
+          _c("div", { staticClass: "bg-secondary b-r-4 card-body" }, [
+            _c("div", { staticClass: "media static-top-widget" }, [
+              _c("div", { staticClass: "align-self-center text-center" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-repeat",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("polyline", { attrs: { points: "17 1 21 5 17 9" } }),
+                    _c("path", { attrs: { d: "M3 11V9a4 4 0 0 1 4-4h14" } }),
+                    _c("polyline", { attrs: { points: "7 23 3 19 7 15" } }),
+                    _c("path", { attrs: { d: "M21 13v2a4 4 0 0 1-4 4H3" } })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "media-body" }, [
+                _c("span", { staticClass: "m-0" }, [
+                  _vm._v("Tasa de Abastecimiento")
+                ]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "mb-0 counter" }, [
+                  _vm._v(_vm._s(_vm.dash.tap) + "%")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-repeat icon-bg",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("polyline", { attrs: { points: "17 1 21 5 17 9" } }),
+                    _c("path", { attrs: { d: "M3 11V9a4 4 0 0 1 4-4h14" } }),
+                    _c("polyline", { attrs: { points: "7 23 3 19 7 15" } }),
+                    _c("path", { attrs: { d: "M21 13v2a4 4 0 0 1-4 4H3" } })
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6 col-xl-4 col-lg-6" }, [
+        _c("div", { staticClass: "card o-hidden" }, [
+          _c("div", { staticClass: "bg-secondary b-r-4 card-body" }, [
+            _c("div", { staticClass: "media static-top-widget" }, [
+              _c("div", { staticClass: "align-self-center text-center" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-rotate-cw",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("polyline", { attrs: { points: "23 4 23 10 17 10" } }),
+                    _c("path", {
+                      attrs: { d: "M20.49 15a9 9 0 1 1-2.12-9.36L23 10" }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "media-body" }, [
+                _c("span", { staticClass: "m-0" }, [
+                  _vm._v("Índice de Rotación")
+                ]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "mb-0 counter" }, [
+                  _vm._v(_vm._s(_vm.dash.irs))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-rotate-cw icon-bg",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("polyline", { attrs: { points: "23 4 23 10 17 10" } }),
+                    _c("path", {
+                      attrs: { d: "M20.49 15a9 9 0 1 1-2.12-9.36L23 10" }
+                    })
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6 col-xl-4 col-lg-6" }, [
+        _c("div", { staticClass: "card o-hidden" }, [
+          _c("div", { staticClass: "bg-secondary b-r-4 card-body" }, [
             _c("div", { staticClass: "media static-top-widget" }, [
               _c("div", { staticClass: "align-self-center text-center" }, [
                 _c(
@@ -74585,9 +74751,9 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
+      _c("div", { staticClass: "col-sm-6 col-xl-4 col-lg-6" }, [
         _c("div", { staticClass: "card o-hidden" }, [
-          _c("div", { staticClass: "bg-secondary b-r-4 card-body" }, [
+          _c("div", { staticClass: "bg-primary b-r-4 card-body" }, [
             _c("div", { staticClass: "media static-top-widget" }, [
               _c("div", { staticClass: "align-self-center text-center" }, [
                 _c(
@@ -74659,7 +74825,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
+      _c("div", { staticClass: "col-sm-6 col-xl-4 col-lg-6" }, [
         _c("div", { staticClass: "card o-hidden" }, [
           _c("div", { staticClass: "bg-primary b-r-4 card-body" }, [
             _c("div", { staticClass: "media static-top-widget" }, [
@@ -74735,7 +74901,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
+      _c("div", { staticClass: "col-sm-6 col-xl-4 col-lg-6" }, [
         _c("div", { staticClass: "card o-hidden" }, [
           _c("div", { staticClass: "bg-primary b-r-4 card-body" }, [
             _c("div", { staticClass: "media static-top-widget" }, [
@@ -75304,6 +75470,9 @@ var render = function() {
                     },
                     domProps: { value: _vm.filter.from },
                     on: {
+                      change: function($event) {
+                        return _vm.search()
+                      },
                       input: function($event) {
                         if ($event.target.composing) {
                           return
@@ -75335,6 +75504,9 @@ var render = function() {
                     },
                     domProps: { value: _vm.filter.to },
                     on: {
+                      change: function($event) {
+                        return _vm.search()
+                      },
                       input: function($event) {
                         if ($event.target.composing) {
                           return
@@ -75520,19 +75692,31 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "th",
-        { staticClass: "text-center bg-light", attrs: { colspan: "3" } },
+        {
+          staticClass: "text-center text-white",
+          staticStyle: { "background-color": "#7b9227" },
+          attrs: { colspan: "3" }
+        },
         [_vm._v("Unidades")]
       ),
       _vm._v(" "),
       _c(
         "th",
-        { staticClass: "text-center bg-light", attrs: { colspan: "1" } },
+        {
+          staticClass: "text-center text-white",
+          staticStyle: { "background-color": "#8faa2e" },
+          attrs: { colspan: "1" }
+        },
         [_vm._v("Costo")]
       ),
       _vm._v(" "),
       _c(
         "th",
-        { staticClass: "text-center bg-light", attrs: { colspan: "3" } },
+        {
+          staticClass: "text-center text-white",
+          staticStyle: { "background-color": "#7b9227" },
+          attrs: { colspan: "3" }
+        },
         [_vm._v("Valores")]
       )
     ])
@@ -75556,43 +75740,71 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "th",
-        { staticClass: "text-center bg-primary", attrs: { colspan: "1" } },
+        {
+          staticClass: "text-center text-white",
+          staticStyle: { "background-color": "#7b9227" },
+          attrs: { colspan: "1" }
+        },
         [_vm._v("Entrada")]
       ),
       _vm._v(" "),
       _c(
         "th",
-        { staticClass: "text-center bg-primary", attrs: { colspan: "1" } },
+        {
+          staticClass: "text-center text-white",
+          staticStyle: { "background-color": "#7b9227" },
+          attrs: { colspan: "1" }
+        },
         [_vm._v("Salida")]
       ),
       _vm._v(" "),
       _c(
         "th",
-        { staticClass: "text-center bg-primary", attrs: { colspan: "1" } },
+        {
+          staticClass: "text-center text-white",
+          staticStyle: { "background-color": "#7b9227" },
+          attrs: { colspan: "1" }
+        },
         [_vm._v("Existencia")]
       ),
       _vm._v(" "),
       _c(
         "th",
-        { staticClass: "text-center bg-primary", attrs: { colspan: "1" } },
+        {
+          staticClass: "text-center text-white",
+          staticStyle: { "background-color": "#8faa2e" },
+          attrs: { colspan: "1" }
+        },
         [_vm._v("Unitario")]
       ),
       _vm._v(" "),
       _c(
         "th",
-        { staticClass: "text-center bg-primary", attrs: { colspan: "1" } },
+        {
+          staticClass: "text-center text-white",
+          staticStyle: { "background-color": "#7b9227" },
+          attrs: { colspan: "1" }
+        },
         [_vm._v("Debe")]
       ),
       _vm._v(" "),
       _c(
         "th",
-        { staticClass: "text-center bg-primary", attrs: { colspan: "1" } },
+        {
+          staticClass: "text-center text-white",
+          staticStyle: { "background-color": "#7b9227" },
+          attrs: { colspan: "1" }
+        },
         [_vm._v("Haber")]
       ),
       _vm._v(" "),
       _c(
         "th",
-        { staticClass: "text-center bg-primary", attrs: { colspan: "1" } },
+        {
+          staticClass: "text-center text-white",
+          staticStyle: { "background-color": "#7b9227" },
+          attrs: { colspan: "1" }
+        },
         [_vm._v("Saldo")]
       )
     ])
@@ -84073,7 +84285,7 @@ var render = function() {
                       staticClass: "form-control",
                       attrs: {
                         type: "text",
-                        placeholder: "Nombre o código..."
+                        placeholder: "Nombre de usuario..."
                       },
                       domProps: { value: _vm.buscador },
                       on: {
