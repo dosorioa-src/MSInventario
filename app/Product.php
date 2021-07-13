@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    public function product_adjustment(){
+        return $this->hasMany(Product_adjustment::class);
+    }
+    public function product_sale(){
+        return $this->hasMany(Product_sale::class);
+    }
+    public function product_purchase(){
+        return $this->hasMany(Product_purchase::class);
+    }
     public function product_variant(){
         return $this->hasMany(Product_variant::class);
     }
@@ -58,9 +67,6 @@ class Product extends Model
             return $query->where(DB::raw("CONCAT(name, ' ',code)"),'like',"%$filtro%");
         }  
     }
-    
-
-    
 
     protected $guarded = [];
 }

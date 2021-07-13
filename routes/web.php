@@ -120,3 +120,7 @@ Route::get('/api/purchase/load', 'PurchaseController@load')->middleware('auth');
 Route::post('/api/purchase/add', 'PurchaseController@add')->middleware('auth');
 Route::post('/api/purchase/edit', 'PurchaseController@edit')->middleware('auth');
 Route::post('/api/purchase/delete', 'PurchaseController@delete')->middleware('auth');
+
+Route::get('/api/dashboard/load', 'DashboardController@load')->middleware('auth');
+
+

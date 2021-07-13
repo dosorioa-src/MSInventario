@@ -4408,7 +4408,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      dash: []
+    };
+  },
+  created: function created() {
+    this.loadDashboard();
+  },
+  methods: {
+    loadDashboard: function loadDashboard() {
+      var _this = this;
+
+      axios.get('/api/dashboard/load').then(function (res) {
+        _this.dash = res.data;
+        console.log(_this.dash);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -74378,333 +74399,639 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container-fluid" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
-          _c("div", { staticClass: "card o-hidden" }, [
-            _c("div", { staticClass: "bg-primary b-r-4 card-body" }, [
-              _c("div", { staticClass: "media static-top-widget" }, [
-                _c("div", { staticClass: "align-self-center text-center" }, [
-                  _c("i", { attrs: { "data-feather": "database" } })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "media-body" }, [
-                  _c("span", { staticClass: "m-0" }, [_vm._v("Ganancias")]),
-                  _vm._v(" "),
-                  _c("h4", { staticClass: "mb-0 counter" }, [_vm._v("6659")]),
-                  _vm._v(" "),
-                  _c("i", {
-                    staticClass: "icon-bg",
-                    attrs: { "data-feather": "database" }
-                  })
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
-          _c("div", { staticClass: "card o-hidden" }, [
-            _c("div", { staticClass: "bg-secondary b-r-4 card-body" }, [
-              _c("div", { staticClass: "media static-top-widget" }, [
-                _c("div", { staticClass: "align-self-center text-center" }, [
-                  _c("i", { attrs: { "data-feather": "shopping-bag" } })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "media-body" }, [
-                  _c("span", { staticClass: "m-0" }, [_vm._v("Ventas")]),
-                  _vm._v(" "),
-                  _c("h4", { staticClass: "mb-0 counter" }, [_vm._v("9856")]),
-                  _vm._v(" "),
-                  _c("i", {
-                    staticClass: "icon-bg",
-                    attrs: { "data-feather": "shopping-bag" }
-                  })
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
-          _c("div", { staticClass: "card o-hidden" }, [
-            _c("div", { staticClass: "bg-primary b-r-4 card-body" }, [
-              _c("div", { staticClass: "media static-top-widget" }, [
-                _c("div", { staticClass: "align-self-center text-center" }, [
-                  _c("i", { attrs: { "data-feather": "message-circle" } })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "media-body" }, [
-                  _c("span", { staticClass: "m-0" }, [_vm._v("Productos")]),
-                  _vm._v(" "),
-                  _c("h4", { staticClass: "mb-0 counter" }, [_vm._v("893")]),
-                  _vm._v(" "),
-                  _c("i", {
-                    staticClass: "icon-bg",
-                    attrs: { "data-feather": "message-circle" }
-                  })
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
-          _c("div", { staticClass: "card o-hidden" }, [
-            _c("div", { staticClass: "bg-primary b-r-4 card-body" }, [
-              _c("div", { staticClass: "media static-top-widget" }, [
-                _c("div", { staticClass: "align-self-center text-center" }, [
-                  _c("i", { attrs: { "data-feather": "user-plus" } })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "media-body" }, [
-                  _c("span", { staticClass: "m-0" }, [_vm._v("Clientes")]),
-                  _vm._v(" "),
-                  _c("h4", { staticClass: "mb-0 counter" }, [_vm._v("45631")]),
-                  _vm._v(" "),
-                  _c("i", {
-                    staticClass: "icon-bg",
-                    attrs: { "data-feather": "user-plus" }
-                  })
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xl-6 xl-100 box-col-12" }, [
-          _c("div", { staticClass: "widget-joins card widget-arrow" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-6 pe-0" }, [
-                _c("div", { staticClass: "media border-after-xs" }, [
-                  _c(
-                    "div",
-                    { staticClass: "align-self-center me-3 text-start" },
-                    [
-                      _c("h6", { staticClass: "mb-1" }, [_vm._v("Venta")]),
-                      _vm._v(" "),
-                      _c("h4", { staticClass: "mb-0" }, [_vm._v("Hoy")])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body align-self-center" }, [
-                    _c("i", {
-                      staticClass: "font-primary",
-                      attrs: { "data-feather": "arrow-down" }
+  return _c("div", { staticClass: "container-fluid" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
+        _c("div", { staticClass: "card o-hidden" }, [
+          _c("div", { staticClass: "bg-primary b-r-4 card-body" }, [
+            _c("div", { staticClass: "media static-top-widget" }, [
+              _c("div", { staticClass: "align-self-center text-center" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-database",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("ellipse", {
+                      attrs: { cx: "12", cy: "5", rx: "9", ry: "3" }
+                    }),
+                    _c("path", {
+                      attrs: { d: "M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" }
+                    }),
+                    _c("path", {
+                      attrs: { d: "M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" }
                     })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body" }, [
-                    _c("h5", { staticClass: "mb-0" }, [
-                      _vm._v("$"),
-                      _c("span", { staticClass: "counter" }, [_vm._v("25698")])
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "mb-1" }, [_vm._v("-$2658(36%)")])
-                  ])
-                ])
+                  ]
+                )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-sm-6 ps-0" }, [
-                _c("div", { staticClass: "media" }, [
-                  _c(
-                    "div",
-                    { staticClass: "align-self-center me-3 text-start" },
-                    [
-                      _c("h6", { staticClass: "mb-1" }, [_vm._v("Venta")]),
-                      _vm._v(" "),
-                      _c("h4", { staticClass: "mb-0" }, [_vm._v("Mensual")])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body align-self-center" }, [
-                    _c("i", {
-                      staticClass: "font-primary",
-                      attrs: { "data-feather": "arrow-up" }
+              _c("div", { staticClass: "media-body" }, [
+                _c("span", { staticClass: "m-0" }, [_vm._v("Ganancias")]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "mb-0 counter" }, [
+                  _vm._v("$" + _vm._s(_vm.dash.ganancias))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-database icon-bg",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("ellipse", {
+                      attrs: { cx: "12", cy: "5", rx: "9", ry: "3" }
+                    }),
+                    _c("path", {
+                      attrs: { d: "M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" }
+                    }),
+                    _c("path", {
+                      attrs: { d: "M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" }
                     })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body ps-2" }, [
-                    _c("h5", { staticClass: "mb-0" }, [
-                      _vm._v("$"),
-                      _c("span", { staticClass: "counter" }, [_vm._v("6954")])
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "mb-1" }, [_vm._v("+$369(15%)")])
-                  ])
-                ])
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
+        _c("div", { staticClass: "card o-hidden" }, [
+          _c("div", { staticClass: "bg-secondary b-r-4 card-body" }, [
+            _c("div", { staticClass: "media static-top-widget" }, [
+              _c("div", { staticClass: "align-self-center text-center" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-shopping-cart",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("circle", { attrs: { cx: "9", cy: "21", r: "1" } }),
+                    _c("circle", { attrs: { cx: "20", cy: "21", r: "1" } }),
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                      }
+                    })
+                  ]
+                )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-sm-6 pe-0" }, [
-                _c("div", { staticClass: "media border-after-xs" }, [
-                  _c(
-                    "div",
-                    { staticClass: "align-self-center me-3 text-start" },
-                    [
-                      _c("h6", { staticClass: "mb-1" }, [_vm._v("Venta")]),
-                      _vm._v(" "),
-                      _c("h4", { staticClass: "mb-0" }, [_vm._v("Semanal")])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body align-self-center" }, [
-                    _c("i", {
-                      staticClass: "font-primary",
-                      attrs: { "data-feather": "arrow-up" }
+              _c("div", { staticClass: "media-body" }, [
+                _c("span", { staticClass: "m-0" }, [_vm._v("Ventas")]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "mb-0 counter" }, [
+                  _vm._v(_vm._s(_vm.dash.ventas))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-shopping-cart icon-bg",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("circle", { attrs: { cx: "9", cy: "21", r: "1" } }),
+                    _c("circle", { attrs: { cx: "20", cy: "21", r: "1" } }),
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                      }
                     })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body" }, [
-                    _c("h5", { staticClass: "mb-0" }, [
-                      _vm._v("$"),
-                      _c("span", { staticClass: "counter" }, [_vm._v("63147")])
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "mb-1" }, [_vm._v("+$69(65%)")])
-                  ])
-                ])
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
+        _c("div", { staticClass: "card o-hidden" }, [
+          _c("div", { staticClass: "bg-primary b-r-4 card-body" }, [
+            _c("div", { staticClass: "media static-top-widget" }, [
+              _c("div", { staticClass: "align-self-center text-center" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-shopping-bag",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d: "M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                      }
+                    }),
+                    _c("line", {
+                      attrs: { x1: "3", y1: "6", x2: "21", y2: "6" }
+                    }),
+                    _c("path", { attrs: { d: "M16 10a4 4 0 0 1-8 0" } })
+                  ]
+                )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-sm-6 ps-0" }, [
-                _c("div", { staticClass: "media" }, [
-                  _c(
-                    "div",
-                    { staticClass: "align-self-center me-3 text-start" },
-                    [
-                      _c("h6", { staticClass: "mb-1" }, [_vm._v("Venta")]),
-                      _vm._v(" "),
-                      _c("h4", { staticClass: "mb-0" }, [_vm._v("Anual")])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "media-body align-self-center ps-3" },
-                    [
-                      _c("i", {
-                        staticClass: "font-primary",
-                        attrs: { "data-feather": "arrow-up" }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body ps-2" }, [
-                    _c("h5", { staticClass: "mb-0" }, [
-                      _vm._v("$"),
-                      _c("span", { staticClass: "counter" }, [_vm._v("963198")])
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "mb-1" }, [
-                      _vm._v("+$3654(90%)          ")
+              _c("div", { staticClass: "media-body" }, [
+                _c("span", { staticClass: "m-0" }, [_vm._v("Productos")]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "mb-0 counter" }, [
+                  _vm._v(_vm._s(_vm.dash.productos))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-shopping-bag icon-bg",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d: "M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                      }
+                    }),
+                    _c("line", {
+                      attrs: { x1: "3", y1: "6", x2: "21", y2: "6" }
+                    }),
+                    _c("path", { attrs: { d: "M16 10a4 4 0 0 1-8 0" } })
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-6 col-xl-3 col-lg-6" }, [
+        _c("div", { staticClass: "card o-hidden" }, [
+          _c("div", { staticClass: "bg-primary b-r-4 card-body" }, [
+            _c("div", { staticClass: "media static-top-widget" }, [
+              _c("div", { staticClass: "align-self-center text-center" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-user-plus",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: { d: "M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" }
+                    }),
+                    _c("circle", { attrs: { cx: "8.5", cy: "7", r: "4" } }),
+                    _c("line", {
+                      attrs: { x1: "20", y1: "8", x2: "20", y2: "14" }
+                    }),
+                    _c("line", {
+                      attrs: { x1: "23", y1: "11", x2: "17", y2: "11" }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "media-body" }, [
+                _c("span", { staticClass: "m-0" }, [_vm._v("Clientes")]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "mb-0 counter" }, [
+                  _vm._v(_vm._s(_vm.dash.clientes))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass: "feather feather-user-plus icon-bg",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      width: "24",
+                      height: "24",
+                      viewBox: "0 0 24 24",
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: { d: "M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" }
+                    }),
+                    _c("circle", { attrs: { cx: "8.5", cy: "7", r: "4" } }),
+                    _c("line", {
+                      attrs: { x1: "20", y1: "8", x2: "20", y2: "14" }
+                    }),
+                    _c("line", {
+                      attrs: { x1: "23", y1: "11", x2: "17", y2: "11" }
+                    })
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-xl-6 xl-100 box-col-12" }, [
+        _c("div", { staticClass: "widget-joins card widget-arrow" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-6 pe-0" }, [
+              _c("div", { staticClass: "media border-after-xs" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body" }, [
+                  _c("h5", { staticClass: "mb-0" }, [
+                    _vm._v("$"),
+                    _c("span", { staticClass: "counter" }, [
+                      _vm._v(_vm._s(_vm.dash.vhoy))
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6 ps-0" }, [
+              _c("div", { staticClass: "media" }, [
+                _vm._m(2),
+                _vm._v(" "),
+                _vm._m(3),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body ps-2" }, [
+                  _c("h5", { staticClass: "mb-0" }, [
+                    _vm._v("$"),
+                    _c("span", { staticClass: "counter" }, [
+                      _vm._v(_vm._s(_vm.dash.vmes))
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6 pe-0" }, [
+              _c("div", { staticClass: "media border-after-xs" }, [
+                _vm._m(4),
+                _vm._v(" "),
+                _vm._m(5),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body" }, [
+                  _c("h5", { staticClass: "mb-0" }, [
+                    _vm._v("$"),
+                    _c("span", { staticClass: "counter" }, [
+                      _vm._v(_vm._s(_vm.dash.vsemana))
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6 ps-0" }, [
+              _c("div", { staticClass: "media" }, [
+                _vm._m(6),
+                _vm._v(" "),
+                _vm._m(7),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body ps-2" }, [
+                  _c("h5", { staticClass: "mb-0" }, [
+                    _vm._v("$"),
+                    _c("span", { staticClass: "counter" }, [
+                      _vm._v(_vm._s(_vm.dash.vanual))
                     ])
                   ])
                 ])
               ])
             ])
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xl-6 xl-100 box-col-12" }, [
-          _c("div", { staticClass: "widget-joins card" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-6 pe-0" }, [
-                _c("div", { staticClass: "media border-after-xs" }, [
-                  _c("div", { staticClass: "align-self-center me-3" }, [
-                    _vm._v("68%"),
-                    _c("i", { staticClass: "fa fa-angle-up ms-2" })
-                  ]),
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-xl-6 xl-100 box-col-12" }, [
+        _c("div", { staticClass: "widget-joins card" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-6 pe-0" }, [
+              _c("div", { staticClass: "media border-after-xs" }, [
+                _c("div", { staticClass: "media-body details ps-3" }, [
+                  _c("span", { staticClass: "mb-1" }, [_vm._v("Nuevo")]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "media-body details ps-3" }, [
-                    _c("span", { staticClass: "mb-1" }, [_vm._v("Nuevo")]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "mb-0 counter" }, [_vm._v("6982")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body align-self-center" }, [
-                    _c("i", {
-                      staticClass: "font-primary float-end ms-2",
-                      attrs: { "data-feather": "shopping-bag" }
-                    })
+                  _c("h4", { staticClass: "mb-0 counter" }, [
+                    _vm._v(_vm._s(_vm.dash.nsemana))
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body align-self-center" }, [
+                  _c(
+                    "svg",
+                    {
+                      staticClass:
+                        "feather feather-plus-circle font-primary float-end ms-2",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "24",
+                        height: "24",
+                        viewBox: "0 0 24 24",
+                        fill: "none",
+                        stroke: "currentColor",
+                        "stroke-width": "2",
+                        "stroke-linecap": "round",
+                        "stroke-linejoin": "round"
+                      }
+                    },
+                    [
+                      _c("circle", { attrs: { cx: "12", cy: "12", r: "10" } }),
+                      _c("line", {
+                        attrs: { x1: "12", y1: "8", x2: "12", y2: "16" }
+                      }),
+                      _c("line", {
+                        attrs: { x1: "8", y1: "12", x2: "16", y2: "12" }
+                      })
+                    ]
+                  )
                 ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-6 ps-0" }, [
-                _c("div", { staticClass: "media" }, [
-                  _c("div", { staticClass: "align-self-center me-3" }, [
-                    _vm._v("12%"),
-                    _c("i", { staticClass: "fa fa-angle-down ms-2" })
-                  ]),
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6 ps-0" }, [
+              _c("div", { staticClass: "media" }, [
+                _c("div", { staticClass: "media-body details ps-3" }, [
+                  _c("span", { staticClass: "mb-1" }, [_vm._v("Pendiente")]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "media-body details ps-3" }, [
-                    _c("span", { staticClass: "mb-1" }, [_vm._v("Pendiente")]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "mb-0 counter" }, [_vm._v("783")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body align-self-center" }, [
-                    _c("i", {
-                      staticClass: "font-primary float-end ms-3",
-                      attrs: { "data-feather": "layers" }
-                    })
+                  _c("h4", { staticClass: "mb-0 counter" }, [
+                    _vm._v(_vm._s(_vm.dash.npendientes))
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body align-self-center" }, [
+                  _c(
+                    "svg",
+                    {
+                      staticClass:
+                        "feather feather-clock font-primary float-end ms-2",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "24",
+                        height: "24",
+                        viewBox: "0 0 24 24",
+                        fill: "none",
+                        stroke: "currentColor",
+                        "stroke-width": "2",
+                        "stroke-linecap": "round",
+                        "stroke-linejoin": "round"
+                      }
+                    },
+                    [
+                      _c("circle", { attrs: { cx: "12", cy: "12", r: "10" } }),
+                      _c("polyline", { attrs: { points: "12 6 12 12 16 14" } })
+                    ]
+                  )
                 ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-6 pe-0" }, [
-                _c("div", { staticClass: "media border-after-xs" }, [
-                  _c("div", { staticClass: "align-self-center me-3" }, [
-                    _vm._v("68%"),
-                    _c("i", { staticClass: "fa fa-angle-up ms-2" })
-                  ]),
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6 pe-0" }, [
+              _c("div", { staticClass: "media border-after-xs" }, [
+                _c("div", { staticClass: "media-body details ps-3 pt-0" }, [
+                  _c("span", { staticClass: "mb-1" }, [_vm._v("Finalizado")]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "media-body details ps-3 pt-0" }, [
-                    _c("span", { staticClass: "mb-1" }, [_vm._v("Finalizado")]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "mb-0 counter" }, [_vm._v("3674")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body align-self-center" }, [
-                    _c("i", {
-                      staticClass: "font-primary float-end ms-2",
-                      attrs: { "data-feather": "shopping-cart" }
-                    })
+                  _c("h4", { staticClass: "mb-0 counter" }, [
+                    _vm._v(_vm._s(_vm.dash.nfinalizados))
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body align-self-center" }, [
+                  _c(
+                    "svg",
+                    {
+                      staticClass:
+                        "feather feather-send font-primary float-end ms-2",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "24",
+                        height: "24",
+                        viewBox: "0 0 24 24",
+                        fill: "none",
+                        stroke: "currentColor",
+                        "stroke-width": "2",
+                        "stroke-linecap": "round",
+                        "stroke-linejoin": "round"
+                      }
+                    },
+                    [
+                      _c("line", {
+                        attrs: { x1: "22", y1: "2", x2: "11", y2: "13" }
+                      }),
+                      _c("polygon", {
+                        attrs: { points: "22 2 15 22 11 13 2 9 22 2" }
+                      })
+                    ]
+                  )
                 ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-6 ps-0" }, [
-                _c("div", { staticClass: "media" }, [
-                  _c("div", { staticClass: "align-self-center me-3" }, [
-                    _vm._v("68%"),
-                    _c("i", { staticClass: "fa fa-angle-up ms-2" })
-                  ]),
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-6 ps-0" }, [
+              _c("div", { staticClass: "media" }, [
+                _c("div", { staticClass: "media-body details ps-3 pt-0" }, [
+                  _c("span", { staticClass: "mb-1" }, [_vm._v("Cancelado")]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "media-body details ps-3 pt-0" }, [
-                    _c("span", { staticClass: "mb-1" }, [_vm._v("Cancelado")]),
-                    _vm._v(" "),
-                    _c("h4", { staticClass: "mb-0 counter" }, [_vm._v("069")])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "media-body align-self-center" }, [
-                    _c("i", {
-                      staticClass: "font-primary float-end ms-2",
-                      attrs: { "data-feather": "dollar-sign" }
-                    })
+                  _c("h4", { staticClass: "mb-0 counter" }, [
+                    _vm._v(_vm._s(_vm.dash.ncancelados))
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "media-body align-self-center" }, [
+                  _c(
+                    "svg",
+                    {
+                      staticClass:
+                        "feather feather-x-circle font-primary float-end ms-3",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: "24",
+                        height: "24",
+                        viewBox: "0 0 24 24",
+                        fill: "none",
+                        stroke: "currentColor",
+                        "stroke-width": "2",
+                        "stroke-linecap": "round",
+                        "stroke-linejoin": "round"
+                      }
+                    },
+                    [
+                      _c("circle", { attrs: { cx: "12", cy: "12", r: "10" } }),
+                      _c("line", {
+                        attrs: { x1: "15", y1: "9", x2: "9", y2: "15" }
+                      }),
+                      _c("line", {
+                        attrs: { x1: "9", y1: "9", x2: "15", y2: "15" }
+                      })
+                    ]
+                  )
                 ])
               ])
             ])
           ])
         ])
       ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "align-self-center me-3 text-start" }, [
+      _c("h6", { staticClass: "mb-1" }, [_vm._v("Venta")]),
+      _vm._v(" "),
+      _c("h4", { staticClass: "mb-0" }, [_vm._v("Hoy")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "media-body align-self-center" }, [
+      _c("i", {
+        staticClass: "font-primary",
+        attrs: { "data-feather": "arrow-down" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "align-self-center me-3 text-start" }, [
+      _c("h6", { staticClass: "mb-1" }, [_vm._v("Venta")]),
+      _vm._v(" "),
+      _c("h4", { staticClass: "mb-0" }, [_vm._v("Mensual")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "media-body align-self-center" }, [
+      _c("i", {
+        staticClass: "font-primary",
+        attrs: { "data-feather": "arrow-up" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "align-self-center me-3 text-start" }, [
+      _c("h6", { staticClass: "mb-1" }, [_vm._v("Venta")]),
+      _vm._v(" "),
+      _c("h4", { staticClass: "mb-0" }, [_vm._v("Semanal")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "media-body align-self-center" }, [
+      _c("i", {
+        staticClass: "font-primary",
+        attrs: { "data-feather": "arrow-up" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "align-self-center me-3 text-start" }, [
+      _c("h6", { staticClass: "mb-1" }, [_vm._v("Venta")]),
+      _vm._v(" "),
+      _c("h4", { staticClass: "mb-0" }, [_vm._v("Anual")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "media-body align-self-center ps-3" }, [
+      _c("i", {
+        staticClass: "font-primary",
+        attrs: { "data-feather": "arrow-up" }
+      })
     ])
   }
 ]
