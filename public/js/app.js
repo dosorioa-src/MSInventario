@@ -81352,8 +81352,6 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(item.reference_no))]),
-                          _vm._v(" "),
                           _c("td", [
                             _vm._v(_vm._s(item.supplier.company_name))
                           ]),
@@ -81763,8 +81761,6 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Fecha")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Referencia")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Proveedor")]),
         _vm._v(" "),
@@ -82359,7 +82355,7 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "row align-items-end" }, [
-                            _c("div", { staticClass: "col-md-6" }, [
+                            _c("div", { staticClass: "col-md-12" }, [
                               _c("div", { staticClass: "mb-3" }, [
                                 _c(
                                   "label",
@@ -82445,51 +82441,6 @@ var render = function() {
                                     0
                                   )
                                 ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-md-6" }, [
-                              _c("div", { staticClass: "mb-3" }, [
-                                _c(
-                                  "label",
-                                  {
-                                    staticClass: "form-label",
-                                    attrs: { for: "" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "Codigo de venta en canal de origen(*)"
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.sale.origin_sale_code,
-                                      expression: "sale.origin_sale_code"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: { type: "text", placeholder: "" },
-                                  domProps: {
-                                    value: _vm.sale.origin_sale_code
-                                  },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.sale,
-                                        "origin_sale_code",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                })
                               ])
                             ])
                           ]),
@@ -83766,8 +83717,6 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(item.reference_no))]),
-                          _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(item.origin))]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(item.client))]),
@@ -84184,8 +84133,6 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Fecha")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Referencia")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Origen")]),
         _vm._v(" "),

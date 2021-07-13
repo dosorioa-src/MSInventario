@@ -167,7 +167,7 @@
                     </div>
                     
                     <div class="row align-items-end">
-                      <div class="col-md-6">
+                      <div class="col-md-12">
                         <div class="mb-3">
                           <label class="form-label" for="validationDefault01"
                           >Producto(*)</label
@@ -186,7 +186,7 @@
                             />	 -->
                         </div>
                       </div>
-                      <div class="col-md-6">
+                      <!-- <div class="col-md-6">
                         <div class="mb-3">
                           <label class="form-label" for="">Codigo de venta en canal de origen(*)</label>
                             <input
@@ -196,7 +196,7 @@
                               placeholder=""
                             />														
                         </div>
-                      </div>
+                      </div> -->
                     </div>
 
                     <div class="row">
@@ -510,7 +510,7 @@
                   <tr>
                       <th scope="col">#</th>
                       <th scope="col">Fecha</th>
-                      <th scope="col">Referencia</th>
+                      <!-- <th scope="col">Referencia</th> -->
                       <th scope="col">Origen</th>
                       <th scope="col">Cliente</th>
                       <th scope="col">Estado de venta</th>
@@ -524,7 +524,7 @@
                   <tr v-for="item in sales.data" :key="item.id">
                     <td>{{item.id}}</td>
                     <td>{{ item.created_at | timeformat }}</td>
-                    <td>{{item.reference_no}}</td>
+                    <!-- <td>{{item.reference_no}}</td> -->
                     <td>{{ item.origin }}</td>
                     <td>{{item.client}}</td>
                     <td v-if="item.sale_status == 1"><span class="badge badge-warning">Pendiente</span></td>

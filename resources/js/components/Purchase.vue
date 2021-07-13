@@ -459,7 +459,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Fecha</th>
-                        <th scope="col">Referencia</th>
+                        <!-- <th scope="col">Referencia</th> -->
                         <th scope="col">Proveedor</th>
                         <th scope="col">Total</th>
                         <th scope="col">Estado de pago</th>
@@ -470,7 +470,7 @@
                   <tr v-for="item in purchases.data" :key="item.id">
                     <td>{{item.id}}</td>
                     <td>{{ item.created_at | timeformat }}</td>
-                    <td>{{item.reference_no}}</td>
+                    <!-- <td>{{item.reference_no}}</td> -->
                     <td>{{ item.supplier.company_name}}</td>
                     <td>{{ item.grand_total }}</td>
                     <td v-if="item.purchase_status == 1"><span class="badge badge-warning">Pendiente</span></td>
