@@ -53,7 +53,74 @@ class DashboardController extends Controller
         $tap = ($npsc/$ntp)*100;
         $tap = round($tap, 2);
 
+        //indice de rotación de stock
+        $dataKardex=Product::with('product_adjustment')->with('product_purchase')->with('product_sale')->first();
+        $kardex=[];
+        $count=0;
+        $saldo=0;
+        
+        if ($dataKardex) {
+            foreach ($dataKardex->product_sale as $key => $value) {
+                $value->type = "Venta";
+                $kardex[]=$value;
+            }
+            foreach ($dataKardex->product_adjustment as $key => $value) {
+                if ($value->action == "+") {
+                    $value->type = "Ajuste +";
+                }elseif ($value->action == "-"){
+                    $value->type = "Ajuste -";
+                }
+                
+                $kardex[]=$value;
+            }
+            foreach ($dataKardex->product_purchase as $key => $value) {
+                $value->type = "Compra";
+                $kardex[]=$value;
+            }
 
-        return $data;
+
+            $ini='2021-07-01';
+            $fin='2021-07-31';
+            $from = new Carbon($ini, 'America/Lima');
+            $from->tz = date_default_timezone_get();
+
+            $to = new Carbon($fin, 'America/Lima');
+            $to->tz = date_default_timezone_get();
+            $to->addDay();
+            $collection = collect($kardex);
+            
+            $filtered = $collection->where('created_at', '>=' , $from)->where('created_at', '<=' , $to);
+            
+            $dataKardex->kardex= $filtered->sortBy('created_at')->values();
+
+            
+            /* $dataKardex->kardex=collect($kardex)->sortBy('created_at')->values(); */
+            $initialStock=0;
+            $finalStock=0;
+            $salesTotal=0;
+            foreach ($dataKardex->kardex as $key => $value) {
+                if ($value->type=="Compra" or $value->type=="Ajuste +") {
+                    $value->existence=$count+=$value->qty;
+                    $value->saldo= $saldo+=$value->qty* $value->cost;
+                    
+                }elseif ($value->type=="Venta" or $value->type=="Ajuste -"){
+                    $value->existence=$count-=$value->qty;
+                    $value->saldo= $saldo-=$value->qty* $value->cost;
+                }
+                if ($value->type=="Venta"){
+                    $salesTotal+=$value->qty* $value->cost;
+                }
+
+                if ($key === 0) {
+                    $initialStock=$value->saldo;
+                }
+                $finalStock=$value->saldo;
+            }
+        }
+        
+        $stockPromedio=($initialStock+$finalStock)/2;
+        $indiceRotacion=$salesTotal/$stockPromedio;
+        
+        return $indiceRotacion;
     }
 }

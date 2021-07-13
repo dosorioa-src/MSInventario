@@ -12,7 +12,7 @@ class KardexController extends Controller
 {
     public function load(request $request){
 
-        $dataKardex=Product::search($request->searchValue)->with('product_adjustment')->with('product_purchase')->with('product_sale')->KardexFromTo($request->from,$request->to)->first();
+        $dataKardex=Product::search($request->searchValue)->with('product_adjustment')->with('product_purchase')->with('product_sale')->first();
         $kardex=[];
         $count=0;
         $saldo=0;

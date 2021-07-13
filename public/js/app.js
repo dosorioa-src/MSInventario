@@ -6289,9 +6289,877 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Purchase.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\laragon\\www\\MSInventario\\resources\\js\\components\\Purchase.vue: Unexpected token (642:0)\n\n\u001b[0m \u001b[90m 640 |\u001b[39m         }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 641 |\u001b[39m         loadSuppliers\u001b[33m:\u001b[39m\u001b[36mfunction\u001b[39m() {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 642 |\u001b[39m \u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     |\u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 643 |\u001b[39m             axios\u001b[33m.\u001b[39m\u001b[36mget\u001b[39m(\u001b[32m'/api/provider/loadSelect'\u001b[39m)\u001b[33m.\u001b[39mthen(res\u001b[33m=>\u001b[39m{\u001b[0m\n\u001b[0m \u001b[90m 644 |\u001b[39m               \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39msuppliers \u001b[33m=\u001b[39m res\u001b[33m.\u001b[39mdata\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 645 |\u001b[39m \u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n    at Parser._raise (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:810:17)\n    at Parser.raiseWithData (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:803:17)\n    at Parser.raise (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:764:17)\n    at Parser.unexpected (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:9980:16)\n    at Parser.parseExprAtom (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:11382:20)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10954:23)\n    at Parser.parseUpdate (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10934:21)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10912:23)\n    at Parser.parseExprOps (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10769:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10743:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10706:21)\n    at Parser.parseExpressionBase (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10651:23)\n    at C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10645:39\n    at Parser.allowInAnd (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:12390:16)\n    at Parser.parseExpression (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10645:17)\n    at Parser.parseStatementContent (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:12727:23)\n    at Parser.parseStatement (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:12596:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:13185:25)\n    at Parser.parseBlockBody (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:13176:10)\n    at Parser.parseBlock (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:13160:10)\n    at Parser.parseFunctionBody (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:12069:24)\n    at Parser.parseFunctionBodyAndFinish (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:12053:10)\n    at C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:13318:12\n    at Parser.withTopicForbiddingContext (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:12365:14)\n    at Parser.parseFunction (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:13317:10)\n    at Parser.parseFunctionOrFunctionSent (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:11476:17)\n    at Parser.parseExprAtom (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:11302:21)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10954:23)\n    at Parser.parseUpdate (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10934:21)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10912:23)\n    at Parser.parseExprOps (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10769:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10743:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10706:21)\n    at C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10673:39\n    at Parser.allowInAnd (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:12396:12)\n    at Parser.parseMaybeAssignAllowIn (C:\\laragon\\www\\MSInventario\\node_modules\\@babel\\parser\\lib\\index.js:10673:17)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _chenfengyuan_vue_number_input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @chenfengyuan/vue-number-input */ "./node_modules/@chenfengyuan/vue-number-input/dist/vue-number-input.js");
+/* harmony import */ var _chenfengyuan_vue_number_input__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_chenfengyuan_vue_number_input__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    VueNumberInput: _chenfengyuan_vue_number_input__WEBPACK_IMPORTED_MODULE_2___default.a
+  },
+  data: function data() {
+    return {
+      page: 1,
+      filtroA: "",
+      from: "",
+      to: "",
+      filtroB: "",
+      filtroC: "",
+      searchValue: '',
+      btn_update_active: 0,
+      modal_title: null,
+      attached: [],
+      purchases: [],
+      purchase: {
+        taxe: {},
+        supplier_id: null,
+        item: 0,
+        total_qty: 0,
+        total_tax: 0,
+        total_cost: 0,
+        order_tax: 0,
+        order_discount: 0,
+        shipping_cost: 0,
+        grand_total: 0,
+        status: 0,
+        payment_status: 0,
+        document: null,
+        note: null,
+        product_purchase: [
+          /* {
+          product_id:0,
+          product_variant_id:null,
+          qty:0,
+          net_cost:0,
+          discount:0,
+          tax_rate:0,
+          tax:0,
+          total:0
+          } */
+        ]
+      },
+      suppliers: [],
+      taxes: [],
+      searchResult: []
+    };
+  },
+  created: function created() {
+    this.loadTaxes();
+    this.loadSuppliers();
+    this.loadpurchases();
+  },
+  methods: {
+    //Métodos de carga
+    loadpurchases: function loadpurchases() {
+      var _this = this;
+
+      axios.get('/api/purchase/load?page=' + this.page, {
+        params: {
+          filtroA: this.filtroA,
+          from: this.from,
+          to: this.to,
+          filtroB: this.filtroB,
+          filtroC: this.filtroC
+        }
+      }).then(function (res) {
+        _this.purchases = res.data;
+      });
+    },
+    loadSuppliers: function loadSuppliers() {
+      var _this2 = this;
+
+      axios.get('/api/provider/loadSelect').then(function (res) {
+        _this2.suppliers = res.data;
+      });
+    },
+    loadTaxes: function loadTaxes() {
+      var _this3 = this;
+
+      axios.get('/api/taxe/load').then(function (res) {
+        _this3.taxes = res.data;
+      });
+    },
+    loadPurchase: function loadPurchase(page) {
+      var _this4 = this;
+
+      this.page = page;
+      axios.get('/api/purchase/load?page=' + this.page).then(function (res) {
+        _this4.purchases = res.data;
+      });
+    },
+    // Métodos de mantenimiento
+    createPurchase: function createPurchase() {
+      var _this5 = this;
+
+      var blob = JSON.stringify(this.purchase);
+      var formData = new FormData();
+      formData.append('file', this.attached);
+      formData.append("document", blob);
+      axios.post('/api/purchase/add', formData).then(function (res) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+          title: 'Registro Exitoso!',
+          text: "Se registró compra correctamente.",
+          icon: 'success',
+          confirmButtonColor: '#98B631',
+          confirmButtonText: 'De acuerdo'
+        });
+
+        _this5.clearFields();
+
+        $('#exampleModal').modal('hide');
+
+        _this5.loadpurchases(_this5.page);
+      });
+      console.log(this.purchase);
+    },
+    editPurchaseData: function editPurchaseData(item) {
+      this.purchase = item;
+    },
+    editPurchase: function editPurchase() {
+      var _this6 = this;
+
+      var blob = JSON.stringify(this.purchase);
+      var formData = new FormData();
+      formData.append('file', this.attached);
+      formData.append("document", blob);
+      axios.post('/api/purchase/edit', formData).then(function (res) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+          title: 'Actualización Exitosa!',
+          text: "Se actualizó compra correctamente.",
+          icon: 'success',
+          confirmButtonColor: '#98B631',
+          confirmButtonText: 'De acuerdo'
+        });
+
+        _this6.clearFields();
+
+        $('#exampleModal').modal('hide');
+
+        _this6.loadpurchases(_this6.page);
+      });
+    },
+    deletePurchase: function deletePurchase(item) {
+      var _this7 = this;
+
+      this.purchase = item;
+      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+        title: '¿Estás seguro?',
+        text: "‎¡No podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#98B631',
+        cancelButtonColor: '#f73164',
+        confirmButtonText: 'Sí, eliminar!',
+        cancelButtonText: 'Cancelar'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios.post('/api/purchase/delete', _this7.purchase).then(function (res) {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+              title: 'Eliminado!',
+              text: "Se ha eliminado la compra.",
+              icon: 'success',
+              confirmButtonColor: '#98B631',
+              confirmButtonText: 'De acuerdo'
+            });
+
+            _this7.loadpurchases(_this7.page);
+          });
+        }
+      });
+    },
+    clearFields: function clearFields() {
+      this.purchase = {
+        taxe: {},
+        supplier_id: null,
+        item: 0,
+        total_qty: 0,
+        total_tax: 0,
+        total_cost: 0,
+        order_tax: 0,
+        order_discount: 0,
+        shipping_cost: 0,
+        grand_total: 0,
+        status: 0,
+        payment_status: 0,
+        document: null,
+        note: null,
+        product_purchase: [
+          /* {
+          product_id:0,
+          product_variant_id:null,
+          qty:0,
+          net_cost:0,
+          discount:0,
+          tax_rate:0,
+          tax:0,
+          total:0
+          } */
+        ]
+      };
+    },
+    clearFilters: function clearFilters() {
+      this.filtroA = '', this.filtroB = '', this.filtroC = '', this.from = '', this.to = '';
+    },
+    // Métodos de tabla
+    calculateTotal: function calculateTotal() {
+      var totalqty, totaldis, totaltax, totalCost;
+      var totalItem = 0;
+      totalqty = this.purchase.product_purchase.reduce(function (sum, product) {
+        totalItem += 1;
+        var lineTotal = parseInt(product.qty, 10);
+
+        if (!isNaN(lineTotal)) {
+          return sum + lineTotal;
+        }
+      }, 0);
+      this.purchase.total_qty = totalqty;
+      this.purchase.item = totalItem;
+      /* totaldis = this.purchase.product_purchase.reduce(function (sum, product) {
+          var lineTotal = parseFloat(product.discount);
+          if (!isNaN(lineTotal)) {
+              return sum + lineTotal;
+          }
+      }, 0);
+      console.log(totaldis)
+      this.purchase.total_discount = totaldis; */
+
+      totalCost = this.purchase.product_purchase.reduce(function (sum, product) {
+        var lineTotal = parseFloat(product.subtotal);
+
+        if (!isNaN(lineTotal)) {
+          return sum + lineTotal;
+        }
+      }, 0);
+      this.purchase.total_cost = totalCost;
+      console.log(totalCost);
+      /* if (this.purchase.tax_id == 1) { */
+
+      this.purchase.order_tax = totalCost * parseFloat(this.purchase.taxe.rate) / 100;
+      var tax = this.purchase.order_tax;
+      var shipping = parseFloat(this.purchase.shipping_cost);
+      var discount = parseFloat(this.purchase.order_discount);
+      console.log(this.purchase.order_tax);
+
+      if (!isNaN(shipping) && !isNaN(discount)) {
+        this.purchase.grand_total = totalCost + tax + shipping - discount;
+      } else if (isNaN(shipping) && !isNaN(discount)) {
+        this.purchase.grand_total = totalCost + tax - discount;
+      } else if (!isNaN(shipping) && isNaN(discount)) {
+        this.purchase.grand_total = totalCost + tax + shipping;
+      } else if (isNaN(shipping) && isNaN(discount)) {
+        this.purchase.grand_total = totalCost + tax;
+      }
+      /* }else{
+        this.purchase.order_tax = 0;
+        var shipping = parseFloat(this.purchase.shipping_cost);
+        var discount = parseFloat(this.purchase.order_discount);
+        if (!isNaN(shipping) && !isNaN(discount)) {
+          this.purchase.grand_total = totalCost + shipping - discount;
+        }else if(isNaN(shipping) && !isNaN(discount)){
+          this.purchase.grand_total = totalCost - discount;
+        }else if(!isNaN(shipping) && isNaN(discount)){
+          this.purchase.grand_total = totalCost + shipping;
+        }else if(isNaN(shipping) && isNaN(discount)){
+          this.purchase.grand_total = totalCost;
+        } 
+        }*/
+
+    },
+    calculateLineTotal: function calculateLineTotal(item) {
+      var _item$discount;
+
+      /*           console.log( (item.price * parseInt(item.qty,10)) - parseFloat(item.discount??0) ) */
+      var total = (parseFloat(item.cost) + parseFloat(item.product_variant_selected ? item.product_variant_selected.additional_cost : 0)) * parseInt(item.qty) - parseFloat((_item$discount = item.discount) !== null && _item$discount !== void 0 ? _item$discount : 0);
+
+      if (!isNaN(total)) {
+        console.log(total);
+        item.subtotal = total;
+      }
+
+      this.calculateTotal();
+    },
+    deleteRow: function deleteRow(index) {
+      this.purchase.product_purchase.splice(index, 1);
+      this.calculateTotal();
+    },
+    addNewRow: function addNewRow(item) {
+      this.purchase.product_purchase.push(item);
+    },
+    searchProduct: function searchProduct(value) {
+      var _this8 = this;
+
+      axios.get('/api/product/search', {
+        params: {
+          value: value
+        }
+      }).then(function (res) {
+        _this8.searchResult = res.data;
+      });
+    },
+    handleFile: function handleFile() {
+      this.attached = this.$refs.file.files[0];
+    },
+    buscarCompra: function buscarCompra() {
+      clearTimeout(this.setTimeoutBuscador);
+      this.setTimeoutBuscador = setTimeout(this.loadpurchases, 360);
+    }
+  },
+  filters: {
+    timeformat: function timeformat(arg) {
+      // return moment(arg).subtract(10, 'days').calendar()
+      moment__WEBPACK_IMPORTED_MODULE_1___default.a.locale('es');
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(arg).format('L');
+    }
+  }
+});
 
 /***/ }),
 
@@ -79178,9 +80046,6 @@ var render = function() {
                                                       ),
                                                       _vm._v(" "),
                                                       _c("td", [
-                                                        _vm._v(
-                                                          "\n<<<<<<< HEAD\n                                        "
-                                                        ),
                                                         _c("input", {
                                                           directives: [
                                                             {
@@ -79232,41 +80097,6 @@ var render = function() {
                                                           }
                                                         })
                                                       ]),
-                                                      _vm._v(
-                                                        "\n=======\n                                        "
-                                                      ),
-                                                      !item.product_variant_selected
-                                                        ? _c("div", [
-                                                            _vm._v(
-                                                              _vm._s(
-                                                                parseFloat(
-                                                                  item.cost
-                                                                )
-                                                              )
-                                                            )
-                                                          ])
-                                                        : _vm._e(),
-                                                      _vm._v(" "),
-                                                      item.product_variant_selected
-                                                        ? _c("div", [
-                                                            _vm._v(
-                                                              _vm._s(
-                                                                parseFloat(
-                                                                  item.cost
-                                                                ) +
-                                                                  parseFloat(
-                                                                    item
-                                                                      .product_variant_selected
-                                                                      .additional_cost
-                                                                  )
-                                                              )
-                                                            )
-                                                          ])
-                                                        : _vm._e(),
-                                                      _vm._v(" "),
-                                                      _vm._v(
-                                                        "\n>>>>>>> 2378b8d23544b827d1c008d19ddd9dfc24ce5659\n                                      "
-                                                      ),
                                                       _vm._v(" "),
                                                       _c(
                                                         "td",
@@ -79397,9 +80227,6 @@ var render = function() {
                                                       ),
                                                       _vm._v(" "),
                                                       _c("td", [
-                                                        _vm._v(
-                                                          "\n<<<<<<< HEAD\n                                        "
-                                                        ),
                                                         _c("input", {
                                                           directives: [
                                                             {
@@ -79451,37 +80278,6 @@ var render = function() {
                                                           }
                                                         })
                                                       ]),
-                                                      _vm._v(
-                                                        "\n=======\n                                        "
-                                                      ),
-                                                      item.product_variant_selected
-                                                        ? _c("div", [
-                                                            _vm._v(
-                                                              _vm._s(
-                                                                parseFloat(
-                                                                  item.cost
-                                                                ) +
-                                                                  parseFloat(
-                                                                    item
-                                                                      .product_variant_selected
-                                                                      .additional_cost
-                                                                  )
-                                                              )
-                                                            )
-                                                          ])
-                                                        : _vm._e(),
-                                                      _vm._v(" "),
-                                                      !item.product_variant_selected
-                                                        ? _c("div", [
-                                                            _vm._v(
-                                                              _vm._s(item.cost)
-                                                            )
-                                                          ])
-                                                        : _vm._e(),
-                                                      _vm._v(" "),
-                                                      _vm._v(
-                                                        "\n>>>>>>> 2378b8d23544b827d1c008d19ddd9dfc24ce5659\n\n                                      "
-                                                      ),
                                                       _vm._v(" "),
                                                       _c(
                                                         "td",
@@ -80734,7 +81530,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _vm._v("\n<<<<<<< HEAD\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Producto")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Cantidad")]),
@@ -80743,22 +81538,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Total")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Acción")]),
-        _vm._v("\n=======\n                                    "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Producto")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Variante")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Cantidad")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Costo Unitario Neto")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Total")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Acción")]),
-        _vm._v(
-          "\n>>>>>>> 2378b8d23544b827d1c008d19ddd9dfc24ce5659\n                                  "
-        )
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Acción")])
       ])
     ])
   },
