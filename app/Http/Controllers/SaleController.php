@@ -7,6 +7,7 @@ use App\Product;
 use Carbon\Carbon;
 use App\Product_sale;
 use App\Product_purchase;
+use App\Product_adjustment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -87,6 +88,8 @@ class SaleController extends Controller
     }
 
     public function add(request $request){
+
+
         try {
         DB::beginTransaction();
         $sale=$request->document;
@@ -121,6 +124,18 @@ class SaleController extends Controller
         }
 
         foreach ($sale["product_sale"] as $item) {
+            //comprueba de que estock esta saliendo el producto
+            $purchase = DB::select("SELECT * FROM product_purchases WHERE qty <> used ORDER BY created_at ASC limit 1");
+            $adjustment = DB::select("SELECT * FROM product_adjustments WHERE qty <> used AND ACTION='+' ORDER BY created_at ASC limit 1");
+            if ($purchase[0]->created_at < $adjustment[0]->created_at) {
+                Product_purchase::where('product_id', $purchase[0]->product_id)->where('id', $purchase[0]->id)
+                ->update(['used' => $purchase[0]->used+$item["qty"]]);
+                
+            }else{
+                Product_purchase::where('product_id', $adjustment[0]->product_id)->where('id', $adjustment[0]->id)
+                ->update(['used' => $adjustment[0]->used+$item["qty"]]);
+            }
+
            $product_variant_id = isset($item["product_variant_selected"]) ?  $item["product_variant_selected"]["id"]:null;
            $additional_price = isset($item["product_variant_selected"]) ? $item["product_variant_selected"]["additional_price"]:0;
            $additional_cost = isset($item["product_variant_selected"]) ? $item["product_variant_selected"]["additional_cost"]:0;
@@ -184,6 +199,19 @@ class SaleController extends Controller
         $product_sale_exist = Product_sale::where('sale_id', $sale["id"])->get()->pluck('id')->toArray();
         $product_sale_updated=[];
         foreach ($sale["product_sale"] as $item) {
+            
+            //comprueba de que estock esta saliendo el producto
+            $purchase = DB::select("SELECT * FROM product_purchases WHERE qty <> used ORDER BY created_at ASC limit 1");
+            $adjustment = DB::select("SELECT * FROM product_adjustments WHERE qty <> used AND ACTION='+' ORDER BY created_at ASC limit 1");
+            if ($purchase[0]->created_at < $adjustment[0]->created_at) {
+                Product_purchase::where('product_id', $purchase[0]->product_id)->where('id', $purchase[0]->id)
+                ->update(['used' => $purchase[0]->used+$item["qty"]]);
+                
+            }else{
+                Product_purchase::where('product_id', $adjustment[0]->product_id)->where('id', $adjustment[0]->id)
+                ->update(['used' => $adjustment[0]->used+$item["qty"]]);
+            }
+
             if (isset($item["sale_id"])) {
                 $product_sale_updated[] = $item["id"];
 
@@ -230,7 +258,7 @@ class SaleController extends Controller
         ->update(['is_deleted' => true]);
     }
 
-    public function updateCost(){
+    public function updateCost( ){
         $purchase = DB::select("SELECT * FROM product_purchases WHERE qty <> used ORDER BY created_at ASC limit 1");
         $adjustment = DB::select("SELECT * FROM product_adjustments WHERE qty <> used AND ACTION='+' ORDER BY created_at ASC limit 1");
         if ($purchase[0]->created_at < $adjustment[0]->created_at) {
@@ -241,7 +269,5 @@ class SaleController extends Controller
             Product::where('id', $adjustment[0]->product_id)
             ->update(['cost' => $adjustment[0]->cost]);
         }
-
-        
     }
 }
