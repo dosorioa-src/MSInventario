@@ -89,7 +89,7 @@ class AdjustmentController extends Controller
             foreach ($adjustment["product_adjustment"] as $item) {
                 $additional_cost = isset($item["product_variant_selected"]) ? $item["product_variant_selected"]["additional_cost"]:0;
                 //comprueba de que estock esta saliendo el producto
-                $purchase = DB::select("SELECT * FROM product_purchases WHERE qty <> used ORDER BY created_at ASC limit 1");
+                /* $purchase = DB::select("SELECT * FROM product_purchases WHERE qty <> used ORDER BY created_at ASC limit 1");
                 $adjustment = DB::select("SELECT * FROM product_adjustments WHERE qty <> used AND ACTION='+' ORDER BY created_at ASC limit 1");
                 if ($purchase[0]->created_at < $adjustment[0]->created_at) {
                     Product_purchase::where('product_id', $purchase[0]->product_id)->where('id', $purchase[0]->id)
@@ -98,7 +98,7 @@ class AdjustmentController extends Controller
                 }else{
                     Product_purchase::where('product_id', $adjustment[0]->product_id)->where('id', $adjustment[0]->id)
                     ->update(['used' => $adjustment[0]->used+$item["qty"]]);
-                }
+                } */
                 $addAdjustment->product_adjustment()->create([
                     "product_id"=>$item["id"],
                     "adjustment_id"=>$addAdjustment->id,
@@ -143,8 +143,8 @@ class AdjustmentController extends Controller
     }
 
     public function edit(request $request){
-        try {
-            DB::beginTransaction();
+        /* try {
+            DB::beginTransaction(); */
             $adjustment=$request->document;
             $adjustment=json_decode($adjustment, true);
             
@@ -174,7 +174,7 @@ class AdjustmentController extends Controller
             $product_adjustment_updated=[];
             foreach ($adjustment["product_adjustment"] as $item) {
                 //comprueba de que estock esta saliendo el producto
-            $purchase = DB::select("SELECT * FROM product_purchases WHERE qty <> used ORDER BY created_at ASC limit 1");
+            /* $purchase = DB::select("SELECT * FROM product_purchases WHERE qty <> used ORDER BY created_at ASC limit 1");
             $adjustment = DB::select("SELECT * FROM product_adjustments WHERE qty <> used AND ACTION='+' ORDER BY created_at ASC limit 1");
             if ($purchase[0]->created_at < $adjustment[0]->created_at) {
                 Product_purchase::where('product_id', $purchase[0]->product_id)->where('id', $purchase[0]->id)
@@ -183,7 +183,7 @@ class AdjustmentController extends Controller
             }else{
                 Product_purchase::where('product_id', $adjustment[0]->product_id)->where('id', $adjustment[0]->id)
                 ->update(['used' => $adjustment[0]->used+$item["qty"]]);
-            }
+            } */
                 if (isset($item["adjustment_id"])) {
                     $product_adjustment_updated[] = $item["id"];
                     //deshaciendo los cambios realizados
@@ -261,10 +261,10 @@ class AdjustmentController extends Controller
             foreach($productAdjustmentDelete as $productAdjustmentId){
                 Product_adjustment::where('id',$productAdjustmentId)->delete();
             }
-            DB::commit();
+            /* DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
             return $th;
-        }
+        } */
     }
 }
