@@ -272,7 +272,7 @@
                                       </td> -->
 
                                       <td>
-                                        <vue-number-input v-model="item.qty" :min="2" inline center controls @change="calculateLineTotal(item)"></vue-number-input>
+                                        <vue-number-input v-model="item.qty" :min="1" inline center controls @change="calculateLineTotal(item)"></vue-number-input>
                                       </td>
                                       
                                       <td>
