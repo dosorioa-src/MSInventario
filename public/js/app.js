@@ -81439,7 +81439,7 @@ var render = function() {
                                     click: function($event) {
                                       _vm.editPurchaseData(item),
                                         (_vm.btn_update_active = 1),
-                                        (_vm.modal_title = "Editar Venta")
+                                        (_vm.modal_title = "Editar Compra")
                                     }
                                   }
                                 },
