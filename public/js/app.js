@@ -82685,7 +82685,7 @@ var render = function() {
                                                             "vue-number-input",
                                                             {
                                                               attrs: {
-                                                                min: 2,
+                                                                min: 1,
                                                                 inline: "",
                                                                 center: "",
                                                                 controls: ""
