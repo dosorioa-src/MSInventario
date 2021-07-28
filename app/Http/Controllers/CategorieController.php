@@ -16,20 +16,23 @@ class CategorieController extends Controller
     public function load(Request $request)
     {
         $filtro = $request->buscador;
-        $data = Categorie::with('Product')
+        $data = Categorie::with('product')
         ->where('is_deleted', false)
         ->search($filtro)
         ->paginate(10);
 
-        foreach ($data->items() as $item) {
+
+        foreach ($data as $key => $item) {
+            
             $item->id = $item->id;
             $item->parent_id = $item->parent_id;
             $item->name = $item->name;
             $item->parent = ($item->parent_id) ? Categorie::find($item->parent_id)->name : "N/A";
-            $item->total_products = count($item->product);
-            $item->stock = $item->product->sum('qty');
-            $item->sum_price = $item->product->sum('price');
-            $item->sum_cost = $item->product->sum('cost');
+            $item->total_products = $item->product->where('is_deleted','==', false)->count($item->product);
+            $item->stock = $item->product->where('is_deleted','==', false)->sum('qty');
+            $item->sum_price = $item->product->where('is_deleted','==', false)->sum('price');
+            $item->sum_cost =$item->product->where('is_deleted','==', false)->sum('cost');
+
             $item->is_active = $item->is_active;
         }
 

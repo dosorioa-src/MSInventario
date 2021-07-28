@@ -3407,6 +3407,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4749,6 +4752,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_upload_drop_images__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-upload-drop-images */ "./node_modules/vue-upload-drop-images/dist/vue-upload-drop-images.vue");
 /* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
 /* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
 //
 //
 //
@@ -72548,15 +72555,21 @@ var render = function() {
                           },
                           [
                             _c("td", [
-                              _c("img", {
-                                attrs: {
-                                  width: "50",
-                                  src:
-                                    "images/product/" +
-                                    item.image.split(",")[0],
-                                  alt: ""
-                                }
-                              })
+                              item.image.split(",")[0].indexOf("https") > -1
+                                ? _c("img", {
+                                    attrs: {
+                                      width: "50",
+                                      src: item.image.split(",")[0],
+                                      alt: ""
+                                    }
+                                  })
+                                : _c("img", {
+                                    attrs: {
+                                      width: "50",
+                                      src: item.image.split(",")[0],
+                                      alt: ""
+                                    }
+                                  })
                             ]),
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(item.name))]),
@@ -76223,7 +76236,7 @@ var render = function() {
                                     staticClass: "form-label",
                                     attrs: { for: "validationDefault02" }
                                   },
-                                  [_vm._v("Código")]
+                                  [_vm._v("Peso")]
                                 ),
                                 _vm._v(" "),
                                 _c("input", {
@@ -76231,8 +76244,8 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.product.code,
-                                      expression: "product.code"
+                                      value: _vm.product.weight,
+                                      expression: "product.weight"
                                     }
                                   ],
                                   staticClass: "form-control",
@@ -76242,7 +76255,7 @@ var render = function() {
                                     placeholder: "",
                                     required: ""
                                   },
-                                  domProps: { value: _vm.product.code },
+                                  domProps: { value: _vm.product.weight },
                                   on: {
                                     input: function($event) {
                                       if ($event.target.composing) {
@@ -76250,7 +76263,7 @@ var render = function() {
                                       }
                                       _vm.$set(
                                         _vm.product,
-                                        "code",
+                                        "weight",
                                         $event.target.value
                                       )
                                     }
@@ -77315,15 +77328,25 @@ var render = function() {
                                                     { key: item.id },
                                                     [
                                                       _c("td", [
-                                                        _c("img", {
-                                                          attrs: {
-                                                            src:
-                                                              "images/product/" +
-                                                              item,
-                                                            height: "60",
-                                                            width: "60"
-                                                          }
-                                                        })
+                                                        item.image
+                                                          .split(",")[0]
+                                                          .indexOf("https") > -1
+                                                          ? _c("img", {
+                                                              attrs: {
+                                                                src: item,
+                                                                height: "60",
+                                                                width: "60"
+                                                              }
+                                                            })
+                                                          : _c("img", {
+                                                              attrs: {
+                                                                src:
+                                                                  "images/product/" +
+                                                                  item,
+                                                                height: "60",
+                                                                width: "60"
+                                                              }
+                                                            })
                                                       ]),
                                                       _vm._v(" "),
                                                       _c("td", [
@@ -77909,14 +77932,21 @@ var render = function() {
                           },
                           [
                             _c("th", { attrs: { scope: "row" } }, [
-                              _c("img", {
-                                attrs: {
-                                  src:
-                                    "images/product/" +
-                                    item.image.split(",")[0],
-                                  width: "50"
-                                }
-                              })
+                              item.image.split(",")[0].indexOf("https") > -1
+                                ? _c("img", {
+                                    attrs: {
+                                      src: item.image.split(",")[0],
+                                      width: "50"
+                                    }
+                                  })
+                                : _c("img", {
+                                    attrs: {
+                                      src:
+                                        "images/product/" +
+                                        item.image.split(",")[0],
+                                      width: "50"
+                                    }
+                                  })
                             ]),
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(item.name))]),

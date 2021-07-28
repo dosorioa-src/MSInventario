@@ -35,8 +35,13 @@ class DashboardController extends Controller
         //Tasa de abastecimiento de pedidos
         $npsc = Sale::where('sale_status', '=', 2)->count();
         $ntp = Sale::count();
-        $tap = ($npsc/$ntp)*100;
-        $tap = round($tap, 2);
+        if ($ntp) {
+            $tap = ($npsc/$ntp)*100;
+            $tap = round($tap, 2);
+        }else {
+            $tap=0;
+        }
+        
 
         //indice de rotación de stock
         $dataKardex=Product::with('product_adjustment')->with('product_purchase')->with('product_sale')->first();

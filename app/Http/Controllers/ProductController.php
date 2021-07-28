@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Temporale;
 use App\Warehouse;
+use App\Publication;
 use App\Product_variant;
 use App\Product_warehouse;
 use Illuminate\Http\Request;
@@ -39,6 +41,7 @@ class ProductController extends Controller
             "categorie_id"=> $product["categorie_id"],
             "code"=> $product["code"],
             "cost"=> $product["cost"],
+            "weight"=> $product["weight"],
             "product_details"=> $product["product_details"],
             "featured"=> $product["featured"],
             "is_variant"=> $product["is_variant"],
@@ -103,6 +106,7 @@ class ProductController extends Controller
                 "categorie_id"=> $product["categorie_id"],
                 "code"=> $product["code"],
                 "cost"=> $product["cost"],
+                "weight"=> $product["weight"],
                 "product_details"=> $product["product_details"],
                 "featured"=> $product["featured"],
                 "is_variant"=> $product["is_variant"],

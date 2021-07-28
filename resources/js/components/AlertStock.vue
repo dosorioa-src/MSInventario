@@ -35,7 +35,10 @@
                                 </thead>
                                 <tbody>
                                     <tr style="vertical-align: middle" v-for="item in products.data" :key="item.id">
-                                        <td><img width="50" :src="'images/product/'+item.image.split(',')[0]" alt=""></td>
+                                        <td>
+                                            <img v-if="item.image.split(',')[0].indexOf('https')>-1" width="50" :src="item.image.split(',')[0]" alt="">
+                                            <img v-else width="50" :src="item.image.split(',')[0]" alt="">
+                                        </td>
                                         <td>{{item.name}}</td>
                                         <td>{{item.code}}</td>
                                         <td>{{item.qty}}</td>
