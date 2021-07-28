@@ -143,8 +143,8 @@ class AdjustmentController extends Controller
     }
 
     public function edit(request $request){
-        /* try {
-            DB::beginTransaction(); */
+        try {
+            DB::beginTransaction();
             $adjustment=$request->document;
             $adjustment=json_decode($adjustment, true);
             
@@ -261,10 +261,19 @@ class AdjustmentController extends Controller
             foreach($productAdjustmentDelete as $productAdjustmentId){
                 Product_adjustment::where('id',$productAdjustmentId)->delete();
             }
-            /* DB::commit();
+            DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
             return $th;
-        } */
+        }
+    }
+
+    public function edit_express(request $request){
+        Product_adjustment::where('product_id',$request->product_id)->update([
+            "product_id"=>$request->product_id,
+            "adjustment_id"=>140,
+            "qty"=>$request->qty,
+            "action"=>'+'
+        ]);
     }
 }

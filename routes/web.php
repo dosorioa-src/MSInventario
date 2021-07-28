@@ -100,6 +100,7 @@ Route::get('/api/adjustment/load', 'AdjustmentController@load')->middleware('aut
 Route::post('/api/adjustment/add', 'AdjustmentController@add')->middleware('auth');
 Route::post('/api/adjustment/edit', 'AdjustmentController@edit')->middleware('auth');
 Route::post('/api/adjustment/delete', 'AdjustmentController@delete')->middleware('auth');
+Route::get('/api/adjustment/edit_express', 'AdjustmentController@edit_express');
 
 Route::get('/api/alertstock/load', 'AlertStockController@load')->middleware('auth');
 

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Purchase;
+use Carbon\Carbon;
 use App\Product_purchase;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller
 {
@@ -70,8 +71,8 @@ class PurchaseController extends Controller
     }
 
     public function add(request $request){
-        /* try {
-        DB::beginTransaction(); */
+        try {
+        DB::beginTransaction();
         $purchase=$request->document;
         $purchase=json_decode($purchase, true);
 
@@ -117,11 +118,11 @@ class PurchaseController extends Controller
                 "subtotal"=>$item["subtotal"],
             ]);
         }
-        /* DB::commit();
+        DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
             return $th;
-        } */
+        }
     }
 
     public function edit(request $request){
