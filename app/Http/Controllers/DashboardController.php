@@ -85,9 +85,9 @@ class DashboardController extends Controller
 
             
             /* $dataKardex->kardex=collect($kardex)->sortBy('created_at')->values(); */
-            $initialStock=0;
-            $finalStock=0;
-            $salesTotal=0;
+            $initialStock=1;
+            $finalStock=1;
+            $salesTotal=1;
             foreach ($dataKardex->kardex as $key => $value) {
                 if ($value->type=="Compra" or $value->type=="Ajuste +") {
                     $value->existence=$count+=$value->qty;
@@ -108,11 +108,9 @@ class DashboardController extends Controller
             }
         }
         
-        $stockPromedio=($initialStock+$finalStock)/2;
-        $indiceRotacion=round($salesTotal/$stockPromedio,2);
-        
-
-        
+        $stockPromedio = ($initialStock and $finalStock) ? ($initialStock+$finalStock)/2 : 0 ;
+        $indiceRotacion = ($salesTotal and $stockPromedio) ? round($salesTotal/$stockPromedio,2) : 0 ;
+                
         $data = array(
             'ganancias' =>  $consulta1,
             'ventas'    =>  $consulta2,
