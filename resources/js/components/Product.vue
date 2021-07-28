@@ -393,7 +393,7 @@
                         
                         <tr v-for="(item, index) in imagesUrl" :key="item.id">
                             <td>
-                              <img v-if="item.image.split(',')[0].indexOf('https')>-1" :src="item" height="60" width="60">
+                              <img v-if="item.split(',')[0].indexOf('https')>-1" :src="item" height="60" width="60">
                               <img v-else :src="'images/product/'+item" height="60" width="60">
                               <!-- <input type="hidden" v-model="imagesUrl" :value="index"> -->
                             </td>

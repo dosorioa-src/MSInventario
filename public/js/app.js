@@ -77328,7 +77328,7 @@ var render = function() {
                                                     { key: item.id },
                                                     [
                                                       _c("td", [
-                                                        item.image
+                                                        item
                                                           .split(",")[0]
                                                           .indexOf("https") > -1
                                                           ? _c("img", {

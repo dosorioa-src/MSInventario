@@ -8,6 +8,7 @@ use App\Warehouse;
 use App\Publication;
 use App\Product_variant;
 use App\Product_warehouse;
+use App\Product_adjustment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,17 @@ class ProductController extends Controller
         return Product::search($request->value)->where('is_deleted','=',false)->with('product_variant')->get(['products.id','products.name','products.price','products.cost','code','products.is_warehouse', 'products.qty'])->take(10);
     }
     public function load(Request $request){
+        /* $datos= Product::all();
+        foreach ($datos as $key => $value) {
+            Product_adjustment::create([
+               "adjustment_id"=>140,
+               "product_id"=>$value->id,
+               "qty"=>0,
+               "action"=> '+',
+               "cost"=>$value->cost,
+               "subtotal"=>0
+           ]);
+        } */
         $filtro = $request->buscador;
         $filtroC = $request->buscadorC;
         $filtroB = $request->buscadorB;
